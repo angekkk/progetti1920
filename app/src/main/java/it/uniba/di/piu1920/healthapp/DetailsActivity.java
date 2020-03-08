@@ -51,8 +51,8 @@ public class DetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
-        esecuzione.setText(getString(R.string.esecuzione)+ex.getEsecuzione());
-        categoria.setText(getString(R.string.categoria)+ex.getNomecategoria());
+        esecuzione.setText(ex.getEsecuzione());
+        categoria.setText(ex.getNomecategoria());
         Picasso.with(DetailsActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+ex.getLink()).into(img);
 
 
