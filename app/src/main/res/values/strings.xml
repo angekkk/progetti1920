@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">HealthApp</string>
+    <string name="login">Login</string>
+    <string name="register">Registrati</string>
+    <string name="title_es">Esercizi</string>
+    <string name="title_ali">Alimentazione</string>
+    <string name="action_settings">Impostazioni</string>
+
+
+    <!--BMI ACTIVITY-->
+    <string name="bmi_1">Molto sottopeso</string>
+    <string name="bmi_2">Gravemente sottopeso</string>
+    <string name="bmi_3">Sottopeso</string>
+    <string name="bmi_4">Normopeso</string>
+    <string name="bmi_5">Sovrappeso</string>
+    <string name="bmi_6">Moderatamente obeso</string>
+    <string name="bmi_7">Gravemente obeso</string>
+    <string name="bmi_8">Molto obeso</string>
+    <string name="text_button_calculate">Calcola</string>
+    <string name="text_button_exit">Esci</string>
+    <string name="default_show_result"> </string>
+    <string name="default_show_bmi"> Inserire peso (kg) e altezza (m) </string>
+    <string name="text_label_kg">kg</string>
+    <string name="text_label_m">m</string>
+    <string name="content_button_calculate">Calcola il tuo BMI</string>
+    <string name="content_button_exit">Esci dalla sezione</string>
+    <string name="content_show_result"> </string>
+    <string name="content_show_bmi"> </string>
+    <string name="content_user_answer">Digita il tuo peso in Kg</string>
+
+    <!--KCAL ACTIVITY-->
+    <string name="basic3">Sesso</string>
+    <string name="basic3radio1">Maschio</string>
+    <string name="basic3radio2">Femmina</string>
+    <string name="basic4">Altezza</string>
+    <string name="ageHint">Inserire altezza</string>
+    <string name="basic5">Altezza</string>
+    <string name="nameInputHint">Nome</string>
+    <string name="ageInputHint">Età</string>
+    <string name="heightInputHint">Altezza (cm)</string>
+    <string name="weightInputHint">Peso (kg)</string>
+
+
+
+    <!--NAVBAR -->
+    <string name="title_bmi">BMI</string>
+    <string name="title_calorie">Calorie</string>
+    <string name="title_home">Home</string>
+    <string name="risultati">Risultati</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_login">Login</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_clienti">Gestisci clienti</string>
+    <string name="title_scheda">Scheda</string>
+
+    <!--DETTAGLIO ESERCIZIO-->
+    <string name="categoria">Categoria :</string>
+    <string name="esecuzione">Esecuzione :</string>
+
+    <!--REGISTRAZIONE E LOGIN-->
+    <string name="swipe_left_for_register">Swipe a sinistra per Registrarti</string>
+    <string name="swipe_right_for_login">Swipe a destra per Login</string>
+    <string name="password">Password</string>
+    <string name="rewrite_pss">Conferma password</string>
+    <string name="email">Email</string>
+    <string name="cognome">Cognome</string>
+    <string name="nome">Nome</string>
+    <string name="err_nome">Compilare campo nome</string>
+    <string name="err_cog">Compilare campo cognome</string>
+    <string name="err_em">Compilare campo emaill</string>
+    <string name="err_em2">Inserire una email valida</string>
+    <string name="err_pssw">Compilare campo password</string>
+    <string name="err_rpssw">Confermare la password</string>
+    <string name="err_rpssw2">Le password non coincidono</string>
+    <string name="reg_ok">Registrazione completata!</string>
+    <string name="reg_err">Errore in fase di registrazione</string>
+    <string name="log_ok">Login effettuato!</string>
+    <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
+
+    <!--CREATE SCHEDA  -->
+    <string name="ins_ex">Premi il tasto per aggiungere gli esercizi alla scheda</string>
+    <string name="invia_scheda">Invia scheda</string>
+</resources>

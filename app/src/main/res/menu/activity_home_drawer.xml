@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_log"
+            android:icon="@drawable/login"
+            android:title="@string/title_login" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/nav_home"
+            android:title="@string/title_home" />
+        <item
+            android:id="@+id/nav_clienti"
+            android:icon="@drawable/clienti"
+            android:title="@string/title_clienti"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_scheda"
+            android:icon="@drawable/scheda"
+            android:title="@string/title_scheda"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_exercise"
+            android:icon="@drawable/nav_ex"
+            android:title="@string/title_es" />
+        <item
+            android:id="@+id/nav_aliment"
+            android:icon="@drawable/nav_ali"
+            android:title="@string/title_ali" />
+        <item
+            android:id="@+id/nav_bmi"
+            android:icon="@drawable/nav_bmi"
+            android:title="@string/title_bmi" />
+        <item
+            android:id="@+id/nav_caloorie"
+            android:icon="@drawable/nav_kcal"
+            android:title="@string/title_calorie" />
+        <item
+            android:id="@+id/nav_out"
+            android:icon="@drawable/logout"
+            android:title="@string/title_logout"
+            android:visible="false"/>
+    </group>
+</menu>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HealthApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="title_ali">Nutrition</string>
+    <string name="title_es">Exercices</string>
+
+
+    <!--BMI ACTIVITY-->
+    <string name="bmi_1">Very severely underweight</string>
+    <string name="bmi_2">Severely underweight</string>
+    <string name="bmi_3">Underweight</string>
+    <string name="bmi_4">Normal (healthy weight)</string>
+    <string name="bmi_5">Overweight</string>
+    <string name="bmi_6">Moderately obese</string>
+    <string name="bmi_7">Severely obese</string>
+    <string name="bmi_8">Very severely obese</string>
+    <string name="text_button_calculate">Calculate</string>
+    <string name="text_button_exit">Exit</string>
+    <string name="default_show_result"> </string>
+    <string name="default_show_bmi"> Enter weight (kg) and height (m) </string>
+    <string name="text_label_kg">kg</string>
+    <string name="text_label_m">m</string>
+    <string name="content_button_calculate">Calculate your BMI</string>
+    <string name="content_button_exit">Exit application</string>
+    <string name="content_show_result"> </string>
+    <string name="content_show_bmi"> </string>
+    <string name="content_user_answer">Key your weight as Kg</string>
+
+    <!--KCAL ACTIVITY-->
+    <string name="risultati">Results</string>
+    <string name="basic3">Gender</string>
+    <string name="basic3radio1">Male</string>
+    <string name="basic3radio2">Female</string>
+    <string name="basic4">Age</string>
+    <string name="ageHint">Enter Age</string>
+    <string name="basic5">Height</string>
+    <string name="nameInputHint">Name</string>
+    <string name="ageInputHint">Age</string>
+    <string name="heightInputHint">Height (cm)</string>
+    <string name="weightInputHint">Weight (kg)</string>
+
+
+    <!--NAVBAR -->
+    <string name="title_bmi">BMI</string>
+    <string name="title_calorie">Calorie</string>
+    <string name="title_home">Home</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_login">Login</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_clienti">Manage customers</string>
+    <string name="title_scheda">Training card</string>
+
+    <!--DETTAGLIO ESERCIZIO-->
+    <string name="categoria">Category :</string>
+    <string name="esecuzione">Execution :</string>
+
+
+
+    <!--REGISTRAZIONE E LOGIN-->
+    <string name="swipe_left_for_register">Swipe left to Registration</string>
+    <string name="swipe_right_for_login">Swipe right to Login</string>
+    <string name="password">Password</string>
+    <string name="rewrite_pss">Confirm password</string>
+    <string name="email">Email</string>
+    <string name="cognome">Name</string>
+    <string name="nome">Surname</string>
+    <string name="err_nome">Please fill field surname</string>
+    <string name="err_cog">Please fill field name</string>
+    <string name="err_em">Please fill field email</string>
+    <string name="err_em2">Add valid email</string>
+    <string name="err_pssw">Please fill field password</string>
+    <string name="err_rpssw">Please confirm password</string>
+    <string name="err_rpssw2">Passwords do not match</string>
+    <string name="reg_ok">Registration complete!</string>
+    <string name="reg_err">Error during registration</string>
+    <string name="log_ok">Login Successful!</string>
+    <string name="log_err">Login error! Check the entered data and try again.</string>
+
+    <!--CREATE SCHEDA  -->
+    <string name="ins_ex">Press the button to add the exercises to the card</string>
+    <string name="invia_scheda">Invia scheda</string>
+</resources>

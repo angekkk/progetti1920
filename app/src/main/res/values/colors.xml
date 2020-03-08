@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#03A9F4</color>
+    <color name="color_primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#448AFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="accent_color">#ffffff</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="darkyellow">#FDD835</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="lightgrey">#9E9E9E</color>
+    <color name="green">#26A69A</color>
+    <color name="syracuseorange">#D95900</color>
+    <color name="syracuseblue">#4A20AB</color>
+    <color name="fats">#F7CA18</color>
+    <color name="carbs">#22A7F0</color>
+    <color name="protein">#F22613</color>
+    <color name="appintro1">#EDD834</color>
+    <color name="appintro2">#FF7E55</color>
+    <color name="appintro3">#FADAA3</color>
+    <color name="appintro4">#72BAAC</color>
+    <color name="foreground_material_light">#f7f2e5</color>
+    <color name="darkblue">#0B0080</color>
+    <color name="blue">#3162D7</color>
+    <color name="stayFitAccent">#002841</color>
+    <color name="lightText">#c1beba</color>
+    <color name="darkWash">#f2f1ef</color>
+    <color name="yellowXL">#fcbc21</color>
+    <color name="yellowS">#fedc89</color>
+    <color name="greyXL">#524e4a</color>
+</resources>
