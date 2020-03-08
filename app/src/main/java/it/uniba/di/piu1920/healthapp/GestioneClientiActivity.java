@@ -180,8 +180,8 @@ public class GestioneClientiActivity extends AppCompatActivity {
 
             Cliente c = listahome.get(position);
             System.out.println("Bind ["+holder+"] - Pos ["+position+"]"+c.getNome());
-            holder.nomec.setText(getString(R.string.nome)+": "+c.getNome());
-            holder.cognomec.setText(getString(R.string.cognome)+": "+c.getCognome());
+            holder.nomec.setText(c.getNome());
+            holder.cognomec.setText(c.getCognome());
 
         }
 

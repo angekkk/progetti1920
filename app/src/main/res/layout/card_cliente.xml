@@ -31,32 +31,60 @@
             card_view:srcCompat="@drawable/nav_user" />
 
         <TextView
-            android:id="@+id/nomec"
+            android:id="@+id/nome"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="121dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="201dp"
-            android:layout_marginBottom="58dp"
-            android:text="TextView" />
+            android:layout_marginStart="118dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="204dp"
+            android:layout_marginBottom="57dp"
+            android:text="@string/nome" />
+
+        <TextView
+            android:id="@+id/nomec"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="121dp"
+            android:layout_marginBottom="57dp"
+            android:text="@string/nome" />
+
+        <TextView
+            android:id="@+id/cognome"
+            android:layout_width="75dp"
+            android:layout_height="18dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="118dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="188dp"
+            android:layout_marginBottom="27dp"
+            android:text="@string/cognome" />
 
         <TextView
             android:id="@+id/cognomec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="18dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="218dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="104dp"
-            android:layout_marginBottom="58dp"
-            android:text="TextView" />
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="105dp"
+            android:layout_marginBottom="27dp"
+            android:text="@string/cognome" />
     </RelativeLayout>
 
 
