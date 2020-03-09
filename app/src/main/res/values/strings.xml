@@ -83,4 +83,5 @@
     <string name="invia_scheda">Invia scheda</string>
     <string name="ins_ok">Inserimento scheda completato!</string>
     <string name="item_rem">L\'elemento è stato rimosso dalla lista</string>
+    <string name="cam_err">Per utilizzare il lettore di qr , abilitare i permessi per la fotocamera</string>
 </resources>

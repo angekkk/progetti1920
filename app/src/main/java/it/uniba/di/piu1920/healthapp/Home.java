@@ -170,7 +170,7 @@ public class Home extends AppCompatActivity {
                                              Intent intent = new Intent(Home.this, QrScannerActivity.class);
                                              startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
                                          } else {
-                                             Snackbar.make(getCurrentFocus(), "Errr", Snackbar.LENGTH_LONG)
+                                             Snackbar.make(getCurrentFocus(), getString(R.string.cam_err), Snackbar.LENGTH_LONG)
                                                      .setAction("Action", null).show();
                                          }
                                      });
