@@ -1,8 +1,11 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -17,32 +20,34 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.snackbar.Snackbar;
-
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
-
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
+import me.ydcool.lib.qrmodule.encoding.QrGenerator;
 
 public class CreateSchedaActivity extends AppCompatActivity {
 
@@ -55,6 +60,8 @@ public class CreateSchedaActivity extends AppCompatActivity {
     RecyclerView rv;
     private static String url_get_bozze = "http://ddauniba.altervista.org/HealthApp/get_esercizi.php";
     private static String url_inserisci_scheda = "http://ddauniba.altervista.org/HealthApp/inserisci_scheda.php";
+    private static String url_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id_scheda.php";
+    private static String url_inserisci_esercizio = "http://ddauniba.altervista.org/HealthApp/inserisci_esercizio.php";
     ExAdapt ca;
     Spinner spinner;
     ImageButton add;
@@ -62,7 +69,10 @@ public class CreateSchedaActivity extends AppCompatActivity {
     LinearLayoutManager llm;
     ConstraintLayout con;
     int idutente;
+    int idscheda=0;//id della scheda generato
+    int idesercizio; //id esercizio corrente
     SessionManager session;
+    String conca="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,9 +97,56 @@ public class CreateSchedaActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
-                startActivity(i);
-                finish();
+                if(idscheda!=0){
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(CreateSchedaActivity.this);
+                    LayoutInflater inflater = getLayoutInflater();
+                    View view = inflater.inflate(R.layout.dialog,null);
+
+                    ImageView iv = (ImageView)view.findViewById(R.id.iv);
+                    Bitmap qrCode = null;
+                    try {
+                        qrCode = new QrGenerator.Builder()
+                                .content("ID: "+idscheda)
+                                .qrSize(300)
+                                .margin(2)
+                                .color(Color.BLACK)
+                                .bgColor(Color.WHITE)
+                                .ecc(ErrorCorrectionLevel.H)
+                                .overlay(CreateSchedaActivity.this,R.mipmap.ic_launcher)
+                                .overlaySize(100)
+                                .overlayAlpha(255)
+                                .overlayXfermode(PorterDuff.Mode.SRC_ATOP)
+                                .encode();
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
+
+                    iv.setImageBitmap(qrCode);
+
+                    builder.setView(view);
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+                            startActivity(i);
+                            finish();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+                    builder.show();
+                }else{
+                    Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
 
@@ -98,15 +155,23 @@ public class CreateSchedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(addEsercizioScheda((String) spinner.getSelectedItem())){
                      ca = new ExAdapt(scheda);
-                    rv.setAdapter(ca);
+                     rv.setAdapter(ca);
+
                 }
             }
         });
 
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("entro in scheda");
+                new inserisci_scheda().execute();
+            }
+        });
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-                        new inserisci_scheda().execute();
+
                         // Intent i = new Intent(GestioneClientiActivity.this, DetailsActivity.class);
                         // x.putSerializable("ogg",lista.get(position));
                         // i.putExtra("bund",x);
@@ -115,9 +180,12 @@ public class CreateSchedaActivity extends AppCompatActivity {
                     }
 
                     public void onLongClickItem(View v, int position) {
-                        System.out.println("On Long Click Item interface");
+
                     }
                 }));
+
+
+
 
     }
 
@@ -127,6 +195,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
             if(lista.get(i).getNome().contentEquals(nome)){
                 if(!scheda.contains(lista.get(i))){
                     scheda.add(lista.get(i));
+                    System.out.println("ESERCIZIO : "+lista.get(i).getId());
                     aggiunto= true;
                 }
             }
@@ -146,6 +215,8 @@ public class CreateSchedaActivity extends AppCompatActivity {
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void enableSwipeToDeleteAndUndo() {
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
@@ -194,16 +265,62 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
             String ret=null;
             JSONObject json = new JSONParser().makeHttpRequest(url_inserisci_scheda, JSONParser.POST, params);
+            System.out.println("entro in scheda");
             if (json != null) {
                 try {
                     int success = json.getInt("success");
                     if (success == 0) {
+                        Log.d("SCHEDA : ", "INSERISCO SCHEDA");
                         ret= "inserito";
                     } else if (success == -1) {
                     }
                 } catch (JSONException e) {
                 }
-            } else {
+            }
+            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
+
+            return ret;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                        new  get_id().execute();
+                }
+            });
+        }
+    }
+
+    class get_id extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(String... args) {
+            String ret=null;
+            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
+            TwoParamsList param = new TwoParamsList();
+            /// params.add("tipo", ""+1);
+            param.add("idu",""+ idutente);
+            param.add("id",""+ session.getUserDetails().getId());
+            JSONObject json2 = new JSONParser().makeHttpRequest(url_id_scheda, JSONParser.GET, param);
+            System.out.println("");
+            try {
+                int success = json2.getInt(TAG_SUCCESS);
+                if (success == 1) {
+                    arr = json2.getJSONArray("scheda");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject c = arr.getJSONObject(i);
+                        int id = Integer.parseInt(c.getString("id"));//id della scheda appena creata
+                        idscheda=id;
+                    }
+                }else{
+                    Log.d("SCHEDA : ", "ERRORE");
+                }
+            } catch (Exception e) {
+                Log.d("SCHEDA : ", "ERRORE - "+  e.toString());
             }
             return ret;
         }
@@ -211,12 +328,16 @@ public class CreateSchedaActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
+                    for(int i=0;i<scheda.size();i++){
+                        idesercizio=scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
+                        conca=conca+idesercizio+";";
+                    }
+                    new inserisci_esercizi().execute();
 
                 }
             });
         }
     }
-
 
     public class ExAdapt extends RecyclerView.Adapter<ExAdapt.MyViewHolder> {
 
@@ -280,7 +401,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
             notifyItemInserted(position);
         }
     }
-
 
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
@@ -408,5 +528,44 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
     }
 
+    class inserisci_esercizi extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(String... args) {
+            TwoParamsList params = new TwoParamsList();
+            /// params.add("tipo", ""+1);
+            params.add("idscheda",""+ idscheda);
+            params.add("idesercizio",""+ conca);
+            String ret=null;
+            JSONObject json = new JSONParser().makeHttpRequest(url_inserisci_esercizio, JSONParser.POST, params);
+            System.out.println("INSERISCO ESERCIZIO "+conca);
+            if (json != null) {
+                try {
+                    int success = json.getInt("success");
+                    if (success == 0) {
+
+                    } else if (success == -1) {
+                    }
+                } catch (JSONException e) {
+                }
+            }
+            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
+
+            return ret;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+
+
+                }
+            });
+        }
+    }
 
 }

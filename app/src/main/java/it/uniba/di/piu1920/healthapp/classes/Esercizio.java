@@ -16,6 +16,8 @@ public class Esercizio implements Serializable {
         this.tipo = tipo;
     }
 
+
+
     public String getNome() {
         return nome;
     }

@@ -80,4 +80,5 @@
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Premi il tasto per aggiungere gli esercizi alla scheda</string>
     <string name="invia_scheda">Invia scheda</string>
+    <string name="ins_ok">Inserimento scheda completato!</string>
 </resources>

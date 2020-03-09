@@ -81,5 +81,6 @@
 
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Press the button to add the exercises to the card</string>
-    <string name="invia_scheda">Invia scheda</string>
+    <string name="invia_scheda">Send card</string>
+    <string name="ins_ok">Card insertion complete!</string>
 </resources>
