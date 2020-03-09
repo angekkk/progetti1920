@@ -50,6 +50,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_login">Login</string>
     <string name="title_logout">Logout</string>
+    <string name="title_qr">Leggi qr</string>
     <string name="title_clienti">Manage customers</string>
     <string name="title_scheda">Training card</string>
 

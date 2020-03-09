@@ -2,6 +2,7 @@ package it.uniba.di.piu1920.healthapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.recycler.NutritionActivity;
+import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
 
@@ -55,7 +57,7 @@ public class Home extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_exercise, R.id.nav_aliment,R.id.nav_bmi,R.id.nav_caloorie,R.id.nav_log,R.id.nav_out,R.id.nav_clienti,R.id.nav_scheda)
+                R.id.nav_home, R.id.nav_exercise, R.id.nav_aliment,R.id.nav_bmi,R.id.nav_caloorie,R.id.nav_log,R.id.nav_out,R.id.nav_clienti,R.id.nav_scheda,R.id.nav_qr)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -126,6 +128,11 @@ public class Home extends AppCompatActivity {
                     // close this activity
                     finish();
 
+                }else if(id==R.id.nav_qr){
+
+                    Intent intent = new Intent(Home.this, QrScannerActivity.class);
+                    startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
+
                 }
                 //This is for maintaining the behavior of the Navigation view
 
@@ -135,6 +142,16 @@ public class Home extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QrScannerActivity.QR_REQUEST_CODE) {
+            Log.d("QR LETTO : ", resultCode == RESULT_OK
+                    ? data.getExtras().getString(QrScannerActivity.QR_RESULT_STR)
+                    : "Scanned Nothing!");
+        }
     }
 
     @Override
