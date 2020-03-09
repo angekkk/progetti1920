@@ -1,19 +1,35 @@
 package it.uniba.di.piu1920.healthapp;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,11 +38,21 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
+import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.classes.Sessione;
+import it.uniba.di.piu1920.healthapp.connect.JSONParser;
+import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.recycler.NutritionActivity;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
@@ -37,6 +63,13 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawer;
     SessionManager session;
+    private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php";
+    private static final String TAG_SUCCESS = "success";
+    JSONArray arr = null;
+    List<Esercizio> lista = new ArrayList<>();
+    String idscheda;
+    // codice di ritorno in caseo
+    int MY_PERMISSIONS_REQUEST_CAMERA=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +84,7 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         session = new SessionManager(getApplicationContext());
          drawer = findViewById(R.id.drawer_layout);
          navigationView = findViewById(R.id.nav_view);
@@ -129,9 +163,18 @@ public class Home extends AppCompatActivity {
                     finish();
 
                 }else if(id==R.id.nav_qr){
+                    final RxPermissions rxPermissions = new RxPermissions(Home.this);
+                             rxPermissions.request(Manifest.permission.CAMERA) // ask single or multiple permission once
+                                     .subscribe(granted -> {
+                                         if (granted) { // Always true pre-M
+                                             Intent intent = new Intent(Home.this, QrScannerActivity.class);
+                                             startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
+                                         } else {
+                                             Snackbar.make(getCurrentFocus(), "Errr", Snackbar.LENGTH_LONG)
+                                                     .setAction("Action", null).show();
+                                         }
+                                     });
 
-                    Intent intent = new Intent(Home.this, QrScannerActivity.class);
-                    startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
 
                 }
                 //This is for maintaining the behavior of the Navigation view
@@ -148,11 +191,91 @@ public class Home extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == QrScannerActivity.QR_REQUEST_CODE) {
-            Log.d("QR LETTO : ", resultCode == RESULT_OK
-                    ? data.getExtras().getString(QrScannerActivity.QR_RESULT_STR)
-                    : "Scanned Nothing!");
+            if(resultCode == RESULT_OK){
+
+                idscheda=data.getExtras().getString(QrScannerActivity.QR_RESULT_STR);
+                Toast.makeText(getApplicationContext(), idscheda.replace("ID: ",""), Toast.LENGTH_LONG).show();
+                new GetEsercizi().execute();
+            }
+
         }
     }
+
+
+
+    class GetEsercizi extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        List<String> categories = new ArrayList<>();
+        protected String doInBackground(String... args) {
+            String ris = null;
+
+                TwoParamsList params = new TwoParamsList();
+                params.add("idscheda",""+idscheda.replace("ID: ",""));
+                JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params);
+                //  Log.d("Esercizi: ", json.toString());
+                try {
+                    int success = json.getInt(TAG_SUCCESS);
+                    if (success == 1) {
+                        arr = json.getJSONArray("esercizio");
+                        for (int i = 0; i < arr.length(); i++) {
+                            JSONObject c = arr.getJSONObject(i);
+                            int id = Integer.parseInt(c.getString("id"));
+                            int tipo = Integer.parseInt(c.getString("tipo"));
+                            String nome = c.getString("nome");
+                            String esecuzione = Html.fromHtml(c.getString("esecuzione")).toString();
+                            String link = c.getString("link");
+                            //   String link=c.getString("link");
+                            Esercizio x = new Esercizio(nome, "", link, esecuzione, id, tipo);
+                            categories.add(nome);
+                            lista.add(x);
+
+
+                        }
+                    } else {
+                        Log.d("Esercizi: ", "SUCCESS 0");
+                    }
+                } catch (Exception e) {
+                    Log.d("Esercizi: ", "ECCEZZIONE");
+                    e.printStackTrace();
+                }
+
+
+
+            return ris;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                    LayoutInflater inflater = getLayoutInflater();
+                    View view = inflater.inflate(R.layout.dialog, null);
+
+                    builder.setMessage(categories.toString());
+
+                    builder.setView(view);
+
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+                    builder.show();
+
+                }
+            });
+
+        }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

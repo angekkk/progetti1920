@@ -78,11 +78,17 @@ public class GestioneClientiActivity extends AppCompatActivity {
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
+                        if(!lista.get(position).getEmail().contentEquals("no")){
+                            Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
+                            i.putExtra("id",lista.get(position).getId());
+                            i.putExtra("idscheda",lista.get(position).getEmail());
+                            startActivity(i);
 
-                        Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
-                        i.putExtra("id",lista.get(position).getId());
-                        startActivity(i);
-
+                        }else{
+                            Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
+                            i.putExtra("id",lista.get(position).getId());
+                            startActivity(i);
+                        }
                     }
 
                     public void onLongClickItem(View v, int position) {
