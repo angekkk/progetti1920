@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.di.piu1920.healthapp.R;
+import it.uniba.di.piu1920.healthapp.classes.Item;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
 

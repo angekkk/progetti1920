@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -40,8 +38,6 @@ import java.util.List;
 import it.uniba.di.piu1920.healthapp.classes.Cliente;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
-import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
-import it.uniba.di.piu1920.healthapp.recycler.Item;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 import me.ydcool.lib.qrmodule.encoding.QrGenerator;
 

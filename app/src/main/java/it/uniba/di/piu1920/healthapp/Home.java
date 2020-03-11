@@ -1,12 +1,8 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -15,21 +11,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -38,14 +27,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
@@ -63,29 +48,19 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawer;
     SessionManager session;
-    private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php";
+    private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
     private static final String TAG_SUCCESS = "success";
     JSONArray arr = null;
     List<Esercizio> lista = new ArrayList<>();
-    String idscheda;
-    // codice di ritorno in caseo
-    int MY_PERMISSIONS_REQUEST_CAMERA=100;
+    String idscheda; //id scheda letto dall'intent del qr
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        session = new SessionManager(getApplicationContext());
+         session = new SessionManager(getApplicationContext());
          drawer = findViewById(R.id.drawer_layout);
          navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -155,16 +130,13 @@ public class Home extends AppCompatActivity {
                     finish();
 
                 }else if(id==R.id.nav_clienti){
-
                     Intent i = new Intent(Home.this, GestioneClientiActivity.class);
-                    // i.putExtra("lang",session.getUserDetails().getLang());
                     startActivity(i);
-                    // close this activity
                     finish();
 
                 }else if(id==R.id.nav_qr){
                     final RxPermissions rxPermissions = new RxPermissions(Home.this);
-                             rxPermissions.request(Manifest.permission.CAMERA) // ask single or multiple permission once
+                             rxPermissions.request(Manifest.permission.CAMERA) // richiedo il permesso per l'utilizzo della fotocameraper effettuare la scansione
                                      .subscribe(granted -> {
                                          if (granted) { // Always true pre-M
                                              Intent intent = new Intent(Home.this, QrScannerActivity.class);
@@ -228,12 +200,9 @@ public class Home extends AppCompatActivity {
                             String nome = c.getString("nome");
                             String esecuzione = Html.fromHtml(c.getString("esecuzione")).toString();
                             String link = c.getString("link");
-                            //   String link=c.getString("link");
                             Esercizio x = new Esercizio(nome, "", link, esecuzione, id, tipo);
                             categories.add(nome);
                             lista.add(x);
-
-
                         }
                     } else {
                         Log.d("Esercizi: ", "SUCCESS 0");
@@ -247,18 +216,18 @@ public class Home extends AppCompatActivity {
 
             return ris;
         }
-
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     LayoutInflater inflater = getLayoutInflater();
                     View view = inflater.inflate(R.layout.dialog, null);
-
-                    builder.setMessage(categories.toString());
-
+                    String message="";
+                    for(int i=0;i<categories.size();i++){
+                        message=message.concat(categories.get(i).toUpperCase()+"\n");
+                    }
+                    builder.setMessage(message);
                     builder.setView(view);
-
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

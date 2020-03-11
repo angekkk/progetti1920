@@ -1,4 +1,4 @@
-package it.uniba.di.piu1920.healthapp.recycler;
+package it.uniba.di.piu1920.healthapp.classes;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;

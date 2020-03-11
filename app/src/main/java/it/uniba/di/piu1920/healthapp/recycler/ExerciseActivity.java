@@ -13,39 +13,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import it.uniba.di.piu1920.healthapp.DetailsActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
+import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
 public class ExerciseActivity extends AppCompatActivity {
 
     private List<Item> listhome= new ArrayList<>();
-    private static final String TAG_SUCCESS = "success";
-    JSONArray arr = null;
-    List<Esercizio> lista=new ArrayList<>();
-    RecyclerView rv;
-    private static String url_get_bozze = "http://ddauniba.altervista.org/HealthApp/get_esercizi.php";
+    private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
+    JSONArray arr = null; //array per il recupero json
+    List<Esercizio> lista=new ArrayList<>(); //array list per memorizzare gli esercizi letti
+    RecyclerView rv; //recyclerview
+    private static String url_get_bozze = "http://ddauniba.altervista.org/HealthApp/get_esercizi.php"; //url per il recupero degli esercizi dal php
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +49,8 @@ public class ExerciseActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
-        new GetProdotti().execute();
-        System.out.println("SIZE LIST :"+listhome.size());
+        new GetEsercizi().execute(); //chiamata al thread asincrono
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,14 +63,12 @@ public class ExerciseActivity extends AppCompatActivity {
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-
                         Bundle x=new Bundle();
-
-                        Intent i = new Intent(ExerciseActivity.this, DetailsActivity.class);
-                        x.putSerializable("ogg",lista.get(position));
-                        i.putExtra("bund",x);
-                        startActivity(i);
-                        finish();
+                        Intent i = new Intent(ExerciseActivity.this, DetailsActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
+                        x.putSerializable("ogg",lista.get(position)); //passo nel bundle l'intero oggetto cliccato
+                        i.putExtra("bund",x);  //inserisco il bundle come parametro di passaggio nell'activity
+                        startActivity(i);   //starto l'activity
+                        finish(); //termino l'activity corrente
                     }
 
                     public void onLongClickItem(View v, int position) {
@@ -87,14 +76,10 @@ public class ExerciseActivity extends AppCompatActivity {
                     }
                 }));
 
-        // Add decorator
-        // rv.addItemDecoration(new VerticalSpacingDecoration(64));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
         return true;
     }
 
@@ -105,19 +90,10 @@ public class ExerciseActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-
         return super.onOptionsItemSelected(item);
     }
 
-    private void createList() {
-      //  listhome.add(new Item("Esercizi", getDrawable(R.drawable.esercizi)));
-
-
-
-    }
-
-    class GetProdotti extends AsyncTask<String, String, String> {
+    class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
