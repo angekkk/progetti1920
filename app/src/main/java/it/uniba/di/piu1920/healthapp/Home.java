@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -49,10 +48,11 @@ public class Home extends AppCompatActivity {
     DrawerLayout drawer;
     SessionManager session;
     private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
+    private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
     private static final String TAG_SUCCESS = "success";
     JSONArray arr = null;
     List<Esercizio> lista = new ArrayList<>();
-    String idscheda; //id scheda letto dall'intent del qr
+    String idscheda=""; //id scheda letto dall'intent del qr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +80,11 @@ public class Home extends AppCompatActivity {
             // get user data from session
             Sessione x = session.getUserDetails();
             email.setText(x.getNum());
-            navigationView.getMenu().getItem(8).setVisible(true);
+            navigationView.getMenu().getItem(9).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
-
+            navigationView.getMenu().getItem(4).setVisible(true);
+            new GetIdScheda().execute();
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
                 //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
                 navigationView.getMenu().getItem(2).setVisible(true);
@@ -148,6 +149,13 @@ public class Home extends AppCompatActivity {
                                      });
 
 
+                }else if(id==R.id.nav_scheda){
+                    if(!idscheda.contentEquals("non")){
+                        Intent i = new Intent(Home.this, SchedaActivity.class);
+                        i.putExtra("idscheda",idscheda);
+                        startActivity(i);
+                        finish();
+                    }
                 }
                 //This is for maintaining the behavior of the Navigation view
 
@@ -245,6 +253,51 @@ public class Home extends AppCompatActivity {
 
     }
 
+
+    class GetIdScheda extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        List<String> categories = new ArrayList<>();
+        protected String doInBackground(String... args) {
+            String ris = null;
+
+            TwoParamsList params = new TwoParamsList();
+            params.add("idu",""+session.getUserDetails().getId());
+            JSONObject json = new JSONParser().makeHttpRequest(url_get_id_scheda, JSONParser.GET, params);
+            //  Log.d("Esercizi: ", json.toString());
+            try {
+                int success = json.getInt(TAG_SUCCESS);
+                if (success == 1) {
+                    arr = json.getJSONArray("scheda");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject c = arr.getJSONObject(i);
+                        idscheda = c.getString("id");
+                    }
+                } else {
+                    Log.d("Esercizi: ", "SUCCESS 0");
+                    idscheda="non";
+                }
+            } catch (Exception e) {
+                Log.d("Esercizi: ", "ECCEZZIONE");
+                e.printStackTrace();
+            }
+
+
+
+            return ris;
+        }
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                }
+            });
+
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

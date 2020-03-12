@@ -47,6 +47,7 @@
         <activity android:name=".bmi.BMIActivity" />
         <activity android:name=".GestioneClientiActivity" />
         <activity android:name=".CreateSchedaActivity" />
+        <activity android:name=".SchedaActivity" />
         <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity"/>
     </application>
 
