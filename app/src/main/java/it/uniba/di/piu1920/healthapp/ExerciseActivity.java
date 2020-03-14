@@ -23,7 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
@@ -32,7 +31,6 @@ import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
 public class ExerciseActivity extends AppCompatActivity {
 
-    private List<Item> listhome= new ArrayList<>();
     private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
     JSONArray arr = null; //array per il recupero json
     List<Esercizio> lista=new ArrayList<>(); //array list per memorizzare gli esercizi letti

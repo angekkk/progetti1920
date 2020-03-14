@@ -22,7 +22,7 @@ public class SessionManager {
 	int PRIVATE_MODE = 0;
 	
 	// Sharedpref file name
-	private static final String PREF_NAME = "AndroidHivePref";
+	private static final String PREF_NAME = "HealthApp";
 	
 	// All Shared Preferences Keys
 	private static final String IS_LOGIN = "IsLoggedIn";
@@ -86,9 +86,9 @@ public class SessionManager {
 		}
 		return g;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get stored session data
 	 * */

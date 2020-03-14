@@ -1,8 +1,5 @@
 package it.uniba.di.piu1920.healthapp.classes;
 
-/**
- * Created by angek on 08/08/2017.
- */
 
 public class Sessione {
 
@@ -13,9 +10,6 @@ public class Sessione {
         this.tipo = tipo;
         this.num = num;
         this.pass = pass;
-    }
-
-    public Sessione() {
     }
 
     public String getLang() {

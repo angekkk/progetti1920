@@ -2,12 +2,9 @@ package it.uniba.di.piu1920.healthapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.squareup.picasso.Picasso;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,19 +44,14 @@ public class DetailsActivity extends AppCompatActivity {
         Picasso.with(DetailsActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+ex.getLink()).into(img);
 
 
-
-
     }
 
 
     @Override
     public void onBackPressed() {
-
             Intent i = new Intent(DetailsActivity.this, ExerciseActivity.class);
             startActivity(i);
             finish();
-
-
         return;
     }
 

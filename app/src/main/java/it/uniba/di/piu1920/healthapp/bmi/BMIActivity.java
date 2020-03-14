@@ -7,21 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import java.text.DecimalFormat;
-
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
-import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
 
 public class BMIActivity extends AppCompatActivity {
 
-    Button buttonCalculate, buttonExit;
+    Button buttonCalculate;
     EditText inputKg, inputM;
-    TextView showResult, showBMI, showImpBMI;
+    TextView showResult, showBMI;
     private double kg, m;
     private DecimalFormat TWO_DECIMAL_PLACES = new DecimalFormat(".##");
     MetricFormula metricFormula;
@@ -31,17 +27,13 @@ public class BMIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bmi);
-
+        setContentView(R.layout.bmi);
         buttonCalculate = findViewById(R.id.buttonCalculate);
-        buttonExit = findViewById(R.id.buttonExit);
         inputKg = findViewById(R.id.inputKg);
         inputM = findViewById(R.id.inputM);
         showResult = findViewById(R.id.showResult);
         showBMI = findViewById(R.id.showBMI);
-        showImpBMI = findViewById(R.id.showImpBMI);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,43 +45,27 @@ public class BMIActivity extends AppCompatActivity {
         buttonCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                kg = Double.parseDouble(inputKg.getText().toString());
-                m = Double.parseDouble(inputM.getText().toString());
-
-                metricFormula = new MetricFormula(kg, m);
-                imperialFormula = new ImperialFormula(kg, m);
-
-                showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))));
-          //      showImpBMI.setText("In imperial formula: " + String.valueOf(TWO_DECIMAL_PLACES.format(imperialFormula.computeBMI(imperialFormula.getInputKg(), imperialFormula.getInputM()))));
-                showResult.setText(getCategory(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))); //attivo il metodo per recuperare la categoria di appartenenza
-
-            }
-        });
-
-        buttonExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+                if(checkData()){
+                    kg = Double.parseDouble(inputKg.getText().toString());
+                    m = Double.parseDouble(inputM.getText().toString());
+                    metricFormula = new MetricFormula(kg, m);
+                    imperialFormula = new ImperialFormula(kg, m);
+                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))));
+                    showResult.setText(getCategory(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))); //attivo il metodo per recuperare la categoria di appartenenza
+                }
             }
         });
 
     }
 
-    void checkData(){
+    boolean checkData(){
 
-        if(inputKg.getText().toString().isEmpty()){
-
+        if(inputKg.getText().toString().isEmpty() && inputM.getText().toString().isEmpty() ){
+                return false;
         }else{
-
+                return true;
         }
-
-
-
-
-
     }
-
 
     String getCategory(double result) {
         String category;

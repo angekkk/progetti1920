@@ -1,13 +1,11 @@
 package it.uniba.di.piu1920.healthapp.login;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,17 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -46,6 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
     JSONArray access = null;
     private static String url_accesso_utente = "http://ddauniba.altervista.org/HealthApp/get_accesso.php";
     private static String url_inserisci_utente = "http://ddauniba.altervista.org/HealthApp/inserisci_utente.php";
+    String email, password="",rep,nom,cog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +100,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void registerNewUser() {
         progressBar.setVisibility(View.VISIBLE);
 
-        String email, password="",rep,nom,cog;
+
         email = emailTV.getText().toString();
         password = passwordTV.getText().toString();
         rep=  repassword.getText().toString();

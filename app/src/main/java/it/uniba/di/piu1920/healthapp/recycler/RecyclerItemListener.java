@@ -1,7 +1,6 @@
 package it.uniba.di.piu1920.healthapp.recycler;
 
 import android.content.Context;
-
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;

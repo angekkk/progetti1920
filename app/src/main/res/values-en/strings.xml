@@ -41,6 +41,7 @@
     <string name="ageInputHint">Age</string>
     <string name="heightInputHint">Height (cm)</string>
     <string name="weightInputHint">Weight (kg)</string>
+    <string name="richiesto">Required field</string>
 
 
     <!--NAVBAR -->
@@ -86,4 +87,5 @@
     <string name="ins_ok">Card insertion complete!</string>
     <string name="item_rem">Item was removed from the list</string>
     <string name="cam_err">To use the qr reader, enable permissions for the camera</string>
+
 </resources>

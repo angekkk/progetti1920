@@ -3,7 +3,6 @@ package it.uniba.di.piu1920.healthapp.calorie;
 
 //https://www.projectinvictus.it/il-fabbisogno-calorico-giornaliero/
 
-
 public class FCFormula {
 
     double total=0;

@@ -2,12 +2,10 @@ package it.uniba.di.piu1920.healthapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import it.uniba.di.piu1920.healthapp.login.LoginActivity;
 import it.uniba.di.piu1920.healthapp.login.RegistrationActivity;
 
