@@ -40,9 +40,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".login.RegistrationActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.DashboardActivity" />
-        <activity android:name=".recycler.ExerciseActivity" />
-        <activity android:name=".recycler.NutritionActivity" />
+        <activity android:name=".ExerciseActivity" />
+        <activity android:name=".NutritionActivity" />
         <activity android:name=".calorie.CalorieActivity" />
         <activity android:name=".bmi.BMIActivity" />
         <activity android:name=".GestioneClientiActivity" />

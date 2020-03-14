@@ -1,4 +1,4 @@
-package it.uniba.di.piu1920.healthapp.recycler;
+package it.uniba.di.piu1920.healthapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,13 +23,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import it.uniba.di.piu1920.healthapp.DetailsActivity;
-import it.uniba.di.piu1920.healthapp.Home;
-import it.uniba.di.piu1920.healthapp.R;
+
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
+import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
 public class ExerciseActivity extends AppCompatActivity {
 

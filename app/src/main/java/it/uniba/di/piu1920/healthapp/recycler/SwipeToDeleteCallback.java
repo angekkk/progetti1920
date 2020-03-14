@@ -1,4 +1,4 @@
-package it.uniba.di.piu1920.healthapp;
+package it.uniba.di.piu1920.healthapp.recycler;
 
 import android.content.Context;
 import android.graphics.Canvas;

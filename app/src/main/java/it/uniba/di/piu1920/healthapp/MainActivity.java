@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import it.uniba.di.piu1920.healthapp.login.LoginActivity;
 import it.uniba.di.piu1920.healthapp.login.RegistrationActivity;
-import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button registerBtn, loginBtn;

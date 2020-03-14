@@ -1,4 +1,4 @@
-package it.uniba.di.piu1920.healthapp.recycler;
+package it.uniba.di.piu1920.healthapp;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +14,8 @@ import java.util.List;
 
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.classes.Item;
+import it.uniba.di.piu1920.healthapp.recycler.RVAdapter;
+import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
 public class NutritionActivity extends AppCompatActivity {
 

@@ -7,12 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-
-import it.uniba.di.piu1920.healthapp.DetailsActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
-import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
 
 public class CalorieActivity extends AppCompatActivity implements BasicInfoFragment.OnFloatingButtonClickListener {
 

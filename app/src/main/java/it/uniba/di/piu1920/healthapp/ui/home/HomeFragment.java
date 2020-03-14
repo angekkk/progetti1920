@@ -18,9 +18,9 @@ import java.util.List;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
-import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
+import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.classes.Item;
-import it.uniba.di.piu1920.healthapp.recycler.NutritionActivity;
+import it.uniba.di.piu1920.healthapp.NutritionActivity;
 import it.uniba.di.piu1920.healthapp.recycler.RVAdapter;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 

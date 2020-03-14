@@ -37,8 +37,6 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
-import it.uniba.di.piu1920.healthapp.recycler.ExerciseActivity;
-import it.uniba.di.piu1920.healthapp.recycler.NutritionActivity;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
