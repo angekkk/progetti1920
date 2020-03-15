@@ -40,7 +40,7 @@ import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private EditText emailTV, passwordTV;
+     EditText emailTV, passwordTV;
     private Button loginBtn;
     private ProgressBar progressBar;
     SessionManager session;
@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mAuth = FirebaseAuth.getInstance();
         session = new SessionManager(getApplicationContext());
         initializeUI();
-        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+//        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

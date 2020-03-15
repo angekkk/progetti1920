@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
-
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
@@ -67,16 +66,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.556" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        style="@style/Theme.MaterialComponents.DayNight.Dialog"
-        android:layout_width="223dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="20dp"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+
 
     <ImageView
         android:id="@+id/swipe"

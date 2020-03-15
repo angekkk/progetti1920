@@ -48,6 +48,7 @@
         <activity android:name=".CreateSchedaActivity" />
         <activity android:name=".SchedaActivity" />
         <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity"/>
+        <activity android:name=".calorie.NutriActivity"/>
     </application>
 
 </manifest>

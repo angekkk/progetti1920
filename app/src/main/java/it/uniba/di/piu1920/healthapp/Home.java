@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
+import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.classes.Sessione;
@@ -104,7 +105,7 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_aliment){
-                    Intent intent = new Intent(Home.this, NutritionActivity.class);
+                    Intent intent = new Intent(Home.this, NutriActivity.class);
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_bmi){

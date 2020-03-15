@@ -9,7 +9,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
-        versionName "1.6"
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -45,4 +45,10 @@ dependencies {
     implementation 'me.ydcool.lib:qrmodule:1.0'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+
+    implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
+    implementation 'us.belka:androidtoggleswitch:1.2.2'
+    implementation 'com.xw.repo:bubbleseekbar:3.10-lite'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.wang.avi:library:2.1.3'
 }

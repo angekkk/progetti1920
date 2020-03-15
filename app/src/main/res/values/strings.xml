@@ -40,7 +40,35 @@
     <string name="heightInputHint">Altezza (cm)</string>
     <string name="weightInputHint">Peso (kg)</string>
 
-
+    <string name="lets_calculate_together">Calcoliamo insieme!</string>
+    <string name="tdee_total_daily_energy_expenditure">TDEE : Total Daily Energy Expenditure</string>
+    <string name="my_age_is">La mia età</string>
+    <string name="my_height_is">La mia altezza</string>
+    <string name="my_weight_is">Il mio peso</string>
+    <string name="age">Età</string>
+    <string name="height">Altezza</string>
+    <string name="weight">Peso</string>
+    <string name="describe_your_daily_activity_level">Descrivi il tuo livello di attività giornaliera</string>
+    <string name="days_per_week">Giorni per settimana</string>
+    <string name="how_intense_is_your_exercise">Quanto intenso è stato il tuo allenamento</string>
+    <string name="calculate">Calcola</string>
+    <string name="reset">Reset</string>
+    <string name="your_tdee_is">Il tuo TDEE</string>
+    <string name="please_select_your_goal">Seleziona il tuo obbiettivo</string>
+    <string name="to_reach_your_goal_you_will_need_to_consume">Per raggiungere il tuo obiettivo, devi consumare</string>
+    <string name="calories">\u0020Calorie</string>
+    <string name="calories_from_protein">Calorie dalle proteine\u0020</string>
+    <string name="grams">\u0020 grammi</string>
+    <string name="calories_from_fat">Calorie dai grassi\u0020</string>
+    <string name="swirl">\u0020~\u0020</string>
+    <string name="scrub_empty">Tocca e rilascia il grafico</string>
+    <string name="scrub_format">Peso: %1$s</string>
+    <string name="calories_from_carbs">Calorie dai carboidrati\u0020</string>
+    <string name="kg">Kg</string>
+    <string name="_234234">234234</string>
+    <string name="nutrition"><![CDATA[Nutrition & Macros]]></string>
+    <string name="toast_make_sure">Perfavore controlla che i dati inseriti siano corretti</string>
+    <string name="loading">Loading…</string>
 
     <!--NAVBAR -->
     <string name="title_bmi">BMI</string>

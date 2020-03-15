@@ -16,6 +16,7 @@ import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
 import it.uniba.di.piu1920.healthapp.ExerciseActivity;
+import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.NutritionActivity;
 import it.uniba.di.piu1920.healthapp.recycler.RVAdapter;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
                             Intent intent = new Intent(root.getContext(), ExerciseActivity.class);
                             startActivity(intent);
                         } else if (position == 1) {
-                            Intent intent = new Intent(root.getContext(), NutritionActivity.class);
+                            Intent intent = new Intent(root.getContext(), NutriActivity.class);
                             startActivity(intent);
                         } else if (position == 2) {
                             Intent intent = new Intent(root.getContext(), BMIActivity.class);

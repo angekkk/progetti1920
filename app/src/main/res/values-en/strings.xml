@@ -43,6 +43,36 @@
     <string name="weightInputHint">Weight (kg)</string>
     <string name="richiesto">Required field</string>
 
+    <string name="lets_calculate_together">LETS CALCULATE TOGETHER!</string>
+    <string name="tdee_total_daily_energy_expenditure">TDEE : Total Daily Energy Expenditure</string>
+    <string name="my_age_is">My Age Is</string>
+    <string name="my_height_is">My Height Is</string>
+    <string name="my_weight_is">My Weight Is</string>
+    <string name="age">Age</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="describe_your_daily_activity_level">Describe Your Daily Activity Level</string>
+    <string name="days_per_week">Days Per Week</string>
+    <string name="how_intense_is_your_exercise">How Intense Is Your Exercise</string>
+    <string name="calculate">Calculate</string>
+    <string name="reset">Reset</string>
+    <string name="your_tdee_is">Your TDEE Is</string>
+    <string name="please_select_your_goal">Please Select Your Goal</string>
+    <string name="to_reach_your_goal_you_will_need_to_consume">To reach your goal, you will need to consume</string>
+    <string name="calories">\u0020Calories</string>
+    <string name="calories_from_protein">Calories from Protein\u0020</string>
+    <string name="grams">\u0020 grams</string>
+    <string name="calories_from_fat">Calories from fat\u0020</string>
+    <string name="swirl">\u0020~\u0020</string>
+    <string name="scrub_empty">Tap and hold the graph to scrub.</string>
+    <string name="scrub_format">Weight: %1$s</string>
+    <string name="calories_from_carbs">Calories from Carbs\u0020</string>
+    <string name="kg">Kg</string>
+    <string name="_234234">234234</string>
+    <string name="nutrition"><![CDATA[Nutrition & Macros]]></string>
+    <string name="toast_make_sure">Please Make Sure Your Input is Correct</string>
+    <string name="loading">Loading…</string>
+
 
     <!--NAVBAR -->
     <string name="title_bmi">BMI</string>
