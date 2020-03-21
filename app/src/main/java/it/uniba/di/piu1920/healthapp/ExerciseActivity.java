@@ -1,6 +1,7 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +26,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
-import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
@@ -46,7 +47,7 @@ public class ExerciseActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
-        new GetEsercizi().execute(); //chiamata al thread asincrono
+        inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +68,19 @@ public class ExerciseActivity extends AppCompatActivity {
                         startActivity(i);   //starto l'activity
                         finish(); //termino l'activity corrente
                     }
-
                     public void onLongClickItem(View v, int position) {
                         System.out.println("On Long Click Item interface");
                     }
                 }));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(ExerciseActivity.this, Home.class);
+        startActivity(i);
+        finish();
+        return;
     }
 
     @Override
@@ -90,6 +98,7 @@ public class ExerciseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //classe per il recupero degli esercizi
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -204,18 +213,41 @@ public class ExerciseActivity extends AppCompatActivity {
 
     }
 
+    //metodo per controllare la connessione ad internet
     public boolean isWorkingInternetPersent() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
         if (connectivityManager != null) {
-            NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
             if (info != null)
                 for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
                         return true;
                     }
-
         }
         return false;
+    }
+
+    //metodo per inizializzare
+    void inizializza(){
+        if(isWorkingInternetPersent()){
+            new GetEsercizi().execute();
+        }else{
+            final AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.dialog, null);
+            String message=getString(R.string.err_connessione);
+            builder.setMessage(message);
+            builder.setView(view);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent i = new Intent(ExerciseActivity.this, Home.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+
+            builder.show();
+        }
     }
 }

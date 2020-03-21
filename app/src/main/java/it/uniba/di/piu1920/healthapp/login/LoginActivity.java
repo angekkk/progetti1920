@@ -1,6 +1,9 @@
 package it.uniba.di.piu1920.healthapp.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,6 +30,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +43,12 @@ import it.uniba.di.piu1920.healthapp.DetailsActivity;
 import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
+import it.uniba.di.piu1920.healthapp.SchedaActivity;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity {
 
      EditText emailTV, passwordTV;
     private Button loginBtn;
@@ -87,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 loginUserAccount();
             }
         });
+        /*
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -96,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .enableAutoManage(LoginActivity.this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-
+*/
 
         swipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +130,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(LoginActivity.this, Home.class);
+        startActivity(i);
+        finish();
+        return;
+    }
+
     private void loginUserAccount() {
         progressBar.setVisibility(View.VISIBLE);
         String email, password;
@@ -144,7 +158,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             return;
         }
 
-        new ControllaAccesso().execute();
+        if(isWorkingInternetPersent()){
+            new ControllaAccesso().execute();
+        }else{
+            Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
     private void initializeUI() {
@@ -191,10 +210,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
     }
-    private void signIn() {
-        Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signIntent,RC_SIGN_IN);
-    }
+
 
     class ControllaAccesso extends AsyncTask<String, String, String> {
 
@@ -246,8 +262,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+    //metodo per controllare la connessione ad internet
+    public boolean isWorkingInternetPersent() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
+                        return true;
+                    }
+        }
+        return false;
     }
 }

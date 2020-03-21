@@ -54,9 +54,8 @@ public class GestioneClientiActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
-        new GetClienti().execute();
+        inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,19 +64,18 @@ public class GestioneClientiActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-                        if(!lista.get(position).getEmail().contentEquals("no")){
+                        if(!lista.get(position).getQr().contentEquals("no")){//se è stata memorizzata la scheda di un cliente, entro nell'activity in modalità MODIFICA
                             Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
                             i.putExtra("id",lista.get(position).getId());
-                            i.putExtra("idscheda",lista.get(position).getEmail());
+                            i.putExtra("idscheda",lista.get(position).getQr());
                             startActivity(i);
-
-                        }else{
+                        }else{ //entro nell'activity in modalità CREAZIONE
                             Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
                             i.putExtra("id",lista.get(position).getId());
+                            i.putExtra("idscheda","no");
                             startActivity(i);
                         }
                     }
@@ -100,6 +98,38 @@ public class GestioneClientiActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(GestioneClientiActivity.this, Home.class);
+        startActivity(i);
+        finish();
+        return;
+    }
+
+    //metodo per lanciare il thread asincrono per la chiamata al php
+    void inizializza(){
+        if(isWorkingInternetPersent()){
+            new GetClienti().execute();
+        }else{
+            final AlertDialog.Builder builder = new AlertDialog.Builder(GestioneClientiActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.dialog, null);
+            String message=getString(R.string.err_connessione);
+            builder.setMessage(message);
+            builder.setView(view);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent i = new Intent(GestioneClientiActivity.this, Home.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+
+            builder.show();
+        }
     }
 
     //clienti non schedati
@@ -126,7 +156,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
                             String nome=c.getString("nome");
                             String cognome=c.getString("cognome");
                             String email=c.getString("email");
-                            Cliente x=new Cliente(id, nome,  cognome,  "no");
+                            Cliente x=new Cliente(id, nome,  cognome, email ,"no");//al posto del qr, di default imposto la stringa 'no'
                             lista.add(x);
                         }
                     }
@@ -174,7 +204,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
                             String nome=c.getString("nome");
                             String cognome=c.getString("cognome");
                             String scheda=c.getString("idscheda");//memorizzo l'id della scheda
-                            Cliente x=new Cliente(id, nome,  cognome,  scheda);//assumerà la posizione dell'email nel costruttore, utilizzeremo getEmail per il recupero
+                            Cliente x=new Cliente(id, nome,  cognome, "email" ,scheda);//secondo costruttore con la scheda
                             lista.add(x);
                         }
                     }
@@ -200,8 +230,9 @@ public class GestioneClientiActivity extends AppCompatActivity {
 
     }
 
+    //adapter della recyclerview
     public class ExAdapt extends RecyclerView.Adapter<ExAdapt.MyViewHolder> {
-
+        //adapeter per la recyclerview
         private List<Cliente> listahome;
         Bitmap qrCode = null;
         /**
@@ -212,12 +243,11 @@ public class GestioneClientiActivity extends AppCompatActivity {
             public TextView nomec,cognomec;
             ImageView qr;
 
-
             public MyViewHolder(View view) {
                 super(view);
                 nomec =(TextView) view.findViewById(R.id.nomec);
                 cognomec= (TextView) view.findViewById(R.id.cognomec);
-                qr=view.findViewById(R.id.qr);
+                qr=view.findViewById(R.id.qr); //per default la sua visibilità è impostata su INVISIBLE, non è detto che un utente abbia già una scheda
             }
         }
 
@@ -228,7 +258,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
         @NonNull
         @Override
         public ExAdapt.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_cliente, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_cliente, parent, false);//collego il layout per la singola card della recyclerview
             return new ExAdapt.MyViewHolder(v);
         }
 
@@ -239,11 +269,11 @@ public class GestioneClientiActivity extends AppCompatActivity {
             System.out.println("Bind ["+holder+"] - Pos ["+position+"]"+c.getNome());
             holder.nomec.setText(c.getNome());
             holder.cognomec.setText(c.getCognome());
-            if(!c.getEmail().contentEquals("no")){
+            if(!c.getQr().contentEquals("no")){ //controllo che l'id della scheda sia stato inizializzato
                 holder.qr.setVisibility(View.VISIBLE);
 
                 try {
-                    qrCode = new QrGenerator.Builder()
+                    qrCode = new QrGenerator.Builder() //genero il qr impostando le varie caratteristiche
                             .content("ID: "+c.getEmail())
                             .qrSize(300)
                             .margin(2)
@@ -259,27 +289,16 @@ public class GestioneClientiActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                holder.qr.setImageBitmap(qrCode);
-                holder.qr.setOnLongClickListener(new View.OnLongClickListener() {
+                holder.qr.setImageBitmap(qrCode); //setto il background dell'image view con il qr appena generato
+                holder.qr.setOnLongClickListener(new View.OnLongClickListener() {//imposto un listener per la pressione prolungata in grado di mostrare in un dialog il qr
                     @Override
                     public boolean onLongClick(View v) {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(GestioneClientiActivity.this);
                         LayoutInflater inflater = getLayoutInflater();
                         View view = inflater.inflate(R.layout.dialog, null);
-
                         ImageView iv = (ImageView) view.findViewById(R.id.iv);
                         iv.setImageBitmap(qrCode);
-
                         builder.setView(view);
-
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-
-                            }
-                        });
-
                         builder.show();
                         return true;
                     }
@@ -298,17 +317,16 @@ public class GestioneClientiActivity extends AppCompatActivity {
 
     }
 
+    //metodo per controllare la connessione ad internet
     public boolean isWorkingInternetPersent() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
         if (connectivityManager != null) {
-            NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
             if (info != null)
                 for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
                         return true;
                     }
-
         }
         return false;
     }

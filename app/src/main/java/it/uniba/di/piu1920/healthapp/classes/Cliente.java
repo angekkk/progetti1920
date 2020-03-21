@@ -3,13 +3,22 @@ package it.uniba.di.piu1920.healthapp.classes;
 public class Cliente {
 
     int id;
-    String nome,cognome,email;
+    String nome,cognome,email,qr;
 
-    public Cliente(int id, String nome, String cognome, String email) {
+    public Cliente(int id, String nome, String cognome, String email,String qr) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
+        this.qr = qr;
+    }
+
+    public String getQr() {
+        return qr;
+    }
+
+    public void setQr(String qr) {
+        this.qr = qr;
     }
 
     public int getId() {

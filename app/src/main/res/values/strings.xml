@@ -113,4 +113,5 @@
     <string name="item_rem">L\'elemento è stato rimosso dalla lista</string>
     <string name="cam_err">Per utilizzare il lettore di qr , abilitare i permessi per la fotocamera</string>
     <string name="richiesto">Campo richiesto</string>
+    <string name="err_connessione">Connessione internet assente.</string>
 </resources>

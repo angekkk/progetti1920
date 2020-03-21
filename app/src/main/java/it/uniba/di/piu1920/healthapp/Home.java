@@ -1,8 +1,11 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -12,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -177,10 +179,13 @@ public class Home extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == QrScannerActivity.QR_REQUEST_CODE) {
             if(resultCode == RESULT_OK){
-
                 idscheda=data.getExtras().getString(QrScannerActivity.QR_RESULT_STR);
-                Toast.makeText(getApplicationContext(), idscheda.replace("ID: ",""), Toast.LENGTH_LONG).show();
-                new GetEsercizi().execute();
+                if(isWorkingInternetPersent()){
+                    new GetEsercizi().execute();
+                }else{
+                    Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
 
         }
@@ -316,5 +321,19 @@ public class Home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //metodo per controllare la connessione ad internet
+    public boolean isWorkingInternetPersent() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
+                        return true;
+                    }
+        }
+        return false;
     }
 }

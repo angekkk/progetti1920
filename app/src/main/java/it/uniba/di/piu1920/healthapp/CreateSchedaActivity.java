@@ -1,6 +1,7 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -21,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -37,12 +39,9 @@ import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
-import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 import it.uniba.di.piu1920.healthapp.recycler.SwipeToDeleteCallback;
 
 public class CreateSchedaActivity extends AppCompatActivity {
-
-
 
     private static final String TAG_SUCCESS = "success";
     JSONArray arr = null;
@@ -83,34 +82,28 @@ public class CreateSchedaActivity extends AppCompatActivity {
         Bundle arg = getIntent().getExtras();
         session=new SessionManager(this);
         idutente=arg.getInt("id");
-        if(!arg.getString("idscheda").isEmpty()){
+        inizializza();
+        if(!arg.getString("idscheda").contentEquals("no")){
             idscheda=Integer.parseInt(arg.getString("idscheda"));
             MOD=1;//la modalità è attiva sulla MODIFICA
             new GetEserciziScheda().execute();
         }
-        new GetEsercizi().execute();
-        //Inserisco gli esercizi nella lista
-        enableSwipeToDeleteAndUndo();
+        enableSwipeToDeleteAndUndo();//abilito lo swipe per eliminare nella recycler view
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                     Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
                     startActivity(i);
                     finish();
-
             }
         });
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(addEsercizioScheda((String) spinner.getSelectedItem())){
+                if(addEsercizioScheda((String) spinner.getSelectedItem())){//se l'elemento è stato inserito nell'array, allora ricreo l'adapter per la recycler view
                      ca = new ExAdapt(scheda);
                      rv.setAdapter(ca);
-
                 }
             }
         });
@@ -118,33 +111,18 @@ public class CreateSchedaActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(MOD==1){
-
-                   new modifica_esercizi().execute();
-               }else {
-                   new inserisci_scheda().execute();
-               }
+                if(isWorkingInternetPersent()){
+                    if(MOD==1){
+                        new modifica_esercizi().execute();
+                    }else {
+                        new inserisci_scheda().execute();
+                    }
+                }else{
+                    Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
-        rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
-                new RecyclerItemListener.RecyclerTouchListener() {
-                    public void onClickItem(View v, int position) {
-
-                        // Intent i = new Intent(GestioneClientiActivity.this, DetailsActivity.class);
-                        // x.putSerializable("ogg",lista.get(position));
-                        // i.putExtra("bund",x);
-                        // startActivity(i);
-
-                    }
-
-                    public void onLongClickItem(View v, int position) {
-
-                    }
-                }));
-
-
-
-
     }
 
 
@@ -212,7 +190,8 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
     }
 
-    boolean addEsercizioScheda(String nome){ //metodo per controllare l'esercizio nella list LISTA, e aggiungerlo nella list SCHEDA
+    //metodo per controllare l'esercizio nella list LISTA, e aggiungerlo nella list SCHEDA
+    boolean addEsercizioScheda(String nome){
         boolean aggiunto=false;
         for(int i=0;i<lista.size();i++){
             if(lista.get(i).getNome().contentEquals(nome)){
@@ -239,37 +218,37 @@ public class CreateSchedaActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+        startActivity(i);
+        finish();
+        return;
+    }
 
-
+    //metodo per abilitare lo swipe to delete e undo alla recyler view
     private void enableSwipeToDeleteAndUndo() {
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
-
-                final int position = viewHolder.getAdapterPosition();
-                final Esercizio item = ca.getData().get(position);
-
-                ca.removeItem(position);
-
-
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {//controllo l'evento dello swipe
+                final int position = viewHolder.getAdapterPosition(); //prendo la posizione dell'elemento swippato
+                final Esercizio item = ca.getData().get(position); //recupero l'elemento ricreando l'oggetto
+                ca.removeItem(position);//rimuovo l'oggetto dalla lista
                 Snackbar snackbar = Snackbar.make(con, getString(R.string.item_rem), Snackbar.LENGTH_LONG);
-                snackbar.setAction("UNDO", new View.OnClickListener() {
+
+                snackbar.setAction("UNDO", new View.OnClickListener() {//ripristino l'oggetto eliminato se viene cliccato UNDO
                     @Override
                     public void onClick(View view) {
-
                         ca.restoreItem(item, position);
                         rv.scrollToPosition(position);
                     }
                 });
-
                 snackbar.setActionTextColor(Color.YELLOW);
                 snackbar.show();
-
             }
         };
 
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);//aggiungo il listener dello swipe e lo cvollego alla recycler view sotto
         itemTouchhelper.attachToRecyclerView(rv);
     }
 
@@ -314,6 +293,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
     }
 
+    //recupero l'id della testata della scheda, per l'inserimento successivo alla tabella satellite
     class get_id extends AsyncTask<String, String, String> {
 
         @Override
@@ -425,6 +405,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
     }
 
+    //recupero del nome degli esercizi per lo spinner
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -474,9 +455,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 public void run() {
                     // Spinner Drop down elements
-
-
-
                     // Creating adapter for spinner
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(CreateSchedaActivity.this, android.R.layout.simple_spinner_item, categories);
 
@@ -551,6 +529,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
     }
 
+    //inserimento esercizi
     class inserisci_esercizi extends AsyncTask<String, String, String> {
 
         @Override
@@ -560,9 +539,8 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
         protected String doInBackground(String... args) {
             TwoParamsList params = new TwoParamsList();
-            /// params.add("tipo", ""+1);
             params.add("idscheda",""+ idscheda);
-            params.add("idesercizio",""+ conca);
+            params.add("idesercizio",""+ conca);//passo una stringa concatenata dagli id dei vari esercizi selezionati dallo spinner, con UNA CHIAMATA, inserisco tutti i record
             String ret=null;
             JSONObject json = new JSONParser().makeHttpRequest(url_inserisci_esercizio, JSONParser.POST, params);
             System.out.println("INSERISCO ESERCIZIO "+conca);
@@ -576,8 +554,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                 }
             }
-            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
-
             return ret;
         }
 
@@ -593,6 +569,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
     }
 
+    //modifica esercizi
     class modifica_esercizi extends AsyncTask<String, String, String> {
 
         @Override
@@ -602,14 +579,12 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
         protected String doInBackground(String... args) {
             TwoParamsList params = new TwoParamsList();
-            /// params.add("tipo", ""+1);
 
             System.out.println("MODIFICA ESERCIZI : "+conca);
             params.add("idscheda",""+ idscheda);
-            params.add("idesercizio",""+ conca);
+            params.add("idesercizio",""+ conca); //passo una stringa concatenata dagli id dei vari esercizi selezionati dallo spinner, con UNA CHIAMATA, inserisco tutti i record
             String ret=null;
             JSONObject json = new JSONParser().makeHttpRequest(url_modifica_esercizio, JSONParser.POST, params);
-
             if (json != null) {
                 try {
                     int success = json.getInt("success");
@@ -620,8 +595,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                 }
             }
-            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
-
             return ret;
         }
 
@@ -638,6 +611,44 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
                 }
             });
+        }
+    }
+
+    //metodo per controllare la connessione ad internet
+    public boolean isWorkingInternetPersent() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
+                        return true;
+                    }
+        }
+        return false;
+    }
+
+    //metodo per inizializzare
+    void inizializza(){
+        if(isWorkingInternetPersent()){
+            new GetEsercizi().execute();
+        }else{
+            final AlertDialog.Builder builder = new AlertDialog.Builder(CreateSchedaActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.dialog, null);
+            String message=getString(R.string.err_connessione);
+            builder.setMessage(message);
+            builder.setView(view);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+
+            builder.show();
         }
     }
 }

@@ -1,6 +1,9 @@
 package it.uniba.di.piu1920.healthapp.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,7 +113,15 @@ public class RegistrationActivity extends AppCompatActivity {
         return email.contains("@");
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(RegistrationActivity.this, Home.class);
+        startActivity(i);
+        finish();
+        return;
+    }
 
+    //metodo per il controllo dei dati e l'attivazione della chiamata per registrare
     private void registerNewUser() {
         progressBar.setVisibility(View.VISIBLE);
 
@@ -149,7 +160,12 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
-                            new registra().execute();
+        if(isWorkingInternetPersent()){
+            new registra().execute();
+        }else{
+            Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
 
     }
 
@@ -240,5 +256,19 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    //metodo per controllare la connessione ad internet
+    public boolean isWorkingInternetPersent() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
+                        return true;
+                    }
+        }
+        return false;
     }
 }

@@ -117,5 +117,6 @@
     <string name="ins_ok">Card insertion complete!</string>
     <string name="item_rem">Item was removed from the list</string>
     <string name="cam_err">To use the qr reader, enable permissions for the camera</string>
+    <string name="err_connessione">No internet connection</string>
 
 </resources>
