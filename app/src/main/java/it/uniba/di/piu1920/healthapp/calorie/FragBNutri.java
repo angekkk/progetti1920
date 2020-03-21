@@ -7,22 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import belka.us.androidtoggleswitch.widgets.ToggleSwitch;
 import it.uniba.di.piu1920.healthapp.R;
+
 
 public class FragBNutri extends Fragment {
     public static final String TAG = FragBNutri.class.getSimpleName();
@@ -81,10 +78,12 @@ public class FragBNutri extends Fragment {
         final TextView gf = getView().findViewById(R.id.gram_fat);
         final PieChart pie = getView().findViewById(R.id.chart);
         ToggleSwitch ts = getView().findViewById(R.id.goal_switch);
+
         td.setText(String.valueOf(tdee));
         ts.setCheckedTogglePosition(1);
         tdd.setText(String.valueOf(tdee));
         cals = tdee;
+
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry((int) (wt * 1.8), "Protein"));
         entries.add(new PieEntry((int) (cals - cals * 0.3 - wt * 1.8 * 4) / 4, "Carb"));
@@ -94,6 +93,7 @@ public class FragBNutri extends Fragment {
         set.setSliceSpace(3f);
         set.setSelectionShift(9f);
         set.setValueFormatter(new PercentFormatter());
+
         PieData data = new PieData(set);
         pie.getDescription().setEnabled(false);
         pie.getLegend().setEnabled(false);
@@ -102,6 +102,7 @@ public class FragBNutri extends Fragment {
         pie.setHoleRadius(35f);
         pie.setData(data);
         pie.spin(500, 0, -360f, Easing.EasingOption.EaseInOutQuad);
+
         p.setText(String.valueOf(((int) (wt * 1.8 * 4))));
         f.setText(String.valueOf(((int) (cals * 0.3))));
         c.setText(String.valueOf(cals - ((int) (wt * 1.8 * 4)) - ((int) (cals * 0.3))));
@@ -109,6 +110,7 @@ public class FragBNutri extends Fragment {
         gf.setText(String.valueOf(((int) (cals * 0.3 / 9))));
         gc.setText(String.valueOf((int) (cals - (wt * 1.8 * 4) - (cals * 0.3)) / 4));
         update(tdee, wt, tdee);
+
         ts.setOnToggleSwitchChangeListener(new ToggleSwitch.OnToggleSwitchChangeListener() {
             @Override
             public void onToggleSwitchChangeListener(int position, boolean isChecked) {
@@ -139,16 +141,19 @@ public class FragBNutri extends Fragment {
                 gp.setText(String.valueOf(protein / 4));
                 gf.setText(String.valueOf(fats / 9));
                 gc.setText(String.valueOf(carbs / 4));
+
                 List<PieEntry> entries = new ArrayList<>();
-                entries.add(new PieEntry(protein / 4, "Protein"));
-                entries.add(new PieEntry(carbs / 4, "Carb"));
-                entries.add(new PieEntry(fats / 9, "Fat"));
+                entries.add(new PieEntry(protein / 4, "Protein"));//1G DI PROTEINE SONO 4KCAL
+                entries.add(new PieEntry(carbs / 4, "Carb")); //1G DI CARBO SONO 4KCAL
+                entries.add(new PieEntry(fats / 9, "Fat"));//1G DI GRASSI SONO 9KCAL
                 PieDataSet set = new PieDataSet(entries, null);
+
                 set.setColors(getResources().getColor(R.color.blue), getResources().getColor(R.color.green), getResources().getColor(R.color.red));
                 set.setSliceSpace(3f);
                 set.setSelectionShift(9f);
                 set.setValueFormatter(new PercentFormatter());
                 PieData data = new PieData(set);
+
                 pie.getDescription().setEnabled(false);
                 pie.getLegend().setEnabled(false);
                 pie.setUsePercentValues(true);

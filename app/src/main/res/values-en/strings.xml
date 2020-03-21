@@ -22,7 +22,7 @@
     <string name="default_show_result"> </string>
     <string name="default_show_bmi"> Enter weight (kg) and height (m) </string>
     <string name="text_label_kg">kg</string>
-    <string name="text_label_m">m</string>
+    <string name="text_label_m">cm</string>
     <string name="content_button_calculate">Calculate your BMI</string>
     <string name="content_button_exit">Exit application</string>
     <string name="content_show_result"> </string>

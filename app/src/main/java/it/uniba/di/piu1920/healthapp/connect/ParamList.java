@@ -2,9 +2,6 @@ package it.uniba.di.piu1920.healthapp.connect;
 
 import java.util.ArrayList;
 
-/**
- * Created by Angelo on 16/01/2016.
- */
 public class ParamList extends ArrayList<KeyValue> {
 
     @Override

@@ -7,17 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import it.uniba.di.piu1920.healthapp.DetailsActivity;
-import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class NutriActivity extends AppCompatActivity {
@@ -80,7 +74,7 @@ public class NutriActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reset:
-                erase();
+                erase();//cancella la sharedpreferences
         }
         return super.onOptionsItemSelected(item);
     }

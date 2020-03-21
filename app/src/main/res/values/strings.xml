@@ -21,7 +21,7 @@
     <string name="default_show_result"> </string>
     <string name="default_show_bmi"> Inserire peso (kg) e altezza (m) </string>
     <string name="text_label_kg">kg</string>
-    <string name="text_label_m">m</string>
+    <string name="text_label_m">cm</string>
     <string name="content_button_calculate">Calcola il tuo BMI</string>
     <string name="content_button_exit">Esci dalla sezione</string>
     <string name="content_show_result"> </string>
@@ -102,9 +102,8 @@
     <string name="err_rpssw">Confermare la password</string>
     <string name="err_rpssw2">Le password non coincidono</string>
     <string name="reg_ok">Registrazione completata!</string>
-    <string name="reg_err">Errore in fase di registrazione</string>
     <string name="log_ok">Login effettuato!</string>
-    <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
+
 
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Premi il tasto per aggiungere gli esercizi alla scheda</string>
@@ -112,6 +111,12 @@
     <string name="ins_ok">Inserimento scheda completato!</string>
     <string name="item_rem">L\'elemento è stato rimosso dalla lista</string>
     <string name="cam_err">Per utilizzare il lettore di qr , abilitare i permessi per la fotocamera</string>
+
+
+
+    <!--ERRORI -->
     <string name="richiesto">Campo richiesto</string>
+    <string name="reg_err">Errore in fase di registrazione</string>
+    <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
     <string name="err_connessione">Connessione internet assente.</string>
 </resources>

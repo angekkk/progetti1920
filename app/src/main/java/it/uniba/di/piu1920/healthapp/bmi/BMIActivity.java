@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
 import java.text.DecimalFormat;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
@@ -45,12 +46,12 @@ public class BMIActivity extends AppCompatActivity {
         buttonCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkData()){
+                if(checkData(v)){
                     kg = Double.parseDouble(inputKg.getText().toString());
                     m = Double.parseDouble(inputM.getText().toString());
                     metricFormula = new MetricFormula(kg, m);
-                    imperialFormula = new ImperialFormula(kg, m);
-                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))));
+                    //imperialFormula = new ImperialFormula(kg, m);
+                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()/100))));//attivazione del metodo e calcolo atraverso la formula
                     showResult.setText(getCategory(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))); //attivo il metodo per recuperare la categoria di appartenenza
                 }
             }
@@ -58,9 +59,18 @@ public class BMIActivity extends AppCompatActivity {
 
     }
 
-    boolean checkData(){
+    //metodo per il controllo dei dati immessi
+    boolean checkData(View view){
 
-        if(inputKg.getText().toString().isEmpty() && inputM.getText().toString().isEmpty() ){
+        if(inputKg.getText().toString().isEmpty() || inputM.getText().toString().isEmpty()){
+            if(inputKg.getText().toString().isEmpty()){
+                inputKg.setError(getString(R.string.richiesto));
+            }
+            if(inputM.getText().toString().isEmpty()){
+                inputM.setError(getString(R.string.richiesto));
+            }
+            Snackbar.make(view, getString(R.string.richiesto), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
                 return false;
         }else{
                 return true;

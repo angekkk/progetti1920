@@ -1,11 +1,7 @@
 package it.uniba.di.piu1920.healthapp.connect;
 
-
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
