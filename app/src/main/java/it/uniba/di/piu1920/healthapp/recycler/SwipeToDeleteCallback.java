@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
 import it.uniba.di.piu1920.healthapp.R;
 
 abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
@@ -27,17 +26,18 @@ abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
     private int intrinsicHeight;
 
 
+    //costruttore
     public SwipeToDeleteCallback(Context context) {
         mContext = context;
         mBackground = new ColorDrawable();
-        backgroundColor = Color.parseColor("#b80f0a");
+        backgroundColor = Color.parseColor("#b80f0a"); //imposto il colore rosso per lo swipe
         mClearPaint = new Paint();
-        mClearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        deleteDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_delete);
-        intrinsicWidth = deleteDrawable.getIntrinsicWidth();
+
+        mClearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR)); //setta il modo con cui le due immagini si intersecano..Deriva da un convegno del 1984 Porter e Duff
+         //Mode.CLEAR pulisce la canvas con la nuova immagine
+        deleteDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_delete); //setto l'immagine del cestino
+        intrinsicWidth = deleteDrawable.getIntrinsicWidth(); //prende le dimensioni di default del drawable settato
         intrinsicHeight = deleteDrawable.getIntrinsicHeight();
-
-
     }
 
 
@@ -56,9 +56,9 @@ abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
         View itemView = viewHolder.itemView;
-        int itemHeight = itemView.getHeight();
+        int itemHeight = itemView.getHeight();   //prendo l'altezza dell'oggetto
 
-        boolean isCancelled = dX == 0 && !isCurrentlyActive;
+        boolean isCancelled = dX == 0 && !isCurrentlyActive;   //controllo se sto facendo swipe o meno
 
         if (isCancelled) {
             clearCanvas(c, itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
@@ -87,7 +87,6 @@ abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
 
     private void clearCanvas(Canvas c, Float left, Float top, Float right, Float bottom) {
         c.drawRect(left, top, right, bottom, mClearPaint);
-
     }
 
     @Override
