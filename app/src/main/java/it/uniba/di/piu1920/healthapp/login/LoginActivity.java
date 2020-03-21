@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -32,6 +34,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import it.uniba.di.piu1920.healthapp.DetailsActivity;
+import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -63,6 +68,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         session = new SessionManager(getApplicationContext());
         initializeUI();
 //        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(this.getTitle());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, Home.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

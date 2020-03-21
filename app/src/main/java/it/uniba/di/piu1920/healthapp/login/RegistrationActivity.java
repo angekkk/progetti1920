@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.firebase.auth.FirebaseAuth;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +58,18 @@ public class RegistrationActivity extends AppCompatActivity {
         regBtn = findViewById(R.id.register);
         progressBar = findViewById(R.id.progressBar);
         session = new SessionManager(getApplicationContext()); //inzializzo la sessione
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(this.getTitle());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RegistrationActivity.this, Home.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override

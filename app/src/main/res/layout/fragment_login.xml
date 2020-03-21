@@ -7,6 +7,24 @@
 >
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/abc_vector_test"
+            app:popupTheme="@style/AppTheme.AppBarOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
@@ -73,15 +91,22 @@
 
     <ImageView
         android:id="@+id/swipe"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_above="@id/swipeRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="36dp"
+
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintVertical_bias="0.279"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toTopOf="@+id/swipeRight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+       />
 
     <TextView
         android:id="@+id/swipeRight"

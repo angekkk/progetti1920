@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,19 +19,17 @@ import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
 import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Item;
-import it.uniba.di.piu1920.healthapp.NutritionActivity;
 import it.uniba.di.piu1920.healthapp.recycler.RVAdapter;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+
     View root;
     private List<Item> listhome = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         root = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView rv = (RecyclerView) root.findViewById(R.id.rv);
         rv.setHasFixedSize(true);

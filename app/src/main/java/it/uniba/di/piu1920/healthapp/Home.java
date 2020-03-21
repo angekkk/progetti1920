@@ -38,6 +38,7 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
+import it.uniba.di.piu1920.healthapp.login.LoginActivity;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
@@ -59,40 +60,48 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-         session = new SessionManager(getApplicationContext());
+         session = new SessionManager(getApplicationContext()); //dichiaro l'oggetto per controllare la sessione di log
          drawer = findViewById(R.id.drawer_layout);
          navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_exercise, R.id.nav_aliment,R.id.nav_bmi,R.id.nav_caloorie,R.id.nav_log,R.id.nav_out,R.id.nav_clienti,R.id.nav_scheda,R.id.nav_qr)
                 .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-        View hView =  navigationView.getHeaderView(0);
+                .build(); //vengono passati e assemblati nel drawer layout gli item della Nav
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);//viene inizializzata la navigazione del NavigationDrawer
+
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);//linkato l'action bar con il controller della navigzaazione
+
+        NavigationUI.setupWithNavController(navigationView, navController); //collegata la NavView con il controller
+
+        View hView =  navigationView.getHeaderView(0); //recuperiamo la view del NavigaionDrawer
         TextView email= hView.findViewById(R.id.email);
 
-        if (session.checkLogin()) {
+        if (session.checkLogin()) { //controllo che la sessione sia attiva
 
             // get user data from session
-            Sessione x = session.getUserDetails();
+            Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getNum());
             navigationView.getMenu().getItem(9).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
             navigationView.getMenu().getItem(4).setVisible(true);
-            new GetIdScheda().execute();
+            new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
+
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
+
                 //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
                 navigationView.getMenu().getItem(2).setVisible(true);
+
             }
 
         }
         navigationView.setCheckedItem(R.id.nav_home); // la home è sempre selezionata come item principale ad ogni apertura
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {//listener per il menù del NavigationDrawer
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -117,16 +126,14 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_log){
-                    Intent intent = new Intent(Home.this, MainActivity.class);
+                    Intent intent = new Intent(Home.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_out){
                     //effettuare il log out, eliminare la SESSION
                     session.logoutUser();
                     Intent i = new Intent(Home.this, Home.class);
-                    // i.putExtra("lang",session.getUserDetails().getLang());
                     startActivity(i);
-                    // close this activity
                     finish();
 
                 }else if(id==R.id.nav_clienti){
@@ -135,10 +142,11 @@ public class Home extends AppCompatActivity {
                     finish();
 
                 }else if(id==R.id.nav_qr){
-                    final RxPermissions rxPermissions = new RxPermissions(Home.this);
+
+                    final RxPermissions rxPermissions = new RxPermissions(Home.this); //dichiarazione e inizializzazione dell'oggetto rxPermissions
                              rxPermissions.request(Manifest.permission.CAMERA) // richiedo il permesso per l'utilizzo della fotocameraper effettuare la scansione
                                      .subscribe(granted -> {
-                                         if (granted) { // Always true pre-M
+                                         if (granted) { // Se concesso starto l'activity relativa alla lettura del Qrcode
                                              Intent intent = new Intent(Home.this, QrScannerActivity.class);
                                              startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
                                          } else {
@@ -149,15 +157,13 @@ public class Home extends AppCompatActivity {
 
 
                 }else if(id==R.id.nav_scheda){
-                    if(!idscheda.contentEquals("non")){
+                    if(!idscheda.contentEquals("non")){//controllo che l'id della scheda esista o no
                         Intent i = new Intent(Home.this, SchedaActivity.class);
                         i.putExtra("idscheda",idscheda);
                         startActivity(i);
                         finish();
                     }
                 }
-                //This is for maintaining the behavior of the Navigation view
-
                 //This is for closing the drawer after acting on it
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
@@ -181,7 +187,7 @@ public class Home extends AppCompatActivity {
     }
 
 
-
+    //Chiamata ad una risorsa esterna , gestita in un TaskAsincrono
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -193,14 +199,14 @@ public class Home extends AppCompatActivity {
             String ris = null;
 
                 TwoParamsList params = new TwoParamsList();
-                params.add("idscheda",""+idscheda.replace("ID: ",""));
-                JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params);
+                params.add("idscheda",""+idscheda.replace("ID: ","")); //passo il parametro da inserire nella chiamata
+                JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params); //attraverso un JSONParser passo il link della chiamata, il tipo GET/POST e i parametri da mandare
                 //  Log.d("Esercizi: ", json.toString());
                 try {
-                    int success = json.getInt(TAG_SUCCESS);
+                    int success = json.getInt(TAG_SUCCESS); //controllo se è stato prodotto un risultato dal php con il tag success
                     if (success == 1) {
-                        arr = json.getJSONArray("esercizio");
-                        for (int i = 0; i < arr.length(); i++) {
+                        arr = json.getJSONArray("esercizio"); //recupero in un array il risultato delle query del php,opportunamente compattate per il json
+                        for (int i = 0; i < arr.length(); i++) {//itero sull'array
                             JSONObject c = arr.getJSONObject(i);
                             int id = Integer.parseInt(c.getString("id"));
                             int tipo = Integer.parseInt(c.getString("tipo"));
@@ -225,7 +231,7 @@ public class Home extends AppCompatActivity {
         }
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
-                public void run() {
+                public void run() { //quando la chiamata è terminata, svolgo le mie normali operazioni
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     LayoutInflater inflater = getLayoutInflater();
                     View view = inflater.inflate(R.layout.dialog, null);

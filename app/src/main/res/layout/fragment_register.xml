@@ -8,11 +8,29 @@
     tools:context=".login.RegistrationActivity">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/abc_vector_test"
+            app:popupTheme="@style/AppTheme.AppBarOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="368dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="252dp"
+        android:layout_width="408dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="300dp"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="15dp"
@@ -28,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="300dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/app_name"
         android:padding="10dp"
@@ -42,7 +60,7 @@
         android:id="@+id/et_repassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="360dp"
         android:hint="@string/rewrite_pss"
         android:inputType="textPassword"
         android:padding="15dp"
@@ -80,18 +98,20 @@
 
     <TextView
         android:id="@+id/swipeLeft"
+        android:text="@string/swipe_right_for_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="36dp"
-        android:text="@string/swipe_right_for_login"
+
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swipe" />
+        app:layout_constraintTop_toBottomOf="@+id/swipe"
+        app:layout_constraintVertical_bias="0.279" />
 
     <EditText
         android:id="@+id/email"

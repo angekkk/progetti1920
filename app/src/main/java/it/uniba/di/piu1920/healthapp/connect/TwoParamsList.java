@@ -8,6 +8,8 @@ import java.util.Iterator;
 
 import it.uniba.di.piu1920.healthapp.BuildConfig;
 
+//classe per preparare i parametri nella chiamata
+
 public class TwoParamsList extends ArrayList<Pair<String, String>> {
     public void add(String key, String value) {
         add(new Pair(key, value));

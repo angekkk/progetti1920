@@ -37,7 +37,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsActivity"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".login.RegistrationActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".ExerciseActivity" />

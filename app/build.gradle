@@ -9,7 +9,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
-        versionName "1.7"
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,13 +27,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.5.2' //utilizzata peer il caricamento delle immagini nelle varie sezioni
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.core:core-ktx:1.3.0-alpha02'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment:2.2.1'
     implementation 'androidx.navigation:navigation-ui:2.2.1'
@@ -42,13 +42,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     implementation 'com.google.android.material:material:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'me.ydcool.lib:qrmodule:1.0'
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
-    implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
-    implementation 'us.belka:androidtoggleswitch:1.2.2'
-    implementation 'com.xw.repo:bubbleseekbar:3.10-lite'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.wang.avi:library:2.1.3'
+    implementation 'me.ydcool.lib:qrmodule:1.0' //creazione e gestione di qrcode
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2' //gestione a runtime di permessi nella Home per la fotocamera
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1' //We know that RxJava is a reactive event-based programming paradigm. vRxBinding is a set of support libraries to make the implementation of user interaction with the UI elements in Android easier.
+    implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'//switch nell'activity Nutri per il sesso , kg e attività FragA
+    implementation 'us.belka:androidtoggleswitch:1.2.2'  //switch nell'activity Nutri per il tipo di attvità e l'intensità FragA
+    implementation 'com.xw.repo:bubbleseekbar:3.10-lite' //seekbar a comparsa numerica nell'activity Nutri per i giorni della settimana FragA
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3' //grafico a torta per i macronutrienti FragB
+    implementation 'com.wang.avi:library:2.1.3'// componente per barra di caricamento in load.xml
 }
