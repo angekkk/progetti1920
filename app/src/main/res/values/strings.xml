@@ -57,13 +57,13 @@
     <string name="please_select_your_goal">Seleziona il tuo obbiettivo</string>
     <string name="to_reach_your_goal_you_will_need_to_consume">Per raggiungere il tuo obiettivo, devi consumare</string>
     <string name="calories">\u0020Calorie</string>
-    <string name="calories_from_protein">Calorie dalle proteine\u0020</string>
+    <string name="calories_from_protein">Calorie dalle Proteine\u0020</string>
     <string name="grams">\u0020 grammi</string>
-    <string name="calories_from_fat">Calorie dai grassi\u0020</string>
+    <string name="calories_from_fat">Calorie dai Grassi\u0020</string>
     <string name="swirl">\u0020~\u0020</string>
     <string name="scrub_empty">Tocca e rilascia il grafico</string>
     <string name="scrub_format">Peso: %1$s</string>
-    <string name="calories_from_carbs">Calorie dai carboidrati\u0020</string>
+    <string name="calories_from_carbs">Calorie dai Carboidrati\u0020</string>
     <string name="kg">Kg</string>
     <string name="_234234">234234</string>
     <string name="nutrition"><![CDATA[Nutrition & Macros]]></string>

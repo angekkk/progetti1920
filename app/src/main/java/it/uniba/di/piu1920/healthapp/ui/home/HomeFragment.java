@@ -31,13 +31,13 @@ public class HomeFragment extends Fragment {
     private List<Item> listhome = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null) {//controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
+        if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null && !this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getString("WEIGHT","").contentEquals("") && this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getInt("TDEE",15)!=0) {//controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE);
             Bundle bundle = new Bundle();
             System.out.println("SHARED WEIGHT: "+Double.parseDouble(sharedPreferences.getString("WEIGHT","")));
-            System.out.println("SHARED TDEE: "+sharedPreferences.getInt("TDEE",15));
+            System.out.println("SHARED TDEE: "+sharedPreferences.getInt("TDEE",0));
             bundle.putDouble("WEIGHT", Double.parseDouble(sharedPreferences.getString("WEIGHT","")));
-            bundle.putInt("TDEE", sharedPreferences.getInt("TDEE",15));
+            bundle.putInt("TDEE", sharedPreferences.getInt("TDEE",0));
             FragBNutri simpleFragmentB = FragBNutri.newInstance();
             simpleFragmentB.setArguments(bundle);
             loadTDE(simpleFragmentB);

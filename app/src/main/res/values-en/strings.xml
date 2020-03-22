@@ -62,7 +62,7 @@
     <string name="calories">\u0020Calories</string>
     <string name="calories_from_protein">Calories from Protein\u0020</string>
     <string name="grams">\u0020 grams</string>
-    <string name="calories_from_fat">Calories from fat\u0020</string>
+    <string name="calories_from_fat">Calories from Fat\u0020</string>
     <string name="swirl">\u0020~\u0020</string>
     <string name="scrub_empty">Tap and hold the graph to scrub.</string>
     <string name="scrub_format">Weight: %1$s</string>
