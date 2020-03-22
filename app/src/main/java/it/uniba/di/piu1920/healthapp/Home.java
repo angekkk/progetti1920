@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +22,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -34,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
+import it.uniba.di.piu1920.healthapp.calorie.FragBNutri;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -41,6 +45,7 @@ import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.login.LoginActivity;
+import it.uniba.di.piu1920.healthapp.ui.home.HomeFragment;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
@@ -81,7 +86,7 @@ public class Home extends AppCompatActivity {
 
         View hView =  navigationView.getHeaderView(0); //recuperiamo la view del NavigaionDrawer
         TextView email= hView.findViewById(R.id.email);
-
+        ImageView foto= hView.findViewById(R.id.foto);
         if (session.checkLogin()) { //controllo che la sessione sia attiva
 
             // get user data from session
@@ -94,13 +99,15 @@ public class Home extends AppCompatActivity {
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
 
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
-
                 //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
                 navigationView.getMenu().getItem(2).setVisible(true);
-
+                foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
+            }else{
+                foto.setImageDrawable(getDrawable(R.drawable.user));
             }
 
         }
+
         navigationView.setCheckedItem(R.id.nav_home); // la home è sempre selezionata come item principale ad ogni apertura
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {//listener per il menù del NavigationDrawer
@@ -173,6 +180,9 @@ public class Home extends AppCompatActivity {
         });
 
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
