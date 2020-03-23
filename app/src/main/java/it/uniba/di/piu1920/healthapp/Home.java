@@ -22,8 +22,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -36,8 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
-import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
-import it.uniba.di.piu1920.healthapp.calorie.FragBNutri;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -45,7 +41,6 @@ import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.login.LoginActivity;
-import it.uniba.di.piu1920.healthapp.ui.home.HomeFragment;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
@@ -74,7 +69,7 @@ public class Home extends AppCompatActivity {
         // menu should be considered as top level destinations.
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_exercise, R.id.nav_aliment,R.id.nav_bmi,R.id.nav_caloorie,R.id.nav_log,R.id.nav_out,R.id.nav_clienti,R.id.nav_scheda,R.id.nav_qr)
+                R.id.nav_home, R.id.nav_exercise, R.id.nav_aliment,R.id.nav_bmi,R.id.nav_log,R.id.nav_out,R.id.nav_clienti,R.id.nav_scheda,R.id.nav_qr)
                 .setDrawerLayout(drawer)
                 .build(); //vengono passati e assemblati nel drawer layout gli item della Nav
 
@@ -92,10 +87,9 @@ public class Home extends AppCompatActivity {
             // get user data from session
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getNum());
-            navigationView.getMenu().getItem(9).setVisible(true);
+            navigationView.getMenu().getItem(8).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
-            navigationView.getMenu().getItem(4).setVisible(true);
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
 
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
@@ -128,10 +122,6 @@ public class Home extends AppCompatActivity {
                     finish();
                 }else if(id==R.id.nav_bmi){
                     Intent intent = new Intent(Home.this, BMIActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else if(id==R.id.nav_caloorie){
-                    Intent intent = new Intent(Home.this, CalorieActivity.class);
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_log){

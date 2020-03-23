@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
-import it.uniba.di.piu1920.healthapp.calorie.CalorieActivity;
 import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.calorie.FragBNutri;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
@@ -31,7 +30,8 @@ public class HomeFragment extends Fragment {
     private List<Item> listhome = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null && !this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getString("WEIGHT","").contentEquals("") && this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getInt("TDEE",15)!=0) {//controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
+           //controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
+        if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null && !this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getString("WEIGHT","").contentEquals("") && this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getInt("TDEE",15)!=0) {
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE);
             Bundle bundle = new Bundle();
             System.out.println("SHARED WEIGHT: "+Double.parseDouble(sharedPreferences.getString("WEIGHT","")));
@@ -65,9 +65,6 @@ public class HomeFragment extends Fragment {
                             } else if (position == 2) {
                                 Intent intent = new Intent(root.getContext(), BMIActivity.class);
                                 startActivity(intent);
-                            } else {
-                                Intent intent = new Intent(root.getContext(), CalorieActivity.class);
-                                startActivity(intent);
                             }
                         }
 
@@ -84,14 +81,15 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-
+    //crea la lista della homepage
     private void createList() {
         listhome.add(new Item(getString(R.string.title_es), root.getContext().getDrawable(R.drawable.esercizi)));
         listhome.add(new Item(getString(R.string.title_ali), root.getContext().getDrawable(R.drawable.alimentazione)));
         listhome.add(new Item(getString(R.string.title_bmi), root.getContext().getDrawable(R.drawable.bmi)));
-        listhome.add(new Item(getString(R.string.title_calorie), root.getContext().getDrawable(R.drawable.calorie)));
+
     }
 
+    //metodo per richiamare nuovo fragment
     public void loadTDE(Fragment fragment) {
 
         FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();
