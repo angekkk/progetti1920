@@ -48,10 +48,10 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_register);
+        setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        emailTV = findViewById(R.id.email);
+        emailTV = findViewById(R.id.et_email);
         passwordTV =findViewById(R.id.et_password);
         repassword = findViewById(R.id.et_repassword);
         swipe=findViewById(R.id.swipe);
@@ -64,7 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(this.getTitle());
+        getSupportActionBar().setTitle(getString(R.string.register));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

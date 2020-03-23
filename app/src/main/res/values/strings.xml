@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HealthApp</string>
     <string name="login">Login</string>
-    <string name="register">Registrati</string>
+    <string name="register">Registrazione</string>
     <string name="title_es">Esercizi</string>
     <string name="title_ali">Alimentazione</string>
     <string name="action_settings">Impostazioni</string>
