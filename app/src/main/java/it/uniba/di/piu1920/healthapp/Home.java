@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
          session = new SessionManager(getApplicationContext()); //dichiaro l'oggetto per controllare la sessione di log
-         drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
          navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
