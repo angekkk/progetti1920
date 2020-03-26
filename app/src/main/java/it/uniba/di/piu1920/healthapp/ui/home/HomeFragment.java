@@ -99,17 +99,19 @@ public class HomeFragment extends Fragment {
                                     Intent intent = new Intent(root.getContext(), BMIActivity.class);
                                     startActivity(intent);
                                 }
+                            }else{
+                                if (position == 0) {
+                                    Intent intent = new Intent(root.getContext(), ExerciseActivity.class);
+                                    startActivity(intent);
+                                } else if (position == 1) {
+                                    Intent intent = new Intent(root.getContext(), NutriActivity.class);
+                                    startActivity(intent);
+                                } else if (position == 2) {
+                                    Intent intent = new Intent(root.getContext(), BMIActivity.class);
+                                    startActivity(intent);
+                                }
                             }
-                            if (position == 0) {
-                                Intent intent = new Intent(root.getContext(), ExerciseActivity.class);
-                                startActivity(intent);
-                            } else if (position == 1) {
-                                Intent intent = new Intent(root.getContext(), NutriActivity.class);
-                                startActivity(intent);
-                            } else if (position == 2) {
-                                Intent intent = new Intent(root.getContext(), BMIActivity.class);
-                                startActivity(intent);
-                            }
+
                         }
 
                         public void onLongClickItem(View v, int position) {

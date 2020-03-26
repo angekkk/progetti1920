@@ -3,12 +3,12 @@ package it.uniba.di.piu1920.healthapp.classes;
 
 public class Sessione {
 
-    int id;int tipo; String num,pass,lang;
+    int id;int tipo; String ema,pass,lang;
 
-    public Sessione(int id, int tipo, String num, String pass) {
+    public Sessione(int id, int tipo, String ema, String pass) {
         this.id = id;
         this.tipo = tipo;
-        this.num = num;
+        this.ema = ema;
         this.pass = pass;
     }
 
@@ -20,12 +20,12 @@ public class Sessione {
         this.lang = lang;
     }
 
-    public String getNum() {
-        return num;
+    public String getEma() {
+        return ema;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setEma(String ema) {
+        this.ema = ema;
     }
 
     public String getPass() {

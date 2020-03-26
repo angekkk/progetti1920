@@ -28,7 +28,7 @@ public class SessionManager {
 	private static final String IS_LOGIN = "IsLoggedIn";
 	
 	// User numero (make variable public to access from outside)
-	public static final String KEY_NAME = "numero";
+	public static final String KEY_NAME = "email";
 	
 	// Email address (make variable public to access from outside)
 	public static final String KEY_EMAIL = "password";

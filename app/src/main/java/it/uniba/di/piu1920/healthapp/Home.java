@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaCas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -31,9 +32,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
+import it.uniba.di.piu1920.healthapp.calorie.FragBNutri;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -86,7 +90,7 @@ public class Home extends AppCompatActivity {
 
             // get user data from session
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
-            email.setText(x.getNum());
+            email.setText(x.getEma());
             navigationView.getMenu().getItem(8).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
@@ -315,7 +319,21 @@ public class Home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.refresh:
+                SessionManager session =new SessionManager(this);
+                Sessione se=session.getUserDetails();
+                this.getSharedPreferences("Tdee", Context.MODE_PRIVATE).edit().clear().apply();
+                recreate();
+                return true;
 
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -336,4 +354,5 @@ public class Home extends AppCompatActivity {
         }
         return false;
     }
+
 }
