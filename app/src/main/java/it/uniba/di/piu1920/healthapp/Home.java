@@ -45,6 +45,7 @@ import it.uniba.di.piu1920.healthapp.classes.Sessione;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.login.LoginActivity;
+import it.uniba.di.piu1920.healthapp.step.SetGoalActivity;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 
 public class Home extends AppCompatActivity {
@@ -91,7 +92,7 @@ public class Home extends AppCompatActivity {
             // get user data from session
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getEma());
-            navigationView.getMenu().getItem(8).setVisible(true);
+            navigationView.getMenu().getItem(9).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
@@ -166,6 +167,12 @@ public class Home extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }
+                }else if(id==R.id.nav_step){
+
+                        Intent i = new Intent(Home.this, SetGoalActivity.class);
+                        startActivity(i);
+                        finish();
+
                 }
                 //This is for closing the drawer after acting on it
                 drawer.closeDrawer(GravityCompat.START);

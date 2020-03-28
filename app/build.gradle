@@ -9,15 +9,31 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
-        versionName "1.9"
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            /*The is the code fot the template of release name*/
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def appId = variant.applicationId
+                    def versionName = variant.versionName
+                    def versionCode = variant.versionCode
+                    def flavorName = variant.flavorName // e. g. free
+                    def buildType = variant.buildType // e. g. debug
+                    def variantName = variant.name // e. g. freeDebug
+
+                    def apkName =  versionName + '.apk';
+
+                    output.outputFileName = apkName
+                }
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -53,4 +69,6 @@ dependencies {
     implementation 'com.wang.avi:library:2.1.3'// componente per barra di caricamento in load.xml
     // Support Library compatibility version
     implementation 'com.github.AppIntro:AppIntro:4.2.3'
+    // Statistics around pedometer
+    implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
 }

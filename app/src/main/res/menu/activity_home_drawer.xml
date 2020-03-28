@@ -35,6 +35,10 @@
             android:icon="@drawable/nav_bmi"
             android:title="@string/title_bmi" />
         <item
+            android:id="@+id/nav_step"
+            android:icon="@drawable/nav_step"
+            android:title="@string/title_step" />
+        <item
             android:id="@+id/nav_qr"
             android:icon="@drawable/nav_qr"
             android:title="@string/title_qr" />
