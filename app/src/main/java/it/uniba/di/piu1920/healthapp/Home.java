@@ -95,6 +95,7 @@ public class Home extends AppCompatActivity {
             navigationView.getMenu().getItem(9).setVisible(true);
             navigationView.getMenu().getItem(0).setVisible(false);
             navigationView.getMenu().getItem(3).setVisible(true);
+            navigationView.getMenu().getItem(7).setVisible(true);
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
 
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
