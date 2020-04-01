@@ -70,6 +70,10 @@
     <string name="toast_make_sure">Perfavore controlla che i dati inseriti siano corretti</string>
     <string name="loading">Loading…</string>
 
+    <string name="richiesta_inv">Richiesta inviata</string>
+    <string name="richiesta_trovata">Richiesta già inviat</string>
+    <string name="richiesta_err">Errore nell\'inviare la richiesta</string>
+
     <!--NAVBAR -->
     <string name="title_bmi">BMI</string>
     <string name="title_calorie">Calorie</string>
@@ -81,6 +85,9 @@
     <string name="title_qr">Leggi qr</string>
     <string name="title_clienti">Gestisci clienti</string>
     <string name="title_scheda">Scheda</string>
+    <string name="title_richiesta">Voglio diventare un PT!</string>
+    <string name="title_account">Impostazioni account</string>
+
 
     <!--DETTAGLIO ESERCIZIO-->
     <string name="categoria">Categoria :</string>

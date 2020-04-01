@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaCas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -31,13 +30,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
-import it.uniba.di.piu1920.healthapp.calorie.FragBNutri;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -54,8 +51,11 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawer;
     SessionManager session;
+
     private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
     private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
+    private static String url_invia_richiesta = "http://ddauniba.altervista.org/HealthApp/inserisci_richiesta.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
+
     private static final String TAG_SUCCESS = "success";
     JSONArray arr = null;
     List<Esercizio> lista = new ArrayList<>();
@@ -92,10 +92,12 @@ public class Home extends AppCompatActivity {
             // get user data from session
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getEma());
-            navigationView.getMenu().getItem(9).setVisible(true);
-            navigationView.getMenu().getItem(0).setVisible(false);
-            navigationView.getMenu().getItem(3).setVisible(true);
-            navigationView.getMenu().getItem(7).setVisible(true);
+
+            navigationView.getMenu().getItem(10).setVisible(true);//logout
+            navigationView.getMenu().getItem(0).setVisible(false);//login
+            navigationView.getMenu().getItem(3).setVisible(true); //scheda
+            navigationView.getMenu().getItem(7).setVisible(true); //contapassi
+
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
 
             if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
@@ -103,6 +105,7 @@ public class Home extends AppCompatActivity {
                 navigationView.getMenu().getItem(2).setVisible(true);
                 foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
             }else{
+                navigationView.getMenu().getItem(9).setVisible(true);//richiesta pt
                 foto.setImageDrawable(getDrawable(R.drawable.user));
             }
 
@@ -174,6 +177,13 @@ public class Home extends AppCompatActivity {
                         startActivity(i);
                         finish();
 
+                }else if(id==R.id.nav_richiesta){
+                    if(isWorkingInternetPersent()){
+                            new invia_richiesta().execute();
+                    }else{
+                        Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
                 }
                 //This is for closing the drawer after acting on it
                 drawer.closeDrawer(GravityCompat.START);
@@ -203,6 +213,24 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    public void showDialog(String mx) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.title_richiesta))
+                .setMessage(mx)
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(getDrawable(R.drawable.nav_richiesta))
+                .show();
+    }
 
     //Chiamata ad una risorsa esterna , gestita in un TaskAsincrono
     class GetEsercizi extends AsyncTask<String, String, String> {
@@ -275,7 +303,6 @@ public class Home extends AppCompatActivity {
 
     }
 
-
     class GetIdScheda extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -319,6 +346,52 @@ public class Home extends AppCompatActivity {
 
         }
 
+    }
+
+    class invia_richiesta extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(String... args) {
+            TwoParamsList params = new TwoParamsList();
+            /// params.add("tipo", ""+1);
+            params.add("idu",""+ session.getUserDetails().getId());
+            String ret= "";
+            JSONObject json = new JSONParser().makeHttpRequest(url_invia_richiesta, JSONParser.POST, params);
+
+            if (json != null) {
+                try {
+                    int success = json.getInt("success");
+                    if (success == 1) {
+                        ret = "inviata";
+                    } else if(success==0) {
+                        ret = "errore";
+                    }else if(success==2){
+                        ret = "presente";
+                    }
+                } catch (JSONException e) {
+
+                }
+            }
+            return ret;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                  if(file_url.contentEquals("inviata")){
+                                showDialog(getString(R.string.richiesta_inv));
+                  }else if(file_url.contentEquals("errore")){
+                                showDialog(getString(R.string.richiesta_err));
+                  }else if(file_url.contentEquals("presente")){
+                                showDialog(getString(R.string.richiesta_trovata));
+                  }
+                }
+            });
+        }
     }
 
     @Override

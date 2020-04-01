@@ -74,6 +74,11 @@
     <string name="loading">Loading…</string>
 
 
+    <string name="richiesta_inv">Request sent</string>
+    <string name="richiesta_trovata">Request already sent</string>
+    <string name="richiesta_err">Unexprected error in sending the request</string>
+
+
     <!--NAVBAR -->
     <string name="title_bmi">BMI</string>
     <string name="title_calorie">Calorie</string>
@@ -85,6 +90,8 @@
     <string name="title_clienti">Manage customers</string>
     <string name="title_scheda">Training card</string>
     <string name="title_step">Steps counter</string>
+    <string name="title_richiesta">I want to become a PT!</string>
+    <string name="title_account">Account settings</string>
 
     <!--DETTAGLIO ESERCIZIO-->
     <string name="categoria">Category :</string>

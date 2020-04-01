@@ -39,11 +39,15 @@
             android:icon="@drawable/nav_step"
             android:title="@string/title_step"
             android:visible="false"/>
-
         <item
             android:id="@+id/nav_qr"
             android:icon="@drawable/nav_qr"
             android:title="@string/title_qr" />
+        <item
+            android:id="@+id/nav_richiesta"
+            android:icon="@drawable/nav_richiesta"
+            android:title="@string/title_richiesta"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_out"
             android:icon="@drawable/logout"
