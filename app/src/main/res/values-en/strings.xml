@@ -140,4 +140,10 @@
     <string name="text1">Enter the information</string>
     <string name="text2">Steps</string>
     <string name="text3">Calories</string>
+
+
+    <string name="modp">Update</string>
+    <string name="pssold">Current password</string>
+    <string name="mod_ok">Updated!</string>
+    <string name="upd_err">Error during update</string>
 </resources>

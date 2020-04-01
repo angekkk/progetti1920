@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/no_log"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_log"
             android:icon="@drawable/login"
@@ -12,16 +14,6 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/nav_home"
             android:title="@string/title_home" />
-        <item
-            android:id="@+id/nav_clienti"
-            android:icon="@drawable/clienti"
-            android:title="@string/title_clienti"
-            android:visible="false"/>
-        <item
-            android:id="@+id/nav_scheda"
-            android:icon="@drawable/scheda"
-            android:title="@string/title_scheda"
-            android:visible="false"/>
         <item
             android:id="@+id/nav_exercise"
             android:icon="@drawable/nav_ex"
@@ -35,18 +27,42 @@
             android:icon="@drawable/nav_bmi"
             android:title="@string/title_bmi" />
         <item
+            android:id="@+id/nav_qr"
+            android:icon="@drawable/nav_qr"
+            android:title="@string/title_qr" />
+    </group>
+    <group
+        android:id="@+id/log"
+        android:checkableBehavior="single">
+        <item
+
+            android:id="@+id/nav_clienti"
+            android:icon="@drawable/clienti"
+            android:title="@string/title_clienti"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_scheda"
+            android:icon="@drawable/scheda"
+            android:title="@string/title_scheda"
+            android:visible="false"/>
+        <item
             android:id="@+id/nav_step"
             android:icon="@drawable/nav_step"
             android:title="@string/title_step"
             android:visible="false"/>
         <item
-            android:id="@+id/nav_qr"
-            android:icon="@drawable/nav_qr"
-            android:title="@string/title_qr" />
-        <item
             android:id="@+id/nav_richiesta"
             android:icon="@drawable/nav_richiesta"
             android:title="@string/title_richiesta"
+            android:visible="false"/>
+    </group>
+    <group
+        android:id="@+id/log_final"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/nav_account"
+            android:title="@string/title_account"
             android:visible="false"/>
         <item
             android:id="@+id/nav_out"

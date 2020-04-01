@@ -40,11 +40,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home"></activity>
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".DetailsActivity" />
         <activity android:name=".login.RegistrationActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".ExerciseActivity" />
+        <activity android:name=".SettingsActivity"/>
         <activity android:name=".bmi.BMIActivity" />
         <activity android:name=".GestioneClientiActivity" />
         <activity android:name=".CreateSchedaActivity" />

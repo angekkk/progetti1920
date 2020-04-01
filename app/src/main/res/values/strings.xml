@@ -141,4 +141,8 @@
     <string name="text1">Enter the information</string>
     <string name="text2">Steps</string>
     <string name="text3">Calories</string>
+    <string name="modp">Modifica</string>
+    <string name="pssold">Password corrente</string>
+    <string name="mod_ok">Modifica effettuata!</string>
+    <string name="upd_err">Errore durante l\'aggiornamento.</string>
 </resources>

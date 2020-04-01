@@ -53,14 +53,17 @@ public class Home extends AppCompatActivity {
     SessionManager session;
 
     private static String url_get_esercizi = "http://ddauniba.altervista.org/HealthApp/get_esercizi_scheda.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
-    private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
-    private static String url_invia_richiesta = "http://ddauniba.altervista.org/HealthApp/inserisci_richiesta.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
+    private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php";
+    private static String url_invia_richiesta = "http://ddauniba.altervista.org/HealthApp/inserisci_richiesta.php";
+    private static String url_get_status = "http://ddauniba.altervista.org/HealthApp/get_status.php";
 
     private static final String TAG_SUCCESS = "success";
     JSONArray arr = null;
     List<Esercizio> lista = new ArrayList<>();
     String idscheda=""; //id scheda letto dall'intent del qr
-
+    View hView;
+    TextView email;
+    ImageView foto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,30 +87,24 @@ public class Home extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(navigationView, navController); //collegata la NavView con il controller
 
-        View hView =  navigationView.getHeaderView(0); //recuperiamo la view del NavigaionDrawer
-        TextView email= hView.findViewById(R.id.email);
-        ImageView foto= hView.findViewById(R.id.foto);
+         hView =  navigationView.getHeaderView(0); //recuperiamo la view del NavigaionDrawer
+         email= hView.findViewById(R.id.email);
+         foto= hView.findViewById(R.id.foto);
         if (session.checkLogin()) { //controllo che la sessione sia attiva
 
             // get user data from session
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getEma());
 
-            navigationView.getMenu().getItem(10).setVisible(true);//logout
+            navigationView.getMenu().getItem(10).setVisible(true);//settings account
+            navigationView.getMenu().getItem(11).setVisible(true);//logout
             navigationView.getMenu().getItem(0).setVisible(false);//login
-            navigationView.getMenu().getItem(3).setVisible(true); //scheda
-            navigationView.getMenu().getItem(7).setVisible(true); //contapassi
+            navigationView.getMenu().getItem(7).setVisible(true); //scheda
+            navigationView.getMenu().getItem(8).setVisible(true); //contapassi
 
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
+            new GetStatus().execute(); //controllo il tipo dell'utente se è cambiato o meno, in base a quello onPostExecute visualizzo gli item del menù corrispondenti
 
-            if(x.getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
-                //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
-                navigationView.getMenu().getItem(2).setVisible(true);
-                foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
-            }else{
-                navigationView.getMenu().getItem(9).setVisible(true);//richiesta pt
-                foto.setImageDrawable(getDrawable(R.drawable.user));
-            }
 
         }
 
@@ -118,10 +115,8 @@ public class Home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id=menuItem.getItemId();
-                //it's possible to do more actions on several items, if there is a large amount of items I prefer switch(){case} instead of if()
-                if (id==R.id.nav_home){
-                    //Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
-                }else if(id==R.id.nav_exercise){
+
+               if(id==R.id.nav_exercise){
                     Intent intent = new Intent(Home.this, ExerciseActivity.class);
                     startActivity(intent);
                     finish();
@@ -178,13 +173,19 @@ public class Home extends AppCompatActivity {
                         finish();
 
                 }else if(id==R.id.nav_richiesta){
-                    if(isWorkingInternetPersent()){
-                            new invia_richiesta().execute();
-                    }else{
-                        Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                }
+                   if(isWorkingInternetPersent()){
+                       new invia_richiesta().execute();
+                   }else{
+                       Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                               .setAction("Action", null).show();
+                   }
+               }else if(id==R.id.nav_settings){
+
+                   Intent i = new Intent(Home.this, SettingsActivity.class);
+                   startActivity(i);
+                   finish();
+
+               }
                 //This is for closing the drawer after acting on it
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
@@ -392,6 +393,59 @@ public class Home extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    class GetStatus extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        List<String> categories = new ArrayList<>();
+        protected String doInBackground(String... args) {
+            String ris = null;
+
+            TwoParamsList params = new TwoParamsList();
+            params.add("idu",""+session.getUserDetails().getId());
+            JSONObject json = new JSONParser().makeHttpRequest(url_get_status, JSONParser.GET, params);
+            try {
+                int success = json.getInt(TAG_SUCCESS);
+                if (success == 1) {
+                    arr = json.getJSONArray("status");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject c = arr.getJSONObject(i);
+                        System.out.println(" SESSION TIPO LETTO: "+Integer.parseInt(c.getString("tipo")));
+                        if(session.getUserDetails().getTipo()!=Integer.parseInt(c.getString("tipo"))){
+                            System.out.println(" SESSION TIPO PRIMA: "+session.getUserDetails().getTipo());
+                            session.logoutUser();
+                            session.createLoginSession(c.getString("email"),c.getString("password"),Integer.parseInt(c.getString("tipo")),Integer.parseInt(c.getString("id")));
+                            System.out.println(" SESSION TIPO CAMBIATO: "+session.getUserDetails().getTipo());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Log.d("STATUS : ", "");
+                e.printStackTrace();
+            }
+            return ris;
+        }
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    System.out.println(" SESSION TIPO : "+session.getUserDetails().getTipo());
+                    if(session.getUserDetails().getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
+                        //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
+                        navigationView.getMenu().getItem(6).setVisible(true);
+                        foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
+                    }else{
+                        navigationView.getMenu().getItem(9).setVisible(true);//richiesta pt
+                        foto.setImageDrawable(getDrawable(R.drawable.user));
+                    }
+                }
+            });
+
+        }
+
     }
 
     @Override
