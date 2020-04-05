@@ -23,6 +23,10 @@
             android:icon="@drawable/nav_ali"
             android:title="@string/title_ali" />
         <item
+            android:id="@+id/nav_cal"
+            android:icon="@drawable/nav_kcal"
+            android:title="@string/title_calorie" />
+        <item
             android:id="@+id/nav_bmi"
             android:icon="@drawable/nav_bmi"
             android:title="@string/title_bmi" />

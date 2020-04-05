@@ -45,6 +45,8 @@
         <activity android:name=".login.RegistrationActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".ExerciseActivity" />
+        <activity android:name=".AlimentazioneActivity" />
+        <activity android:name=".ConsigliActivity" />
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".bmi.BMIActivity" />
         <activity android:name=".GestioneClientiActivity" />

@@ -146,4 +146,9 @@
     <string name="pssold">Current password</string>
     <string name="mod_ok">Updated!</string>
     <string name="upd_err">Error during update</string>
+
+
+    <!--ALIMENTAZIONE-->
+    <string name="al_consigli">How to set up a balanced diet</string>
+
 </resources>

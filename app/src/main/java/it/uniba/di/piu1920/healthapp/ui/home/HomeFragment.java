@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.uniba.di.piu1920.healthapp.AlimentazioneActivity;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.SchedaActivity;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
@@ -89,13 +91,16 @@ public class HomeFragment extends Fragment {
                                     Intent intent = new Intent(root.getContext(), SchedaActivity.class);
                                     intent.putExtra("idscheda",idscheda);
                                     startActivity(intent);
-                                } else if (position == 1) {
+                                } else if (position == 2) {
+                                    Intent intent = new Intent(root.getContext(), AlimentazioneActivity.class);
+                                    startActivity(intent);
+                                }else if (position == 1) {
                                     Intent intent = new Intent(root.getContext(), ExerciseActivity.class);
                                     startActivity(intent);
-                                } else if (position == 2) {
+                                } else if (position == 3) {
                                     Intent intent = new Intent(root.getContext(), NutriActivity.class);
                                     startActivity(intent);
-                                }  else if (position == 3) {
+                                }  else if (position == 4) {
                                     Intent intent = new Intent(root.getContext(), BMIActivity.class);
                                     startActivity(intent);
                                 }
@@ -104,9 +109,12 @@ public class HomeFragment extends Fragment {
                                     Intent intent = new Intent(root.getContext(), ExerciseActivity.class);
                                     startActivity(intent);
                                 } else if (position == 1) {
-                                    Intent intent = new Intent(root.getContext(), NutriActivity.class);
+                                    Intent intent = new Intent(root.getContext(), AlimentazioneActivity.class);
                                     startActivity(intent);
                                 } else if (position == 2) {
+                                    Intent intent = new Intent(root.getContext(), NutriActivity.class);
+                                    startActivity(intent);
+                                } else if (position == 3) {
                                     Intent intent = new Intent(root.getContext(), BMIActivity.class);
                                     startActivity(intent);
                                 }
@@ -131,6 +139,7 @@ public class HomeFragment extends Fragment {
     private void createList() {
         listhome.add(new Item(getString(R.string.title_es), root.getContext().getDrawable(R.drawable.esercizi)));
         listhome.add(new Item(getString(R.string.title_ali), root.getContext().getDrawable(R.drawable.alimentazione)));
+        listhome.add(new Item(getString(R.string.title_calorie), root.getContext().getDrawable(R.drawable.calorie)));
         listhome.add(new Item(getString(R.string.title_bmi), root.getContext().getDrawable(R.drawable.bmi)));
         ca = new RVAdapter(listhome);
         rv.setAdapter(ca);

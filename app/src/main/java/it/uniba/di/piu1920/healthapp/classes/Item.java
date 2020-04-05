@@ -15,7 +15,10 @@ public class Item implements java.io.Serializable{
         this.name = name;
         this.link = link;
     }
+    public Item(String name) {
+        this.name = name;
 
+    }
     public String getLink() {
         return link;
     }

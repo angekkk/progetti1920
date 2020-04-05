@@ -96,11 +96,11 @@ public class Home extends AppCompatActivity {
             Sessione x = session.getUserDetails(); //recupero i dettagli dell'utente loggato, e svolgo le normali operazioni di recupero e settaggio del menù
             email.setText(x.getEma());
 
-            navigationView.getMenu().getItem(10).setVisible(true);//settings account
-            navigationView.getMenu().getItem(11).setVisible(true);//logout
+            navigationView.getMenu().getItem(11).setVisible(true);//settings account
+            navigationView.getMenu().getItem(12).setVisible(true);//logout
             navigationView.getMenu().getItem(0).setVisible(false);//login
-            navigationView.getMenu().getItem(7).setVisible(true); //scheda
-            navigationView.getMenu().getItem(8).setVisible(true); //contapassi
+            navigationView.getMenu().getItem(8).setVisible(true); //scheda
+            navigationView.getMenu().getItem(9).setVisible(true); //contapassi
 
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
             new GetStatus().execute(); //controllo il tipo dell'utente se è cambiato o meno, in base a quello onPostExecute visualizzo gli item del menù corrispondenti
@@ -121,6 +121,10 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else if(id==R.id.nav_aliment){
+                   Intent intent = new Intent(Home.this, AlimentazioneActivity.class);
+                   startActivity(intent);
+                   finish();
+                }else if(id==R.id.nav_cal){
                     Intent intent = new Intent(Home.this, NutriActivity.class);
                     startActivity(intent);
                     finish();

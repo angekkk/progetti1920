@@ -145,4 +145,5 @@
     <string name="pssold">Password corrente</string>
     <string name="mod_ok">Modifica effettuata!</string>
     <string name="upd_err">Errore durante l\'aggiornamento.</string>
+    <string name="al_consigli">Come impostare una dieta bilanciata</string>
 </resources>

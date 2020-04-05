@@ -27,8 +27,7 @@ import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
-    JSONArray arr = null; //array per il recupero json
+
     private static String url_update = "http://ddauniba.altervista.org/HealthApp/update_profile.php"; //link al recupero degli esercizi della scheda
     int idutente; //id della scheda
     SessionManager sessionManager;
