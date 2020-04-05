@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/carbs">
+    android:background="@color/divider">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout4"
@@ -52,183 +52,183 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
         app:layout_constraintVertical_bias="0.638"
         tools:ignore="ContentDescription">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/lay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-8dp"
-            tools:layout_editor_absoluteY="-20dp">
 
-            <EditText
-                android:id="@+id/et_name"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lay"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_above="@id/et_password"
-                android:background="@drawable/edittext_round"
-                android:hint="@string/nome"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textColorHint="@color/gray"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.062" />
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="-8dp"
+                tools:layout_editor_absoluteY="-20dp">
 
-            <EditText
-                android:id="@+id/et_cognome"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_above="@id/et_password"
-                android:background="@drawable/edittext_round"
-                android:hint="@string/cognome"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textColorHint="@color/gray"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.2" />
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@id/et_password"
+                    android:background="@drawable/edittext_round"
+                    android:hint="@string/nome"
+                    android:inputType="textPersonName"
+                    android:padding="15dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.066" />
 
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_above="@id/et_password"
-                android:background="@drawable/edittext_round"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:padding="15dp"
-                android:textColorHint="@color/gray"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.337" />
+                <EditText
+                    android:id="@+id/et_cognome"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@id/et_password"
+                    android:background="@drawable/edittext_round"
+                    android:hint="@string/cognome"
+                    android:inputType="textPersonName"
+                    android:padding="15dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.204" />
 
-            <EditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/edittext_round"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:textColorHint="@color/gray"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/swipe"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.57" />
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@id/et_password"
+                    android:background="@drawable/edittext_round"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.337" />
 
-            <EditText
-                android:id="@+id/et_repassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/edittext_round"
-                android:hint="@string/rewrite_pss"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:textColorHint="@color/gray"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/swipe"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.732" />
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edittext_round"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/swipe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.567" />
 
-            <ImageButton
-                android:id="@+id/scopri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="212dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/et_password"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/et_password"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_visibility_black_24dp" />
+                <EditText
+                    android:id="@+id/et_repassword"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edittext_round"
+                    android:hint="@string/rewrite_pss"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/swipe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.732" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="104dp"
-                android:gravity="center"
-                android:text="@string/register"
-                android:textAlignment="center"
-                app:cornerRadius="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent" />
+                <ImageButton
+                    android:id="@+id/scopri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="212dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/et_password"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/et_password"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_visibility_black_24dp" />
 
-            <ImageView
-                android:id="@+id/swipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="104dp"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textAlignment="center"
+                    app:cornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="36dp"
+                <ImageView
+                    android:id="@+id/swipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:src="@drawable/ic_arrow_left"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/swipeRight"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="36dp"
 
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.279" />
+                    android:src="@drawable/ic_arrow_left"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/swipeRight"
 
-            <TextView
-                android:id="@+id/swipeRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.279" />
 
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
-                android:text="@string/swipe_right_for_login"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/swipeRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="42dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="32dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/login" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/swipe_right_for_login"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="42dp"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="32dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>
 
