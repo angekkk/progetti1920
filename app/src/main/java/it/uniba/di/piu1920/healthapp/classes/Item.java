@@ -11,6 +11,41 @@ public class Item implements java.io.Serializable{
     public ImageView im;
     String link;
 
+    int id; String n2,n3;
+
+    public Item( int id, String name,String n2, String n3) {
+        this.name = name;
+        this.id = id;
+        this.n2 = n2;
+        this.n3 = n3;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getN2() {
+        return n2;
+    }
+
+    public void setN2(String n2) {
+        this.n2 = n2;
+    }
+
+    public String getN3() {
+        return n3;
+    }
+
+    public void setN3(String n3) {
+        this.n3 = n3;
+    }
+
+
+
     public Item(String name, String link) {
         this.name = name;
         this.link = link;

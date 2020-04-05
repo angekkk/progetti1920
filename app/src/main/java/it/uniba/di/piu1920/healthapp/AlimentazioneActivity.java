@@ -3,12 +3,10 @@ package it.uniba.di.piu1920.healthapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,23 +15,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
-
-
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.Item;
-
+import it.uniba.di.piu1920.healthapp.connect.JSONParser;
+import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
 public class AlimentazioneActivity extends AppCompatActivity {
@@ -42,14 +36,14 @@ public class AlimentazioneActivity extends AppCompatActivity {
     JSONArray arr = null; //array per il recupero json
     List<Item> lista=new ArrayList<>(); //array list per memorizzare gli item
     RecyclerView rv; //recyclerview
-    private static String url_get_diete = "http://ddauniba.altervista.org/HealthApp/get_diete.php"; //url per il recupero degli esercizi dal php
+    private static String url_get_diete = "http://ddauniba.altervista.org/HealthApp/get_dieta.php"; //url per il recupero degli esercizi dal php
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_exercices);
-
+        lista.add(new Item(getString(R.string.al_consigli)));
         rv= (RecyclerView) findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -65,7 +59,6 @@ public class AlimentazioneActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
@@ -73,6 +66,8 @@ public class AlimentazioneActivity extends AppCompatActivity {
                                 Intent i = new Intent(AlimentazioneActivity.this, ConsigliActivity.class);
                                 startActivity(i);
                                 finish();
+                            }else{
+
                             }
                     }
                     public void onLongClickItem(View v, int position) {
@@ -105,7 +100,66 @@ public class AlimentazioneActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //classe per il recupero delle diete
+    class GetDiete extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
+        }
+
+        protected String doInBackground(String... args) {
+            String ris=null;
+            if(isWorkingInternetPersent()){
+                TwoParamsList params = new TwoParamsList();
+                JSONObject json = new JSONParser().makeHttpRequest(url_get_diete, JSONParser.GET, params);
+                //  Log.d("Esercizi: ", json.toString());
+                try {
+                    int success = json.getInt(TAG_SUCCESS);
+                    if (success == 1) {
+                        arr = json.getJSONArray("dieta");
+                        for (int i = 0; i < arr.length(); i++) {
+                            JSONObject c = arr.getJSONObject(i);
+                            int id = Integer.parseInt(c.getString("id_dieta"));
+                            String categoria=c.getString("categoria");
+                            String nome=c.getString("nome");
+                            String desc=c.getString("descrizione");
+
+                            //   String link=c.getString("link");
+                            Item x=new Item(id,nome,categoria,desc);
+
+                            lista.add(x);
+
+
+
+                        }
+                    } else {
+                        Log.d("Esercizi: ","SUCCESS 0");
+                    }
+                } catch (Exception e) {
+                    Log.d("Esercizi: ","ECCEZZIONE");
+                    e.printStackTrace();
+                }
+            }
+
+
+
+            return ris;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+
+                    ExAdapt ex=new ExAdapt(lista);
+                    rv.setAdapter(ex);
+                }
+            });
+
+        }
+
+
+    }
 
     public class ExAdapt extends RecyclerView.Adapter<ExAdapt.MyViewHolder> {
 
@@ -172,9 +226,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
     //metodo per inizializzare
     void inizializza(){
         if(isWorkingInternetPersent()){
-                lista.add(new Item(getString(R.string.al_consigli)));
-                ExAdapt ex=new ExAdapt(lista);
-                rv.setAdapter(ex);
+              new GetDiete().execute();
         }else{
             final AlertDialog.Builder builder = new AlertDialog.Builder(AlimentazioneActivity.this);
             LayoutInflater inflater = getLayoutInflater();
