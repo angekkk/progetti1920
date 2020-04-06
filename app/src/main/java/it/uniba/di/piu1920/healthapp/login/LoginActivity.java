@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +24,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,11 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import it.uniba.di.piu1920.healthapp.DetailsActivity;
-import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
-import it.uniba.di.piu1920.healthapp.SchedaActivity;
+
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
@@ -56,15 +53,15 @@ public class LoginActivity extends AppCompatActivity {
     SessionManager session;
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001;
-    private SignInButton signInButton;
-    GoogleApiClient mGoogleApiClient;
+
 
     ImageView swipe;
     ImageButton scopri;
-
+    TextView dim;
     private static final String TAG_SUCCESS = "success";
     JSONArray access = null;
     private static String url_accesso_utente = "http://ddauniba.altervista.org/HealthApp/get_accesso.php";
+    private static String url_send_email = "http://ddauniba.altervista.org/HealthApp/invia_email.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         session = new SessionManager(getApplicationContext());
         initializeUI();
+
 //        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,23 +84,41 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        dim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email;
+
+                email = emailTV.getText().toString();
+
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.err_em), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!isEmailValid(email)) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.err_em2), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+                if(isWorkingInternetPersent()){
+                    new SendEmail().execute();
+                }else{
+                    Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginUserAccount();
             }
         });
-        /*
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(LoginActivity.this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-*/
 
         swipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordTV = findViewById(R.id.et_password);
         swipe=findViewById(R.id.swipe);
         scopri=findViewById(R.id.scopri);
-
+        dim=findViewById(R.id.dim);
         loginBtn = findViewById(R.id.login);
         progressBar = findViewById(R.id.progressBar);
     }
@@ -256,6 +272,47 @@ public class LoginActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(), getString(R.string.log_err), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
+    }
+
+    class SendEmail extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        protected String doInBackground(String... args) {
+            // Building Parameters
+            TwoParamsList params = new TwoParamsList();
+            String ret = "not";
+            params.add("email", emailTV.getText().toString().toLowerCase());
+            JSONObject json = new JSONParser().makeHttpRequest(url_send_email, JSONParser.GET, params);
+
+            try {
+                int success = json.getInt(TAG_SUCCESS);
+                if (success == 1) {
+                    access = json.getJSONArray("send");
+                     ret = "ok";
+                } else {
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return ret;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    if (file_url.contentEquals("ok")) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), getString(R.string.email_send), Toast.LENGTH_LONG).show();
+
                     }
                 }
             });

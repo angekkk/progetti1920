@@ -28,9 +28,9 @@ public class AppIntroActivity extends AppIntro {
             //  Launch app intro
             // Instead of fragments, you can also use our default slide
             // Just set a title, description, background and image. AppIntro will do the rest.
-            addSlide(AppIntroFragment.newInstance("Eye Catching Visuals", "Your Daily Statistics", R.drawable.appintro1, getResources().getColor(R.color.appintro1)));
-            addSlide(AppIntroFragment.newInstance("Invite Friends", "Share A Run with them", R.drawable.appintro3, getResources().getColor(R.color.appintro3)));
-            addSlide(AppIntroFragment.newInstance("", "Get Started", R.drawable.appintro4, getResources().getColor(R.color.appintro4)));
+            addSlide(AppIntroFragment.newInstance(getString(R.string.t2), getString(R.string.intro2), R.drawable.appintro3, getResources().getColor(R.color.appintro3)));
+            addSlide(AppIntroFragment.newInstance(getString(R.string.t1), getString(R.string.intro1), R.drawable.appintro1, getResources().getColor(R.color.appintro1)));
+            addSlide(AppIntroFragment.newInstance("", getString(R.string.intro3), R.drawable.appintro4, getResources().getColor(R.color.appintro4)));
 
             // OPTIONAL METHODS
             // Override bar/separator color.
@@ -70,8 +70,6 @@ public class AppIntroActivity extends AppIntro {
         // Do something when users tap on Done button.
         Intent i = new Intent(AppIntroActivity.this, Home.class);
         startActivity(i);
-
-        Toast.makeText(getApplicationContext(), "Finished", Toast.LENGTH_SHORT).show();
     }
 
     @Override

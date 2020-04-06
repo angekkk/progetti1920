@@ -22,7 +22,6 @@ public class BMIActivity extends AppCompatActivity {
     private double kg, m;
     private DecimalFormat TWO_DECIMAL_PLACES = new DecimalFormat(".##");
     MetricFormula metricFormula;
-    ImperialFormula imperialFormula;
 
 
     @Override
@@ -48,10 +47,10 @@ public class BMIActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkData(v)){
                     kg = Double.parseDouble(inputKg.getText().toString());
-                    m = Double.parseDouble(inputM.getText().toString());
+                    m = Double.parseDouble(inputM.getText().toString())/100;
                     metricFormula = new MetricFormula(kg, m);
                     //imperialFormula = new ImperialFormula(kg, m);
-                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()/100))));//attivazione del metodo e calcolo atraverso la formula
+                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))));//attivazione del metodo e calcolo atraverso la formula
                     showResult.setText(getCategory(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))); //attivo il metodo per recuperare la categoria di appartenenza
                 }
             }

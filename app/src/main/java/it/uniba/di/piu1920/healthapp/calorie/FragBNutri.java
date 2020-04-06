@@ -22,7 +22,7 @@ import it.uniba.di.piu1920.healthapp.R;
 
 
 public class FragBNutri extends Fragment {
-    public static final String TAG = FragBNutri.class.getSimpleName();
+
     int tdee = 0;
     int goal = 0;
     int cals = 0;
@@ -85,9 +85,9 @@ public class FragBNutri extends Fragment {
         cals = tdee;
 
         List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry((int) (wt * 1.8), "Protein"));
-        entries.add(new PieEntry((int) (cals - cals * 0.3 - wt * 1.8 * 4) / 4, "Carb"));
-        entries.add(new PieEntry((int) (cals * 0.3 / 9), "Fat"));
+        entries.add(new PieEntry((int) (wt * 1.8), getString(R.string.pro)));
+        entries.add(new PieEntry((int) (cals - cals * 0.3 - wt * 1.8 * 4) / 4, getString(R.string.carb)));
+        entries.add(new PieEntry((int) (cals * 0.3 / 9), getString(R.string.gra)));
         PieDataSet set = new PieDataSet(entries, null);
         set.setColors(getResources().getColor(R.color.blue), getResources().getColor(R.color.green), getResources().getColor(R.color.red));
         set.setSliceSpace(3f);
@@ -143,9 +143,9 @@ public class FragBNutri extends Fragment {
                 gc.setText(String.valueOf(carbs / 4));
 
                 List<PieEntry> entries = new ArrayList<>();
-                entries.add(new PieEntry(protein / 4, "Protein"));//1G DI PROTEINE SONO 4KCAL
-                entries.add(new PieEntry(carbs / 4, "Carb")); //1G DI CARBO SONO 4KCAL
-                entries.add(new PieEntry(fats / 9, "Fat"));//1G DI GRASSI SONO 9KCAL
+                entries.add(new PieEntry(protein / 4, getString(R.string.pro)));//1G DI PROTEINE SONO 4KCAL
+                entries.add(new PieEntry(carbs / 4, getString(R.string.carb))); //1G DI CARBO SONO 4KCAL
+                entries.add(new PieEntry(fats / 9, getString(R.string.gra)));//1G DI GRASSI SONO 9KCAL
                 PieDataSet set = new PieDataSet(entries, null);
 
                 set.setColors(getResources().getColor(R.color.blue), getResources().getColor(R.color.green), getResources().getColor(R.color.red));

@@ -147,22 +147,8 @@ public class Home extends AppCompatActivity {
                     Intent i = new Intent(Home.this, GestioneClientiActivity.class);
                     startActivity(i);
                     finish();
-
                 }else if(id==R.id.nav_qr){
-
-                    final RxPermissions rxPermissions = new RxPermissions(Home.this); //dichiarazione e inizializzazione dell'oggetto rxPermissions
-                             rxPermissions.request(Manifest.permission.CAMERA) // richiedo il permesso per l'utilizzo della fotocameraper effettuare la scansione
-                                     .subscribe(granted -> {
-                                         if (granted) { // Se concesso starto l'activity relativa alla lettura del Qrcode
-                                             Intent intent = new Intent(Home.this, QrScannerActivity.class);
-                                             startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
-                                         } else {
-                                             Snackbar.make(getCurrentFocus(), getString(R.string.cam_err), Snackbar.LENGTH_LONG)
-                                                     .setAction("Action", null).show();
-                                         }
-                                     });
-
-
+                            getQRPermission();
                 }else if(id==R.id.nav_scheda){
                     if(!idscheda.contentEquals("non")){//controllo che l'id della scheda esista o no
                         Intent i = new Intent(Home.this, SchedaActivity.class);
@@ -171,11 +157,9 @@ public class Home extends AppCompatActivity {
                         finish();
                     }
                 }else if(id==R.id.nav_step){
-
                         Intent i = new Intent(Home.this, SetGoalActivity.class);
                         startActivity(i);
                         finish();
-
                 }else if(id==R.id.nav_richiesta){
                    if(isWorkingInternetPersent()){
                        new invia_richiesta().execute();
@@ -184,11 +168,9 @@ public class Home extends AppCompatActivity {
                                .setAction("Action", null).show();
                    }
                }else if(id==R.id.nav_settings){
-
                    Intent i = new Intent(Home.this, SettingsActivity.class);
                    startActivity(i);
                    finish();
-
                }
                 //This is for closing the drawer after acting on it
                 drawer.closeDrawer(GravityCompat.START);
@@ -235,6 +217,21 @@ public class Home extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(getDrawable(R.drawable.nav_richiesta))
                 .show();
+    }
+
+    public void getQRPermission(){
+
+        final RxPermissions rxPermissions = new RxPermissions(Home.this); //dichiarazione e inizializzazione dell'oggetto rxPermissions
+        rxPermissions.request(Manifest.permission.CAMERA) // richiedo il permesso per l'utilizzo della fotocameraper effettuare la scansione
+                .subscribe(granted -> {
+                    if (granted) { // Se concesso starto l'activity relativa alla lettura del Qrcode
+                        Intent intent = new Intent(Home.this, QrScannerActivity.class);
+                        startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
+                    } else {
+                        Snackbar.make(getCurrentFocus(), getString(R.string.cam_err), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                });
     }
 
     //Chiamata ad una risorsa esterna , gestita in un TaskAsincrono

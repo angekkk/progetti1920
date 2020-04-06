@@ -639,22 +639,24 @@ public class CreateSchedaActivity extends AppCompatActivity {
         if(isWorkingInternetPersent()){
             new GetEsercizi().execute();
         }else{
-            final AlertDialog.Builder builder = new AlertDialog.Builder(CreateSchedaActivity.this);
-            LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.dialog, null);
-            String message=getString(R.string.err_connessione);
-            builder.setMessage(message);
-            builder.setView(view);
-            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            });
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.error))
+                    .setMessage(getString(R.string.err_connessione))
 
-            builder.show();
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(getDrawable(R.drawable.error))
+                    .show();
         }
     }
 }

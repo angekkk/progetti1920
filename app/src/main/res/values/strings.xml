@@ -69,7 +69,9 @@
     <string name="nutrition"><![CDATA[Nutrition & Macros]]></string>
     <string name="toast_make_sure">Perfavore controlla che i dati inseriti siano corretti</string>
     <string name="loading">Loading…</string>
-
+    <string name="pro">Proteine</string>
+    <string name="carb">Carboidrati</string>
+    <string name="gra">Grassi</string>
     <string name="richiesta_inv">Richiesta inviata</string>
     <string name="richiesta_trovata">Richiesta già inviat</string>
     <string name="richiesta_err">Errore nell\'inviare la richiesta</string>
@@ -110,7 +112,7 @@
     <string name="err_rpssw2">Le password non coincidono</string>
     <string name="reg_ok">Registrazione completata!</string>
     <string name="log_ok">Login effettuato!</string>
-
+    <string name="dimenticata">Password dimenticata ?</string>
 
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Premi il tasto per aggiungere gli esercizi alla scheda</string>
@@ -150,11 +152,18 @@
     <string name="passi_txt">La persona media dovrebbe fare almeno 10.000 passi al giorno per mantenere una buona salute, che equivale a circa 5 miglia di camminata</string>
     <string name="cibo_txt">L\'assunzione giornaliera media di chilocalorie raccomandate è compresa tra 1800 e 2600 kcal</string>
     <string name="imposta">Imposta</string>
+    <string name="calc_bmi">Calcola il tuo bmi !</string>
+    <string name="error">Error</string>
 
 
     <!--ALIMENTAZIONE-->
     <string name="al_consigli">Come impostare una dieta bilanciata</string>
 
-    <string name="calc_bmi">Calcola il tuo bmi !</string>
-
+    <!--APPINTRO-->
+    <string name="t1">Stay constant!</string>
+    <string name="intro1">Imposta i tuoi obiettivi e superali!</string>
+    <string name="t2">Stay strong!</string>
+    <string name="intro2">Segui gli esercizi dedicati e rimettiti in forma con noi!</string>
+    <string name="intro3">Inizia!</string>
+    <string name="email_send">Password inviata alla casella di posta.</string>
 </resources>

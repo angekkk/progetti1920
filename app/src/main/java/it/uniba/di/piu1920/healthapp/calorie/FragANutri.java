@@ -19,6 +19,7 @@ import io.ghyeok.stickyswitch.widget.StickySwitch;
 import it.uniba.di.piu1920.healthapp.R;
 
 public class FragANutri extends Fragment {
+
     public static final String TAG = FragANutri.class.getSimpleName();
     public static final String KEY_GENDER = "GENDER";
     public static final String KEY_SYSTEM = "SYSTEM";

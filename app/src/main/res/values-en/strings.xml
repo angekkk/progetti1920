@@ -72,7 +72,9 @@
     <string name="nutrition"><![CDATA[Nutrition & Macros]]></string>
     <string name="toast_make_sure">Please Make Sure Your Input is Correct</string>
     <string name="loading">Loading…</string>
-
+    <string name="pro">Protein</string>
+    <string name="carb">Carbo</string>
+    <string name="gra">Fat</string>
 
     <string name="richiesta_inv">Request sent</string>
     <string name="richiesta_trovata">Request already sent</string>
@@ -118,6 +120,8 @@
     <string name="reg_err">Error during registration</string>
     <string name="log_ok">Login Successful!</string>
     <string name="log_err">Login error! Check the entered data and try again.</string>
+    <string name="dimenticata">Forget password?</string>
+    <string name="email_send">Password sended.</string>
 
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Press the button to add the exercises to the card</string>
@@ -150,11 +154,19 @@
     <string name="cibo_txt">Average Daily Intake of Kilocalories recommended is about 1800 to 2600 kcals</string>
     <string name="passi_txt">Average person should take at least 10,000 steps per day to maintain good health, which is equal to about 5 miles of walking</string>
     <string name="imposta">Set</string>
+    <string name="calc_bmi">Calculate your bmi !</string>
+    <string name="error">Error</string>
 
 
     <!--ALIMENTAZIONE-->
     <string name="al_consigli">How to set up a balanced diet</string>
 
-    <string name="calc_bmi">Calculate your bmi !</string>
+
+    <!--APPINTRO-->
+    <string name="t1">Stay constant!</string>
+    <string name="intro1">Set your goals and exceed them!</string>
+    <string name="t2">Stay strong!</string>
+    <string name="intro2">Follow the dedicated exercises and get in shape with us!</string>
+    <string name="intro3">Get Started!</string>
 
 </resources>
