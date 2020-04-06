@@ -53,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     SessionManager session;
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001;
-
-
     ImageView swipe;
     ImageButton scopri;
     TextView dim;
