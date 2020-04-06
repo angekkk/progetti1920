@@ -69,9 +69,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         session = new SessionManager(getApplicationContext());
         initializeUI();
-
-//        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.login));

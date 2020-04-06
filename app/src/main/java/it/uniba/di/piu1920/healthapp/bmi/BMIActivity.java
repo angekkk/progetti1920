@@ -23,7 +23,6 @@ public class BMIActivity extends AppCompatActivity {
     private DecimalFormat TWO_DECIMAL_PLACES = new DecimalFormat(".##");
     MetricFormula metricFormula;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

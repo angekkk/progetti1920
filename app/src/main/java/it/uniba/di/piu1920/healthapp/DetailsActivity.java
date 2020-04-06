@@ -48,7 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         esecuzione.setText(ex.getEsecuzione());
         categoria.setText(ex.getNomecategoria());
         if(isWorkingInternetPersent()){
-            Picasso.with(DetailsActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+ex.getLink()).into(img);//carico l'immagine dal server
+            Picasso.get().load("http://ddauniba.altervista.org/HealthApp/img/"+ex.getLink()).into(img);//carico l'immagine dal server
         }else{
             Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

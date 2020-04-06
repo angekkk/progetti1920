@@ -248,7 +248,7 @@ public class SchedaActivity extends AppCompatActivity {
             System.out.println("Bind ["+holder+"] - Pos ["+position+"]"+c.getNome());
             holder.title.setText(c.getNome());
             holder.esec.setText(c.getEsecuzione());
-            Picasso.with(SchedaActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.img);
+            Picasso.get().load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.img);
 
         }
 

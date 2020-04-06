@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
@@ -25,6 +27,9 @@ public class AppIntroActivity extends AppIntro {
 
         //  If the activity has never started before...
         if (isFirstRun) {
+            FirebaseMessaging.getInstance().subscribeToTopic("ALIMENTAZIONE");
+            FirebaseMessaging.getInstance().subscribeToTopic("ESERCIZI");
+            FirebaseMessaging.getInstance().subscribeToTopic("ALTRO");
             //  Launch app intro
             // Instead of fragments, you can also use our default slide
             // Just set a title, description, background and image. AppIntro will do the rest.
