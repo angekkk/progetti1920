@@ -140,15 +140,21 @@
     <string name="text1">Enter the information</string>
     <string name="text2">Steps</string>
     <string name="text3">Calories</string>
-
+    <string name="food">Food</string>
 
     <string name="modp">Update</string>
     <string name="pssold">Current password</string>
     <string name="mod_ok">Updated!</string>
     <string name="upd_err">Error during update</string>
+    <string name="setta">Set Goal</string>
+    <string name="cibo_txt">Average Daily Intake of Kilocalories recommended is about 1800 to 2600 kcals</string>
+    <string name="passi_txt">Average person should take at least 10,000 steps per day to maintain good health, which is equal to about 5 miles of walking</string>
+    <string name="imposta">Set</string>
 
 
     <!--ALIMENTAZIONE-->
     <string name="al_consigli">How to set up a balanced diet</string>
+
+    <string name="calc_bmi">Calculate your bmi !</string>
 
 </resources>

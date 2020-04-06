@@ -138,12 +138,23 @@
     <string name="step_detector">
          android.hardware.sensor.stepdetector
     </string>
-    <string name="text1">Enter the information</string>
-    <string name="text2">Steps</string>
-    <string name="text3">Calories</string>
+    <string name="text1">Inserisci l\'informazione</string>
+    <string name="text2">Passi</string>
+    <string name="text3">Calorie</string>
     <string name="modp">Modifica</string>
     <string name="pssold">Password corrente</string>
     <string name="mod_ok">Modifica effettuata!</string>
     <string name="upd_err">Errore durante l\'aggiornamento.</string>
+    <string name="food">Cibo</string>
+    <string name="setta">Imposta gli obiettivi</string>
+    <string name="passi_txt">La persona media dovrebbe fare almeno 10.000 passi al giorno per mantenere una buona salute, che equivale a circa 5 miglia di camminata</string>
+    <string name="cibo_txt">L\'assunzione giornaliera media di chilocalorie raccomandate è compresa tra 1800 e 2600 kcal</string>
+    <string name="imposta">Imposta</string>
+
+
+    <!--ALIMENTAZIONE-->
     <string name="al_consigli">Come impostare una dieta bilanciata</string>
+
+    <string name="calc_bmi">Calcola il tuo bmi !</string>
+
 </resources>

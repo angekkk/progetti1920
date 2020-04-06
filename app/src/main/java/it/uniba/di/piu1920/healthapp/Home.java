@@ -439,7 +439,7 @@ public class Home extends AppCompatActivity {
                     System.out.println(" SESSION TIPO : "+session.getUserDetails().getTipo());
                     if(session.getUserDetails().getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
                         //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
-                        navigationView.getMenu().getItem(6).setVisible(true);
+                        navigationView.getMenu().getItem(7).setVisible(true);
                         foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
                     }else{
                         navigationView.getMenu().getItem(9).setVisible(true);//richiesta pt

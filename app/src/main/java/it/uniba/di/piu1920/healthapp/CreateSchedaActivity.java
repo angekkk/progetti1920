@@ -3,6 +3,7 @@ package it.uniba.di.piu1920.healthapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -351,13 +353,14 @@ public class CreateSchedaActivity extends AppCompatActivity {
          * */
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView name;
 
+            public TextView name;
+            public ImageView cat;
 
             public MyViewHolder(View view) {
                 super(view);
                 name = (TextView) view.findViewById(R.id.name);
-
+                cat = (ImageView) view.findViewById(R.id.cat);
 
 
             }
@@ -387,6 +390,9 @@ public class CreateSchedaActivity extends AppCompatActivity {
             holder.name.setText(c.getNome());
             // Picasso.with(ExerciseActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.image);
 
+            Resources r = getResources();
+            int drawableId = r.getIdentifier(c.getNomecategoria(), "drawable", "it.uniba.di.piu1920.healthapp");
+            holder.cat.setImageDrawable(getDrawable(drawableId));
         }
 
         @Override

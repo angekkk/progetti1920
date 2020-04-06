@@ -43,6 +43,8 @@ public class SettingsActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.title_account));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

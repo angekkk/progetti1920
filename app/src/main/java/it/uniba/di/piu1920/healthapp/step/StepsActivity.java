@@ -63,7 +63,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(this.getClass().getSimpleName());
+        getSupportActionBar().setTitle(getString(R.string.title_step));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

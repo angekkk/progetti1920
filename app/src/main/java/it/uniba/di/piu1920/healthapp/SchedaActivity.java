@@ -58,6 +58,8 @@ public class SchedaActivity extends AppCompatActivity {
         }
         inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.title_scheda));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

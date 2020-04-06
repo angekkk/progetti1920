@@ -42,42 +42,42 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/email"
-        android:layout_width="368dp"
-        android:layout_height="50dp"
+        android:layout_width="194dp"
+        android:layout_height="56dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="429dp"
-        app:cornerRadius="20dp"
         android:text="@string/email"
         android:textAlignment="center"
         android:textStyle="italic"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/password"
-        android:layout_width="368dp"
-        android:layout_height="50dp"
+        android:layout_width="194dp"
+        android:layout_height="59dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="429dp"
 
-        app:cornerRadius="20dp"
         android:text="@string/password"
         android:textAlignment="center"
         android:textStyle="italic"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.138" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

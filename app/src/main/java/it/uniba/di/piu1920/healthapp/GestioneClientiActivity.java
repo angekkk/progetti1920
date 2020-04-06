@@ -56,6 +56,8 @@ public class GestioneClientiActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.title_clienti));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

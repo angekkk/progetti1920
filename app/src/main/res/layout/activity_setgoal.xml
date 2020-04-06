@@ -29,7 +29,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="12dp"
-            android:text="Set Goal"
+            android:text="@string/setta"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/et2"
-            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintHorizontal_bias="0.395"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
@@ -91,15 +91,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/setgoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/et2"
             android:layout_alignParentRight="true"
             android:layout_marginTop="168dp"
+            android:textAlignment="center"
+            app:cornerRadius="20dp"
             android:backgroundTint="@color/accent"
-            android:text="Set"
+            android:text="@string/imposta"
             android:textColor="@color/darkWash"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +141,7 @@
                     android:layout_marginStart="23dp"
                     android:layout_marginEnd="208dp"
                     android:layout_toRightOf="@+id/cardgoalsteps"
-                    android:text="Steps"
+                    android:text="@string/text2"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -148,16 +150,16 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="230dp"
-                    android:layout_height="74dp"
+                    android:layout_width="226dp"
+                    android:layout_height="86dp"
                     android:layout_below="@+id/fact1"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_toRightOf="@+id/cardgoalsteps"
                     android:gravity="center|left"
-                    android:text="Average person should take at least 10,000 steps per day to maintain good health, which is equal to about 5 miles of walking"
+                    android:text="@string/passi_txt"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fact1" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -193,34 +195,30 @@
                     android:id="@+id/fact2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="213dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="188dp"
+                    android:layout_marginEnd="224dp"
                     android:layout_marginBottom="6dp"
                     android:layout_toRightOf="@+id/cardgoalfood"
-                    android:text="Food"
+                    android:text="@string/food"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/cardgoalfood"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cardgoalfood"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.131" />
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="236dp"
-                    android:layout_height="66dp"
+                    android:layout_width="238dp"
+                    android:layout_height="54dp"
                     android:layout_below="@+id/fact2"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="24dp"
                     android:layout_toRightOf="@+id/cardgoalfood"
                     android:gravity="center|left"
-                    android:text="Average Daily Intake of Kilocalories recommended is about 1800 to 2600 kcals"
+                    android:text="@string/cibo_txt"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fact2"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
     JSONArray arr = null;
     List<Esercizio> lista = new ArrayList<>();
-    String idscheda=""; //id scheda letto dall'intent del qr
+    String idscheda="non"; //id scheda letto dall'intent del qr
     SessionManager session;
     RVAdapter ca;
     RecyclerView rv;
