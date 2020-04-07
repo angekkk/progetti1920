@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +19,8 @@ import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 public class DietaActivity extends AppCompatActivity {
 
     Esercizio ex;
-    TextView categoria,nome,desc;
+    TextView categoria,nome;
+    EditText desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
