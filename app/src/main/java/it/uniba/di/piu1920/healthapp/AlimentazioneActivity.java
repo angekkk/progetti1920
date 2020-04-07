@@ -67,7 +67,14 @@ public class AlimentazioneActivity extends AppCompatActivity {
                                 startActivity(i);
                                 finish();
                             }else{
-
+                                Intent i = new Intent(AlimentazioneActivity.this, DietaActivity.class);
+                                Bundle x =new Bundle();
+                                x.putString("nome",lista.get(position).getName());
+                                x.putString("cat",lista.get(position).getN2());
+                                x.putString("desc",lista.get(position).getN3());
+                                i.putExtra("bund",x);
+                                startActivity(i);
+                                finish();
                             }
                     }
                     public void onLongClickItem(View v, int position) {

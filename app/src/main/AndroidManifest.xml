@@ -69,6 +69,7 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".ExerciseActivity" />
         <activity android:name=".AlimentazioneActivity" />
+        <activity android:name=".DietaActivity" />
         <activity android:name=".ConsigliActivity" />
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".bmi.BMIActivity" />
