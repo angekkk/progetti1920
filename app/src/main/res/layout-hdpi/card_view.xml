@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="180dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
@@ -13,8 +13,8 @@
     tools:ignore="ContentDescription">
 
     <RelativeLayout
-        android:layout_width="292dp"
-        android:layout_height="131dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image"
@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textColor="@color/primary_dark"
-            android:textSize="25sp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
