@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private static String url_accesso_utente = "http://ddauniba.altervista.org/HealthApp/get_accesso.php";
     private static String url_inserisci_utente = "http://ddauniba.altervista.org/HealthApp/inserisci_utente.php";
     String email, password="",rep,nom,cog;
-
+    TextView reg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
         repassword = findViewById(R.id.et_repassword);
         swipe=findViewById(R.id.swipe);
         scopri=findViewById(R.id.scopri);
+        reg=findViewById(R.id.swipeRight);
         nome = findViewById(R.id.et_name);
         cognome = findViewById(R.id.et_cognome);
         regBtn = findViewById(R.id.register);
@@ -88,7 +90,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+            }
+        });
         scopri.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

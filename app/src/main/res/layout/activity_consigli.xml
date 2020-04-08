@@ -26,8 +26,8 @@
 
     <WebView
         android:id="@+id/web"
-        android:layout_width="479dp"
-        android:layout_height="799dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

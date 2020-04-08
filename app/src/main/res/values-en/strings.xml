@@ -102,8 +102,8 @@
 
 
     <!--REGISTRAZIONE E LOGIN-->
-    <string name="swipe_left_for_register">Swipe left to Registration</string>
-    <string name="swipe_right_for_login">Swipe right to Login</string>
+    <string name="swipe_left_for_register">Registration</string>
+    <string name="swipe_right_for_login">Login</string>
     <string name="password">Password</string>
     <string name="rewrite_pss">Confirm password</string>
     <string name="email">Email</string>

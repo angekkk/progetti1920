@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     ImageView swipe;
     ImageButton scopri;
-    TextView dim;
+    TextView dim,reg;
     private static final String TAG_SUCCESS = "success";
     JSONArray access = null;
     private static String url_accesso_utente = "http://ddauniba.altervista.org/HealthApp/get_accesso.php";
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
         initializeUI();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        reg=findViewById(R.id.swipeRight);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.login));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -122,7 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
+                finish();
+            }
+        });
         scopri.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

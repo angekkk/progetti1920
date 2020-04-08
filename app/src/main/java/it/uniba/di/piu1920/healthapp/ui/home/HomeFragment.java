@@ -196,6 +196,8 @@ public class HomeFragment extends Fragment {
                     if(!idscheda.contentEquals("non")){
                         listhome.add(new Item(getString(R.string.title_scheda), root.getContext().getDrawable(R.drawable.img_scheda)));
                         createList();
+                    }else{
+                        createList();
                     }
 
                 }
