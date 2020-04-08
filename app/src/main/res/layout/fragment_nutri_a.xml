@@ -249,40 +249,40 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/calculate"
-        android:layout_width="wrap_content"
+        android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_switch2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
-        android:layout_marginStart="245dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginStart="346dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="91dp"
         android:background="@drawable/corner_bgc"
         android:elevation="8dp"
-        android:textAlignment="center"
-        app:cornerRadius="20dp"
         android:text="@string/calculate"
-        android:textColor="@color/darkWash" />
+        android:textAlignment="center"
+        android:textColor="@color/darkWash"
+        app:cornerRadius="20dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/reset"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_switch2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="223dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="328dp"
         android:layout_marginBottom="90dp"
         android:background="@drawable/corner_btn"
         android:elevation="8dp"
         android:text="@string/reset"
         android:textAlignment="center"
-        app:cornerRadius="20dp"
-        android:textColor="@color/label_text_light" />
+        android:textColor="@color/label_text_light"
+        app:cornerRadius="20dp" />
 
 </RelativeLayout>

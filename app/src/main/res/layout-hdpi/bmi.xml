@@ -33,13 +33,11 @@
         android:id="@+id/buttonCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="292dp"
         android:text="@string/text_button_calculate"
-        android:textSize="10sp"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -48,42 +46,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:text="@string/default_show_bmi"
-        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
 
     <EditText
         android:id="@+id/inputKg"
-        android:layout_width="199dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="@string/text_label_kg"
         android:inputType="numberDecimal"
         android:numeric="integer"
         android:textAlignment="center"
-        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/inputM"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintVertical_bias="0.816" />
 
     <EditText
         android:id="@+id/inputM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="240dp"
         android:ems="10"
         android:hint="@string/text_label_m"
         android:inputType="numberDecimal"
         android:numeric="integer"
         android:textAlignment="center"
-        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
 
@@ -91,7 +84,6 @@
         android:id="@+id/showResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,15 +94,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showResult" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="247dp"
-        android:layout_height="22dp"
+        android:layout_width="381dp"
+        android:layout_height="26dp"
         android:layout_marginStart="177dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="177dp"
@@ -118,7 +109,7 @@
         android:text="@string/calc_bmi"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="15sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
