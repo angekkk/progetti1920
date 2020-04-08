@@ -33,7 +33,7 @@
         android:id="@+id/buttonCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="292dp"
+        android:layout_marginBottom="296dp"
         android:text="@string/text_button_calculate"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,31 +54,31 @@
         android:id="@+id/inputKg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/text_label_kg"
         android:inputType="numberDecimal"
         android:numeric="integer"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/inputM"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintTop_toBottomOf="@+id/inputM" />
 
     <EditText
         android:id="@+id/inputM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/text_label_m"
         android:inputType="numberDecimal"
         android:numeric="integer"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/showResult"
@@ -87,7 +87,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputM" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonCalculate"
+        app:layout_constraintVertical_bias="0.16000003" />
 
     <TextView
         android:id="@+id/showBMI"

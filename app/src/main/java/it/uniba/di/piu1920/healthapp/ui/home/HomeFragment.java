@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment {
     RecyclerView rv;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         //controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
         if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null && !this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getString("WEIGHT","").contentEquals("") && this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getInt("TDEE",15)!=0) {
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE);

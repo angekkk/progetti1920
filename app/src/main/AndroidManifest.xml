@@ -74,14 +74,14 @@
         <activity android:name=".ExInDoorActivity" />
         <activity android:name=".ConsigliActivity" />
         <activity android:name=".SettingsActivity"/>
-        <activity android:name=".bmi.BMIActivity" />
+        <activity android:name=".bmi.BMIActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".GestioneClientiActivity" />
         <activity android:name=".CreateSchedaActivity" />
         <activity android:name=".SchedaActivity" />
         <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity"/>
         <activity android:name=".calorie.NutriActivity"/>
         <activity android:name=".step.StepsActivity"/>
-        <activity android:name=".step.SetGoalActivity"/>
+        <activity android:name=".step.SetGoalActivity" android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
