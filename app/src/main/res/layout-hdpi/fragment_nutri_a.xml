@@ -180,9 +180,9 @@
         app:inactiveBgColor="@color/lightgrey"
         app:inactiveTextColor="@color/darkWash"
         app:separatorColor="@color/darkWash"
-        app:textToggleCenter="Active"
-        app:textToggleLeft="Sedentary"
-        app:textToggleRight="Very Active"
+        app:textToggleCenter="@string/att"
+        app:textToggleLeft="@string/sed"
+        app:textToggleRight="@string/matt"
         app:toggleWidth="110dp" />
 
     <TextView
@@ -242,9 +242,9 @@
         app:inactiveBgColor="@color/gray_light"
         app:inactiveTextColor="@color/darkWash"
         app:separatorColor="@color/darkWash"
-        app:textToggleCenter="Moderate"
-        app:textToggleLeft="Light"
-        app:textToggleRight="Intense"
+        app:textToggleCenter="@string/mod"
+        app:textToggleLeft="@string/legg"
+        app:textToggleRight="@string/ints"
         app:toggleWidth="110dp" />
 
     <com.google.android.material.button.MaterialButton

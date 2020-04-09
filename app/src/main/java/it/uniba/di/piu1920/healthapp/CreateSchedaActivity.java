@@ -115,9 +115,41 @@ public class CreateSchedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isWorkingInternetPersent()){
                     if(MOD==1){
-                        new modifica_esercizi().execute();
+                        new AlertDialog.Builder(CreateSchedaActivity.this)
+                                .setTitle(getString(R.string.modifica_scheda))
+                                .setMessage(getString(R.string.conferma))
+
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        new modifica_esercizi().execute();
+                                    }
+                                })
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
                     }else {
-                        new inserisci_scheda().execute();
+                        new AlertDialog.Builder(CreateSchedaActivity.this)
+                                .setTitle(getString(R.string.invia_scheda))
+                                .setMessage(getString(R.string.conferma))
+
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        new inserisci_scheda().execute();
+                                    }
+                                })
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
                     }
                 }else{
                     Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
@@ -207,8 +239,8 @@ public class CreateSchedaActivity extends AppCompatActivity {
         return aggiunto;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
         return true;

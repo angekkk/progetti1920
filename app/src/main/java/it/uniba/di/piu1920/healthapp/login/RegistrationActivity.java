@@ -141,30 +141,37 @@ public class RegistrationActivity extends AppCompatActivity {
         cog=cognome.getText().toString();
         if (TextUtils.isEmpty(nom) ) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_nome), Toast.LENGTH_LONG).show();
+            nome.setError(getString(R.string.err_nome));
             return;
         }
         if ( TextUtils.isEmpty(cog)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_cog), Toast.LENGTH_LONG).show();
+            cognome.setError(getString(R.string.err_cog));
             return;
         }
         if (TextUtils.isEmpty(email) ) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_em), Toast.LENGTH_LONG).show();
+            emailTV.setError(getString(R.string.err_em));
             return;
         }
         if (!isEmailValid(email)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_em2), Toast.LENGTH_LONG).show();
+            emailTV.setError(getString(R.string.err_em2));
             return;
         }
         if (TextUtils.isEmpty(password) ) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_pssw), Toast.LENGTH_LONG).show();
+            passwordTV.setError(getString(R.string.err_pssw));
             return;
         }
         if (TextUtils.isEmpty(rep)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_rpssw), Toast.LENGTH_LONG).show();
+            repassword.setError(getString(R.string.err_rpssw));
             return;
         }
         if (!password.contains(rep)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_rpssw2), Toast.LENGTH_LONG).show();
+            repassword.setError(getString(R.string.err_rpssw2));
             return;
         }
 

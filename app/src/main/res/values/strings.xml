@@ -5,6 +5,7 @@
     <string name="title_es">Esercizi</string>
     <string name="title_ali">Alimentazione</string>
     <string name="action_settings">Impostazioni</string>
+    <string name="conferma">Confermare la scelta ?</string>
 
 
     <!--BMI ACTIVITY-->
@@ -40,6 +41,13 @@
     <string name="heightInputHint">Altezza (cm)</string>
     <string name="weightInputHint">Peso (kg)</string>
 
+    <!--TDEE ACTIVITY-->
+    <string name="sed">Sedentario</string>
+    <string name="att">Attivo</string>
+    <string name="matt">Molto attivo</string>
+    <string name="legg">Leggero</string>
+    <string name="mod">Moderato</string>
+    <string name="ints">Intenso</string>
     <string name="lets_calculate_together">Calcoliamo insieme!</string>
     <string name="tdee_total_daily_energy_expenditure">TDEE : Total Daily Energy Expenditure</string>
     <string name="my_age_is">La mia età</string>
@@ -73,8 +81,8 @@
     <string name="carb">Carboidrati</string>
     <string name="gra">Grassi</string>
     <string name="richiesta_inv">Richiesta inviata</string>
-    <string name="richiesta_trovata">Richiesta già inviat</string>
-    <string name="richiesta_err">Errore nell\'inviare la richiesta</string>
+    <string name="richiesta_trovata">Richiesta già inviata</string>
+
 
     <!--NAVBAR -->
     <string name="title_bmi">BMI</string>
@@ -117,17 +125,13 @@
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Premi il tasto per aggiungere gli esercizi alla scheda</string>
     <string name="invia_scheda">Invia scheda</string>
+    <string name="modifica_scheda">Modifica scheda</string>
     <string name="ins_ok">Inserimento scheda completato!</string>
     <string name="item_rem">L\'elemento è stato rimosso dalla lista</string>
     <string name="cam_err">Per utilizzare il lettore di qr , abilitare i permessi per la fotocamera</string>
-
-
-
-    <!--ERRORI -->
     <string name="richiesto">Campo richiesto</string>
-    <string name="reg_err">Errore in fase di registrazione</string>
-    <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
-    <string name="err_connessione">Connessione internet assente.</string>
+
+
     <string name="refresh">Refresh</string>
     <string name="title_step">Conta passi</string>
 
@@ -146,14 +150,13 @@
     <string name="modp">Modifica</string>
     <string name="pssold">Password corrente</string>
     <string name="mod_ok">Modifica effettuata!</string>
-    <string name="upd_err">Errore durante l\'aggiornamento.</string>
     <string name="food">Cibo</string>
     <string name="setta">Imposta gli obiettivi</string>
     <string name="passi_txt">La persona media dovrebbe fare almeno 10.000 passi al giorno per mantenere una buona salute, che equivale a circa 5 miglia di camminata</string>
     <string name="cibo_txt">L\'assunzione giornaliera media di chilocalorie raccomandate è compresa tra 1800 e 2600 kcal</string>
     <string name="imposta">Imposta</string>
     <string name="calc_bmi">Calcola il tuo bmi !</string>
-    <string name="error">Error</string>
+
 
 
     <!--ALIMENTAZIONE-->
@@ -167,4 +170,14 @@
     <string name="intro3">Inizia!</string>
     <string name="email_send">Password inviata alla casella di posta.</string>
     <string name="notification_channel_id">default</string>
+
+    <!--ERROR-->
+    <string name="error">Error</string>
+    <string name="upd_err">Errore durante l\'aggiornamento! Controllare i dati immesi e riprovare.</string>
+    <string name="reg_err">Errore in fase di registrazione! Controllare i dati immesi e riprovare.</string>
+    <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
+    <string name="err_connessione">Connessione internet assente! Controllare la connessione e riprovare.</string>
+    <string name="richiesta_err">Errore nell\'inviare la richiesta! Riprovare più tardi.</string>
+
+
 </resources>

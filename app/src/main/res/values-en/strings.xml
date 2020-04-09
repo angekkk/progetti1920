@@ -6,7 +6,7 @@
     <string name="register">Register</string>
     <string name="title_ali">Nutrition</string>
     <string name="title_es">Exercices</string>
-
+    <string name="conferma">Confirm your choice?</string>
 
     <!--BMI ACTIVITY-->
     <string name="bmi_1">Very severely underweight</string>
@@ -43,6 +43,13 @@
     <string name="weightInputHint">Weight (kg)</string>
     <string name="richiesto">Required field</string>
 
+    <!--TDEE ACTIVITY-->
+    <string name="sed">Sedentary</string>
+    <string name="att">Active</string>
+    <string name="matt">Very Active</string>
+    <string name="legg">Light</string>
+    <string name="mod">Moderate</string>
+    <string name="ints">Intense</string>
     <string name="lets_calculate_together">LETS CALCULATE TOGETHER!</string>
     <string name="tdee_total_daily_energy_expenditure">TDEE : Total Daily Energy Expenditure</string>
     <string name="my_age_is">My Age Is</string>
@@ -78,7 +85,7 @@
 
     <string name="richiesta_inv">Request sent</string>
     <string name="richiesta_trovata">Request already sent</string>
-    <string name="richiesta_err">Unexprected error in sending the request</string>
+
 
 
     <!--NAVBAR -->
@@ -117,19 +124,17 @@
     <string name="err_rpssw">Please confirm password</string>
     <string name="err_rpssw2">Passwords do not match</string>
     <string name="reg_ok">Registration complete!</string>
-    <string name="reg_err">Error during registration</string>
     <string name="log_ok">Login Successful!</string>
-    <string name="log_err">Login error! Check the entered data and try again.</string>
     <string name="dimenticata">Forget password?</string>
     <string name="email_send">Password sended.</string>
 
     <!--CREATE SCHEDA  -->
     <string name="ins_ex">Press the button to add the exercises to the card</string>
     <string name="invia_scheda">Send card</string>
+    <string name="modifica_scheda">Update card</string>
     <string name="ins_ok">Card insertion complete!</string>
     <string name="item_rem">Item was removed from the list</string>
     <string name="cam_err">To use the qr reader, enable permissions for the camera</string>
-    <string name="err_connessione">No internet connection</string>
     <string name="refresh">Refresh</string>
 
     <!--STEP-->
@@ -149,13 +154,12 @@
     <string name="modp">Update</string>
     <string name="pssold">Current password</string>
     <string name="mod_ok">Updated!</string>
-    <string name="upd_err">Error during update</string>
+
     <string name="setta">Set Goal</string>
     <string name="cibo_txt">Average Daily Intake of Kilocalories recommended is about 1800 to 2600 kcals</string>
     <string name="passi_txt">Average person should take at least 10,000 steps per day to maintain good health, which is equal to about 5 miles of walking</string>
     <string name="imposta">Set</string>
     <string name="calc_bmi">Calculate your bmi !</string>
-    <string name="error">Error</string>
 
 
     <!--ALIMENTAZIONE-->
@@ -169,5 +173,14 @@
     <string name="intro2">Follow the dedicated exercises and get in shape with us!</string>
     <string name="intro3">Get Started!</string>
     <string name="notification_channel_id">default</string>
+
+
+    <!--ERROR-->
+    <string name="error">Error</string>
+    <string name="upd_err">Error during update! Check the entered data and try again.</string>
+    <string name="log_err">Login error! Check the entered data and try again.</string>
+    <string name="reg_err">Error during registration! Check the entered data and try again. </string>
+    <string name="err_connessione">No internet connection! Check it and try again.</string>
+    <string name="richiesta_err">Unexprected error in sending the request! Try again later.</string>
 
 </resources>

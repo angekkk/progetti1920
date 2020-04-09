@@ -165,14 +165,17 @@ public class LoginActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_em), Toast.LENGTH_LONG).show();
+            emailTV.setError(getString(R.string.err_em));
             return;
         }
         if (!isEmailValid(email)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_em2), Toast.LENGTH_LONG).show();
+            emailTV.setError(getString(R.string.err_em2));
             return;
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), getString(R.string.err_pssw), Toast.LENGTH_LONG).show();
+            passwordTV.setError(getString(R.string.err_pssw));
             return;
         }
 

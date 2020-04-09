@@ -24,60 +24,68 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="512dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.47000003">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            tools:layout_editor_absoluteX="6dp"
+            tools:layout_editor_absoluteY="7dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/password"
+                android:layout_width="191dp"
+                android:layout_height="45dp"
+
+                android:text="@string/password"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email"
+                app:layout_constraintVertical_bias="0.114" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/email"
+                android:layout_width="194dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/email"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="96dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
         app:srcCompat="@drawable/appintro2" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/email"
-        android:layout_width="194dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="429dp"
-        android:text="@string/email"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/password"
-        android:layout_width="194dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="429dp"
-
-        android:text="@string/password"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.138" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
