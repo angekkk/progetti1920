@@ -42,7 +42,7 @@
                 android:layout_marginTop="44dp"
                 android:text="@string/supp_log"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.038"
+                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +53,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_reg"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.034"
+                app:layout_constraintHorizontal_bias="0.035"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/log" />
 
@@ -64,7 +64,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_es"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.035"
+                app:layout_constraintHorizontal_bias="0.036"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reg" />
 
@@ -75,7 +75,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_tdee"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
+                app:layout_constraintHorizontal_bias="0.052"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/es" />
 
@@ -86,7 +86,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_bmi"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.045"
+                app:layout_constraintHorizontal_bias="0.052"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/td" />
 
@@ -97,7 +97,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_pass"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.057"
+                app:layout_constraintHorizontal_bias="0.074"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bm" />
 
@@ -108,7 +108,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_sch"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
+                app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pas" />
 
@@ -119,7 +119,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_qr"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.076"
+                app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sch" />
 
@@ -130,7 +130,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/supp_inssch"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.104"
+                app:layout_constraintHorizontal_bias="0.214"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/qr" />
 
@@ -144,6 +144,18 @@
                 app:layout_constraintHorizontal_bias="0.033"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/insc" />
+
+            <TextView
+                android:id="@+id/em"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/supp_em"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.063"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/diet" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

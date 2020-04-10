@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 public class SupportActivity extends AppCompatActivity {
 
 
-    TextView log,reg,es,td,bm,pas,sch,qr,insc,diet;
+    TextView log,reg,es,td,bm,pas,sch,qr,insc,diet,em;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class SupportActivity extends AppCompatActivity {
         qr=findViewById(R.id.qr);
         insc=findViewById(R.id.insc);
         diet=findViewById(R.id.diet);
+        em=findViewById(R.id.em);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_support));
@@ -136,6 +138,19 @@ public class SupportActivity extends AppCompatActivity {
                 finish();
             }
         });
+        em.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                        new String[] { "ddauniba@gmail.com" });
+                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Richiesta informazioni : HealthApp user");
+                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            }
+        });
     }
 
 
@@ -185,6 +200,7 @@ public class SupportActivity extends AppCompatActivity {
                 .show();
     }
     //metodo per controllare la connessione ad internet
+
     public boolean isWorkingInternetPersent() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
         if (connectivityManager != null) {

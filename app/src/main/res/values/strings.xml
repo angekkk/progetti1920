@@ -190,5 +190,5 @@
     <string name="supp_qr">Come posso scansionare un qr code ? A cosa serve?</string>
     <string name="supp_inssch">Sono un pt, come posso creare una scheda per un cliente?</string>
     <string name="supp_diet">Come cerco una dieta?</string>
-
+    <string name="supp_em">Hai bisogno di altre informazioni? Contattaci!</string>
 </resources>
