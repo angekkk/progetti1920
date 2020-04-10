@@ -49,24 +49,10 @@ public class HomeFragment extends Fragment {
     private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
     private static String url_get_id_scheda = "http://ddauniba.altervista.org/HealthApp/get_id.php"; //url per il recupero degli esercizi relativi alla scheda letta dal qr
     JSONArray arr = null;
-    List<Esercizio> lista = new ArrayList<>();
     String idscheda="non"; //id scheda letto dall'intent del qr
     SessionManager session;
     RVAdapter ca;
     RecyclerView rv;
-
-
-    private void setAppLocale(String localeCode){
-        Resources resources = getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        Configuration config = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
-            config.setLocale(new Locale(localeCode.toLowerCase()));
-        } else {
-            config.locale = new Locale(localeCode.toLowerCase());
-        }
-        resources.updateConfiguration(config, dm);
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

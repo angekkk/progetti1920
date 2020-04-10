@@ -8,7 +8,7 @@ import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class ConsigliActivity extends AppCompatActivity {
+public class WebActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -16,14 +16,22 @@ public class ConsigliActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consigli);
         WebView myWebView = (WebView) findViewById(R.id.web);
-        myWebView.loadUrl("http://ddauniba.altervista.org/HealthApp/diete.html");
+        Bundle  arg = getIntent().getExtras();
+        myWebView.loadUrl("http://ddauniba.altervista.org/HealthApp/"+arg.getString("nome")+".html");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ConsigliActivity.this, AlimentazioneActivity.class);
-                startActivity(i);
-                finish();
+                if(arg.getString("nome").contentEquals("diete")){
+                    Intent i = new Intent(WebActivity.this, AlimentazioneActivity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Intent i = new Intent(WebActivity.this, SupportActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
             }
         });
     }

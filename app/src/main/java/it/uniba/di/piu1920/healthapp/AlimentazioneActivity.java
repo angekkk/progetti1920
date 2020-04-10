@@ -63,7 +63,8 @@ public class AlimentazioneActivity extends AppCompatActivity {
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
                             if(position==0){
-                                Intent i = new Intent(AlimentazioneActivity.this, ConsigliActivity.class);
+                                Intent i = new Intent(AlimentazioneActivity.this, WebActivity.class);
+                                i.putExtra("nome","diete");
                                 startActivity(i);
                                 finish();
                             }else{

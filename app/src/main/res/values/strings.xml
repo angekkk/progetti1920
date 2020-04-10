@@ -97,7 +97,7 @@
     <string name="title_scheda">Scheda</string>
     <string name="title_richiesta">Voglio diventare un PT!</string>
     <string name="title_account">Impostazioni account</string>
-
+    <string name="title_support">Aiuti e Supporto</string>
 
     <!--DETTAGLIO ESERCIZIO-->
     <string name="categoria">Categoria :</string>
@@ -179,5 +179,16 @@
     <string name="err_connessione">Connessione internet assente! Controllare la connessione e riprovare.</string>
     <string name="richiesta_err">Errore nell\'inviare la richiesta! Riprovare più tardi.</string>
 
+    <!--SUPPORT-->
+    <string name="supp_log">Come posso effettuare il login?</string>
+    <string name="supp_reg">Come posso registrarmi?</string>
+    <string name="supp_es">Come cerco un esercizio?</string>
+    <string name="supp_tdee">Cos\'è il TDE ? Come posso calcolarlo?</string>
+    <string name="supp_bmi">Cos\'è il BMI ? Come posso calcolarlo?</string>
+    <string name="supp_pass">Come imposto l\'obiettivo di passi giornaliero?</string>
+    <string name="supp_sch">Come posso vedere la mia scheda ?</string>
+    <string name="supp_qr">Come posso scansionare un qr code ? A cosa serve?</string>
+    <string name="supp_inssch">Sono un pt, come posso creare una scheda per un cliente?</string>
+    <string name="supp_diet">Come cerco una dieta?</string>
 
 </resources>

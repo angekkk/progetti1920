@@ -101,6 +101,7 @@
     <string name="title_step">Steps counter</string>
     <string name="title_richiesta">I want to become a PT!</string>
     <string name="title_account">Account settings</string>
+    <string name="title_support">Helps and support</string>
 
     <!--DETTAGLIO ESERCIZIO-->
     <string name="categoria">Category :</string>
@@ -182,5 +183,17 @@
     <string name="reg_err">Error during registration! Check the entered data and try again. </string>
     <string name="err_connessione">No internet connection! Check it and try again.</string>
     <string name="richiesta_err">Unexprected error in sending the request! Try again later.</string>
+
+    <!--SUPPORT-->
+    <string name = "supp_log"> How can I log in? </string>
+    <string name = "supp_reg"> How can I register? </string>
+    <string name = "supp_es"> How do I search for an exercise? </string>
+    <string name = "supp_tdee"> What is TDE? How can I calculate it? </string>
+    <string name = "supp_bmi"> What is BMI? How can I calculate it? </string>
+    <string name = "supp_pass"> How do I set the attention of daily steps? </string>
+    <string name = "supp_sch"> How can I see my listing? </string>
+    <string name = "supp_qr"> How can I scan a QR code? What do you need? </string>
+    <string name = "supp_inssch"> I am a pt, how can I create a card for a customer? </string>
+    <string name = "supp_diet"> How do I search for a diet? </string>
 
 </resources>

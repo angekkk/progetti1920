@@ -69,6 +69,10 @@
             android:title="@string/title_account"
             android:visible="false"/>
         <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/nav_help"
+            android:title="@string/title_support" />
+        <item
             android:id="@+id/nav_out"
             android:icon="@drawable/logout"
             android:title="@string/title_logout"

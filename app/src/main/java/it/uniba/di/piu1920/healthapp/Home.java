@@ -138,7 +138,7 @@ public class Home extends AppCompatActivity {
             email.setText(x.getEma());
 
             navigationView.getMenu().getItem(11).setVisible(true);//settings account
-            navigationView.getMenu().getItem(12).setVisible(true);//logout
+            navigationView.getMenu().getItem(13).setVisible(true);//logout
             navigationView.getMenu().getItem(0).setVisible(false);//login
             navigationView.getMenu().getItem(8).setVisible(true); //scheda
             navigationView.getMenu().getItem(9).setVisible(true); //contapassi
@@ -214,6 +214,10 @@ public class Home extends AppCompatActivity {
                    editor.clear();
                    editor.apply();
                    Intent i = new Intent(Home.this, SettingsActivity.class);
+                   startActivity(i);
+                   finish();
+               }else if(id==R.id.nav_support){
+                   Intent i = new Intent(Home.this, SupportActivity.class);
                    startActivity(i);
                    finish();
                }
