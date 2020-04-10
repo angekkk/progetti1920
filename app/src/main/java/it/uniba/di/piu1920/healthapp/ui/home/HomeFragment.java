@@ -3,8 +3,12 @@ package it.uniba.di.piu1920.healthapp.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import it.uniba.di.piu1920.healthapp.AlimentazioneActivity;
 import it.uniba.di.piu1920.healthapp.R;
@@ -49,7 +54,22 @@ public class HomeFragment extends Fragment {
     SessionManager session;
     RVAdapter ca;
     RecyclerView rv;
+
+
+    private void setAppLocale(String localeCode){
+        Resources resources = getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
+            config.setLocale(new Locale(localeCode.toLowerCase()));
+        } else {
+            config.locale = new Locale(localeCode.toLowerCase());
+        }
+        resources.updateConfiguration(config, dm);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 
         //controllo se è stato già creato un tdee, in caso positivo visualizzo il fragment relativo al grafico
         if (this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE) != null && !this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getString("WEIGHT","").contentEquals("") && this.getActivity().getSharedPreferences("Tdee", Context.MODE_PRIVATE).getInt("TDEE",15)!=0) {
@@ -133,6 +153,7 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
 
     //crea la lista della homepage
     private void createList() {

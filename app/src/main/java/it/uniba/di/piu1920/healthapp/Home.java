@@ -4,11 +4,16 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -43,6 +48,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import io.ghyeok.stickyswitch.widget.StickySwitch;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
@@ -78,6 +86,18 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (this.getSharedPreferences("Lingua", Context.MODE_PRIVATE) != null && !this.getSharedPreferences("Lingua", Context.MODE_PRIVATE).getString("LING","").contentEquals("") ) {
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+            setAppLocale(sharedPreferences.getString("LING",""));
+            System.out.println("LINGUA HOME: "+sharedPreferences.getString("LING",""));
+        }else{
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+            SharedPreferences.Editor mEditor = sharedPreferences.edit();
+            mEditor.putString("LING", "it");
+            mEditor.apply();
+            System.out.println("LINGUA HOME NULL: "+sharedPreferences.getString("LING",""));
+            setAppLocale("it");
+        }
         setContentView(R.layout.activity_home);
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( Home.this,  new OnSuccessListener<InstanceIdResult>() {
@@ -88,6 +108,7 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
          session = new SessionManager(getApplicationContext()); //dichiaro l'oggetto per controllare la sessione di log
@@ -188,6 +209,10 @@ public class Home extends AppCompatActivity {
                                .setAction("Action", null).show();
                    }
                }else if(id==R.id.nav_settings){
+                   SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
+                   SharedPreferences.Editor editor = preferences.edit();
+                   editor.clear();
+                   editor.apply();
                    Intent i = new Intent(Home.this, SettingsActivity.class);
                    startActivity(i);
                    finish();
@@ -201,6 +226,17 @@ public class Home extends AppCompatActivity {
     }
 
 
+    private void setAppLocale(String localeCode){
+        Resources resources = getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
+            config.setLocale(new Locale(localeCode.toLowerCase()));
+        } else {
+            config.locale = new Locale(localeCode.toLowerCase());
+        }
+        resources.updateConfiguration(config, dm);
+    }
 
 
     @Override

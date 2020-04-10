@@ -4,22 +4,33 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
+
+import io.ghyeok.stickyswitch.widget.StickySwitch;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
@@ -34,6 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     Button email,password;
     String n_password="",n_email="";
     AlertDialog.Builder dialog;
+    StickySwitch sticky;
+    String KEY_LING="LINGUA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         idutente=sessionManager.getUserDetails().getId();
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
+        sticky=findViewById(R.id.sticky);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_account));
@@ -54,7 +68,43 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        System.out.println("LINGUA stic: "+sticky.getDirection().name());
+        if (this.getSharedPreferences("Lingua", Context.MODE_PRIVATE) != null && !this.getSharedPreferences("Lingua", Context.MODE_PRIVATE).getString("LING","").contentEquals("") ) {
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+            if(sharedPreferences.getString("LING","").equals("it")){
+                sticky.setDirection(StickySwitch.Direction.LEFT);
+                System.out.println("LINGUA left: "+sharedPreferences.getString("LING",""));
+            }else{
+                sticky.setDirection(StickySwitch.Direction.RIGHT);
+                System.out.println("LINGUA right: "+sharedPreferences.getString("LING",""));
+            }
+        }
 
+        sticky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSharedPreferences("Lingua", Context.MODE_PRIVATE).edit().clear().apply();
+                if (sticky.getDirection().name().equals("LEFT")) {
+                    System.out.println("LINGUA ENTRO STICY LEFT: ");
+                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("LING", "it");
+                    editor.apply();
+                    System.out.println("LINGUA ENTRO STICY LEFT: "+preferences.getString("LING",""));
+                    setAppLocale("it");
+
+                }else{
+                    System.out.println("LINGUA ENTRO STICY right: ");
+                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("LING", "en");
+                    editor.apply();
+                    System.out.println("LINGUA : "+preferences.getString("LING",""));
+                    setAppLocale("en");
+
+                }
+            }
+        });
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,12 +222,26 @@ public class SettingsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setAppLocale(String localeCode){
+        Resources resources = getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
+            config.setLocale(new Locale(localeCode.toLowerCase()));
+        } else {
+            config.locale = new Locale(localeCode.toLowerCase());
+        }
+        resources.updateConfiguration(config, dm);
+    }
+
     @Override
     public void onBackPressed() {
         Intent i = new Intent(SettingsActivity.this, Home.class);
+
         startActivity(i);
         finish();
-        return;
+
+
     }
 
     //modifica esercizi
@@ -272,6 +336,14 @@ public class SettingsActivity extends AppCompatActivity {
                     }
         }
         return false;
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_LING, sticky.getDirection().name());
+
     }
 
 }
