@@ -33,6 +33,7 @@ public class BMIActivity extends AppCompatActivity {
         showResult = findViewById(R.id.showResult);
         showBMI = findViewById(R.id.showBMI);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.title_bmi));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import it.uniba.di.piu1920.healthapp.classes.Cliente;
+import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
@@ -45,6 +46,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
     RecyclerView rv;
     private static String url_get_clienti = "http://ddauniba.altervista.org/HealthApp/get_clienti.php"; //preleva i clienti a cui non è stata assegnata nessuna scheda
     private static String url_get_clienti_schedati = "http://ddauniba.altervista.org/HealthApp/get_clienti_schedati.php"; //preleva i clienti a cui non è stata assegnata una scheda
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
+        sessionManager=new SessionManager(this);
         inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,11 +76,13 @@ public class GestioneClientiActivity extends AppCompatActivity {
                             Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
                             i.putExtra("id",lista.get(position).getId());
                             i.putExtra("idscheda",lista.get(position).getQr());
+                            Log.v("GESTIONECLIENTI : ", "MODALITA' MODIFCA : "+lista.get(position).getQr());
                             startActivity(i);
                         }else{ //entro nell'activity in modalità CREAZIONE
                             Intent i = new Intent(GestioneClientiActivity.this, CreateSchedaActivity.class);
                             i.putExtra("id",lista.get(position).getId());
                             i.putExtra("idscheda","no");
+                            Log.v("GESTIONECLIENTI : ", "MODALITA' INSERIMENTO : no");
                             startActivity(i);
                         }
                     }
@@ -149,8 +154,8 @@ public class GestioneClientiActivity extends AppCompatActivity {
             String ris=null;
             if(isWorkingInternetPersent()){
                 TwoParamsList params = new TwoParamsList();
+                params.add("id",""+sessionManager.getUserDetails().getId());
                 JSONObject json = new JSONParser().makeHttpRequest(url_get_clienti, JSONParser.GET, params);
-                  Log.d("CLIENTI: ", json.toString());
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
@@ -197,8 +202,8 @@ public class GestioneClientiActivity extends AppCompatActivity {
             String ris=null;
             if(isWorkingInternetPersent()){
                 TwoParamsList params = new TwoParamsList();
+                params.add("id",""+sessionManager.getUserDetails().getId());
                 JSONObject json = new JSONParser().makeHttpRequest(url_get_clienti_schedati, JSONParser.GET, params);
-                Log.d("CLIENTI: ", json.toString());
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
@@ -211,6 +216,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
                             String scheda=c.getString("idscheda");//memorizzo l'id della scheda
                             Cliente x=new Cliente(id, nome,  cognome, "email" ,scheda);//secondo costruttore con la scheda
                             lista.add(x);
+                            System.out.println("CLIENTI SCHEDATI : "+x.getQr());
                         }
                     }
                 } catch (Exception e) {

@@ -53,6 +53,7 @@ public class ExerciseActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.title_es));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

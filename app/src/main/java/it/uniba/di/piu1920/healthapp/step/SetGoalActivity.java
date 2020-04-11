@@ -3,6 +3,7 @@ package it.uniba.di.piu1920.healthapp.step;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,16 +30,16 @@ public class SetGoalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setgoal);
 
 
-        final EditText stepGoal = findViewById(R.id.et1);
-        final EditText calorieGoal = findViewById(R.id.et2);
+        final EditText stepGoal = findViewById(R.id.et2);
+        final EditText calorieGoal = findViewById(R.id.et1);
         sharedpreferences = getSharedPreferences("GOAL", Context.MODE_PRIVATE);
         Button setgoal = findViewById(R.id.setgoal);
         Calendar calendar = Calendar.getInstance();
         int hour24hrs = calendar.get(Calendar.HOUR_OF_DAY);
         System.out.println("GOAL ORA: "+hour24hrs);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(this.getClass().getSimpleName());
+        toolbar.setTitle(getString(R.string.title_step));
+        toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -32,23 +32,23 @@
 
         <ImageView
             android:id="@+id/qr"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
+            android:layout_width="78dp"
+            android:layout_height="65dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="239dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="92dp"
-            android:layout_marginBottom="43dp"
+            android:layout_marginStart="264dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="26dp"
             android:visibility="invisible"
             card_view:srcCompat="@drawable/nav_user" />
 
         <TextView
             android:id="@+id/nome"
             android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -62,7 +62,7 @@
         <TextView
             android:id="@+id/nomec"
             android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -75,8 +75,8 @@
 
         <TextView
             android:id="@+id/cognome"
-            android:layout_width="76dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -89,8 +89,8 @@
 
         <TextView
             android:id="@+id/cognomec"
-            android:layout_width="72dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"

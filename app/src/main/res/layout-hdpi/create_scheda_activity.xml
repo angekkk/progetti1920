@@ -27,8 +27,8 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="239dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,12 +66,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scheda"
         android:layout_width="396dp"
-        android:layout_height="241dp"
+        android:layout_height="350dp"
         android:background="#85DAD7D7"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.72" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ok"
@@ -93,7 +94,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="7dp"
         android:text="@string/ins_ex"
-        android:textSize="10sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.373"

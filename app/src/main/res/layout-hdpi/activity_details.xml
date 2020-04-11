@@ -29,8 +29,8 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="268dp"
-        android:layout_height="118dp"
+        android:layout_width="312dp"
+        android:layout_height="184dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,12 +58,12 @@
 
     <TextView
         android:id="@+id/esecuzione"
-        android:layout_width="299dp"
-        android:layout_height="256dp"
+        android:layout_width="413dp"
+        android:layout_height="605dp"
         android:layout_marginTop="80dp"
         android:text="TextView"
         android:textAlignment="viewStart"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

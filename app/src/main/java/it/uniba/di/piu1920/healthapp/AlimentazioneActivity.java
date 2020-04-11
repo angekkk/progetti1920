@@ -51,6 +51,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         inizializza();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.title_ali));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +198,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
         @NonNull
         @Override
         public ExAdapt.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_diete, parent, false);
             return new ExAdapt.MyViewHolder(v);
         }
 

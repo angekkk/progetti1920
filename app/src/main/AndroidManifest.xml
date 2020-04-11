@@ -65,8 +65,8 @@
         </activity>
         <activity android:name=".Home" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".login.RegistrationActivity" />
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.RegistrationActivity" android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".login.LoginActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ExerciseActivity" />
         <activity android:name=".AlimentazioneActivity" />
         <activity android:name=".DietaActivity" />
@@ -82,7 +82,7 @@
         <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity"/>
         <activity android:name=".calorie.NutriActivity"/>
         <activity android:name=".step.StepsActivity"/>
-        <activity android:name=".step.SetGoalActivity" android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".step.SetGoalActivity" android:windowSoftInputMode="adjustNothing" />
     </application>
 
 </manifest>

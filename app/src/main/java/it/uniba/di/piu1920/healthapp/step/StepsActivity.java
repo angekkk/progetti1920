@@ -62,8 +62,8 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         final float[] m = new float[1];
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getString(R.string.title_step));
+        toolbar.setTitle(getString(R.string.title_step));
+        toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

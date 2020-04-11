@@ -28,7 +28,7 @@
     <TextView
         android:id="@+id/cat"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="168dp"
         android:text="TextView"
         android:textAlignment="viewStart"
@@ -39,24 +39,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/desc"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <EditText
         android:id="@+id/desc"
-        android:layout_width="306dp"
-        android:layout_height="377dp"
+        android:layout_width="399dp"
+        android:layout_height="606dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="6dp"
         android:background="@null"
         android:cursorVisible="false"
         android:editable="false"
         android:text="TextView"
         android:textAlignment="textStart"
-        android:textSize="11sp"
+        android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout4" />
 

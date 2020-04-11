@@ -146,7 +146,6 @@ public class Home extends AppCompatActivity {
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
             new GetStatus().execute(); //controllo il tipo dell'utente se è cambiato o meno, in base a quello onPostExecute visualizzo gli item del menù corrispondenti
 
-
         }
 
         navigationView.setCheckedItem(R.id.nav_home); // la home è sempre selezionata come item principale ad ogni apertura
@@ -180,6 +179,10 @@ public class Home extends AppCompatActivity {
                 }else if(id==R.id.nav_out){
                     //effettuare il log out, eliminare la SESSION
                     session.logoutUser();
+                   SharedPreferences sharedPreferences = getSharedPreferences("Tdee", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                   editor.putString("WEIGHT","");
+                   editor.apply();
                     Intent i = new Intent(Home.this, Home.class);
                     startActivity(i);
                     finish();

@@ -84,14 +84,20 @@ public class CreateSchedaActivity extends AppCompatActivity {
         Bundle arg = getIntent().getExtras();
         session=new SessionManager(this);
         idutente=arg.getInt("id");
+        System.out.println("ID UTENTE : "+idutente);
         inizializza();
+
         if(!arg.getString("idscheda").contentEquals("no")){
             idscheda=Integer.parseInt(arg.getString("idscheda"));
             MOD=1;//la modalità è attiva sulla MODIFICA
+            Log.v("CREAZIONESCHEDA : ", "MODALITA' "+MOD +" SCHEDA "+idscheda);
             new GetEserciziScheda().execute();
+        }else{
+            Log.v("CREAZIONESCHEDA : ", "MODALITA' "+MOD);
         }
         enableSwipeToDeleteAndUndo();//abilito lo swipe per eliminare nella recycler view
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.title_clienti));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +175,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
         List<String> categories = new ArrayList<>();
         protected String doInBackground(String... args) {
             String ris = null;
-
             TwoParamsList params = new TwoParamsList();
             params.add("idscheda",""+idscheda);
             JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params);
@@ -185,8 +190,9 @@ public class CreateSchedaActivity extends AppCompatActivity {
                         String nome = c.getString("nome");
                         String esecuzione = Html.fromHtml(c.getString("esecuzione")).toString();
                         String link = c.getString("link");
+                        String nomec = c.getString("nomeC");
                         //   String link=c.getString("link");
-                        Esercizio x = new Esercizio(nome, "", link, esecuzione, id, tipo);
+                        Esercizio x = new Esercizio(nome, nomec, link, esecuzione, id, tipo);
                         categories.add(nome);
                         scheda.add(x);
                         lista.add(x);
@@ -294,27 +300,28 @@ public class CreateSchedaActivity extends AppCompatActivity {
         }
 
         protected String doInBackground(String... args) {
+
             TwoParamsList params = new TwoParamsList();
             /// params.add("tipo", ""+1);
             params.add("idu",""+ idutente);
             params.add("id",""+ session.getUserDetails().getId());
-
+            System.out.println("entro in scheda INSERISCI : "+idutente+"--id pt--"+session.getUserDetails().getId());
             String ret=null;
             JSONObject json = new JSONParser().makeHttpRequest(url_inserisci_scheda, JSONParser.POST, params);
-            System.out.println("entro in scheda");
+
             if (json != null) {
                 try {
                     int success = json.getInt("success");
                     if (success == 0) {
-                        Log.d("SCHEDA : ", "INSERISCO SCHEDA");
+                        Log.d("SCHEDA : ", "INSERISCO SCHEDA 0");
                         ret= "inserito";
                     } else if (success == -1) {
+                        Log.d("SCHEDA : ", "ERRORE SCHEDA SUCCESS -1");
                     }
                 } catch (JSONException e) {
+                    Log.d("SCHEDA : ", "ERRORE JSON");
                 }
             }
-            ////////////////////////////////////////////////////////////////////////////////////////////recupero l'id della scheda creata
-
             return ret;
         }
 
@@ -423,6 +430,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
             // Picasso.with(ExerciseActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.image);
 
             Resources r = getResources();
+            System.out.println("CATEGORIA : "+c.getNomecategoria());
             int drawableId = r.getIdentifier(c.getNomecategoria(), "drawable", "it.uniba.di.piu1920.healthapp");
             holder.cat.setImageDrawable(getDrawable(drawableId));
         }

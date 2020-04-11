@@ -30,14 +30,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="72dp"
-        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:layout_height="85dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/card_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout4"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.731"
         app:srcCompat="@drawable/icon" />
 
     <androidx.cardview.widget.CardView
@@ -211,7 +212,6 @@
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ProgressBar
