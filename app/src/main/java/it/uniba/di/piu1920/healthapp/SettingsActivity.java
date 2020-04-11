@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
     String n_password="",n_email="";
     AlertDialog.Builder dialog;
     StickySwitch sticky;
+    ImageView img;
     String KEY_LING="LINGUA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         sticky=findViewById(R.id.sticky);
+        img=findViewById(R.id.img);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_account));
@@ -68,6 +71,12 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         System.out.println("LINGUA stic: "+sticky.getDirection().name());
         if (this.getSharedPreferences("Lingua", Context.MODE_PRIVATE) != null && !this.getSharedPreferences("Lingua", Context.MODE_PRIVATE).getString("LING","").contentEquals("") ) {
             SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);

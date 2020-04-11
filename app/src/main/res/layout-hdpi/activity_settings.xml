@@ -103,7 +103,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img"
         android:layout_width="96dp"
         android:layout_height="90dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"

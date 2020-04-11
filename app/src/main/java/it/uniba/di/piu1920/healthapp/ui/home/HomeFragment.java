@@ -94,8 +94,9 @@ public class HomeFragment extends Fragment {
                         public void onClickItem(View v, int position) {
                             if(!idscheda.contentEquals("non")){
                                 if (position == 0) {
+                                    Log.d("IDSCHEDA: ", ""+idscheda);
                                     Intent intent = new Intent(root.getContext(), SchedaActivity.class);
-                                    intent.putExtra("idscheda",idscheda);
+                                    intent.putExtra("idscheda",Integer.parseInt(idscheda));
                                     startActivity(intent);
                                 } else if (position == 2) {
                                     Intent intent = new Intent(root.getContext(), AlimentazioneActivity.class);

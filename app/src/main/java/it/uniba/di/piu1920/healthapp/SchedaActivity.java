@@ -53,10 +53,14 @@ public class SchedaActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
         Bundle arg = getIntent().getExtras();
-        if(!arg.getString("idscheda").isEmpty()){ //controllo che sia stato passato l'id della scheda da recuperare
-            idscheda=Integer.parseInt(arg.getString("idscheda"));
+
+        if(arg.getInt("idscheda")!=0){ //controllo che sia stato passato l'id della scheda da recuperare
+
+            idscheda=arg.getInt("idscheda");
+            System.out.println("ESERCIZI SCHEDA: " + idscheda);
+            inizializza();
         }
-        inizializza();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_scheda));
@@ -144,21 +148,23 @@ public class SchedaActivity extends AppCompatActivity {
                 TwoParamsList params = new TwoParamsList();
                 params.add("idscheda",""+idscheda);
                 JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params);
+                  Log.d("Esercizi: ", json.toString());
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
-                        ris="ok";
                         arr = json.getJSONArray("esercizio");
                         for (int i = 0; i < arr.length(); i++) {
                             JSONObject c = arr.getJSONObject(i);
                             int id = Integer.parseInt(c.getString("id"));
                             int tipo = Integer.parseInt(c.getString("tipo"));
-                            String nome=c.getString("nome");
+                            String nome = c.getString("nome");
                             String esecuzione = Html.fromHtml(c.getString("esecuzione")).toString();
-                            String link=c.getString("link");
+                            String link = c.getString("link");
+                            String nomec = c.getString("nomeC");
                             //   String link=c.getString("link");
-                            Esercizio x=new Esercizio( nome,  "",  link,  esecuzione,  id,  tipo);
+                            Esercizio x = new Esercizio(nome, nomec, link, esecuzione, id, tipo);
                             lista.add(x);
+                            ris="cc";
                         }
                     } else {
                         Log.d("Esercizi: ","SUCCESS 0");
@@ -185,22 +191,24 @@ public class SchedaActivity extends AppCompatActivity {
                         ExAdapt ca = new ExAdapt(lista);
                         rv.setAdapter(ca);
                     }else{
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(SchedaActivity.this);
-                        LayoutInflater inflater = getLayoutInflater();
-                        View view = inflater.inflate(R.layout.dialog, null);
-                        String message=getString(R.string.err_connessione);
-                        builder.setMessage(message);
-                        builder.setView(view);
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent(SchedaActivity.this, Home.class);
-                                startActivity(i);
-                                finish();
-                            }
-                        });
+                        new AlertDialog.Builder(SchedaActivity.this)
+                                .setTitle(getString(R.string.error))
+                                .setMessage(getString(R.string.err_connessione))
 
-                        builder.show();
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = new Intent(SchedaActivity.this, Home.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                })
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(getDrawable(R.drawable.error))
+                                .show();
                     }
                 }
             });
