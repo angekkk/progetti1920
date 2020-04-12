@@ -191,4 +191,6 @@
     <string name="supp_inssch">Sono un pt, come posso creare una scheda per un cliente?</string>
     <string name="supp_diet">Come cerco una dieta?</string>
     <string name="supp_em">Hai bisogno di altre informazioni? Contattaci!</string>
+    <string name="benvenuto">Benvenuto su HealthApp!</string>
+    <string name="benvenuto_intro">Non hai bisogno di registrazioni, puoi usufruire della maggior parte dei contenuti in modo semplice e veloce!</string>
 </resources>

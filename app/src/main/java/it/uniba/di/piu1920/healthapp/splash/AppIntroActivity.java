@@ -33,6 +33,7 @@ public class AppIntroActivity extends AppIntro {
             //  Launch app intro
             // Instead of fragments, you can also use our default slide
             // Just set a title, description, background and image. AppIntro will do the rest.
+            addSlide(AppIntroFragment.newInstance(getString(R.string.benvenuto), getString(R.string.benvenuto_intro), R.drawable.appintro5, getResources().getColor(R.color.appintro3)));
             addSlide(AppIntroFragment.newInstance(getString(R.string.t2), getString(R.string.intro2), R.drawable.appintro3, getResources().getColor(R.color.appintro3)));
             addSlide(AppIntroFragment.newInstance(getString(R.string.t1), getString(R.string.intro1), R.drawable.appintro1, getResources().getColor(R.color.appintro1)));
             addSlide(AppIntroFragment.newInstance("", getString(R.string.intro3), R.drawable.appintro4, getResources().getColor(R.color.appintro4)));
@@ -84,8 +85,7 @@ public class AppIntroActivity extends AppIntro {
 
     @Override
     public void onNextPressed() {
-        // Do something when users tap on Next button.
-        Toast.makeText(getApplicationContext(), "Cannot Skip", Toast.LENGTH_SHORT).show();
+
     }
 
 }

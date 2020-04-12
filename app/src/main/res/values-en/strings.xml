@@ -174,7 +174,8 @@
     <string name="intro2">Follow the dedicated exercises and get in shape with us!</string>
     <string name="intro3">Get Started!</string>
     <string name="notification_channel_id">default</string>
-
+    <string name="benvenuto">Welcome to HealthApp!</string>
+    <string name="benvenuto_intro">You don\'t need to register, you can take advantage of most of the contents quickly and easily!</string>
 
     <!--ERROR-->
     <string name="error">Error</string>
@@ -196,4 +197,5 @@
     <string name = "supp_inssch"> I am a pt, how can I create a card for a customer? </string>
     <string name = "supp_diet"> How do I search for a diet? </string>
     <string name="supp_em">Do you need more information? Contact Us!</string>
+
 </resources>
