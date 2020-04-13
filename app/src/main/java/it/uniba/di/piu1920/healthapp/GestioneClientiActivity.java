@@ -285,7 +285,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
 
                 try {
                     qrCode = new QrGenerator.Builder() //genero il qr impostando le varie caratteristiche
-                            .content("ID: "+c.getEmail())
+                            .content("ID: "+c.getQr())
                             .qrSize(300)
                             .margin(2)
                             .color(Color.BLACK)

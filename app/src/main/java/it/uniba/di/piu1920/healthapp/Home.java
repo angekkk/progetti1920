@@ -252,12 +252,18 @@ public class Home extends AppCompatActivity {
         if (requestCode == QrScannerActivity.QR_REQUEST_CODE) {
             if(resultCode == RESULT_OK){
                 idscheda=data.getExtras().getString(QrScannerActivity.QR_RESULT_STR);
+/*
                 if(isWorkingInternetPersent()){
                     new GetEsercizi().execute();
                 }else{
                     Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
+                }*/
+
+                Intent i = new Intent(Home.this, SchedaActivity.class);
+                i.putExtra("idscheda",Integer.parseInt(idscheda.replace("ID: ","")));
+                startActivity(i);
+                finish();
             }
 
         }
@@ -349,7 +355,7 @@ public class Home extends AppCompatActivity {
                     for(int i=0;i<categories.size();i++){
                         message=message.concat(categories.get(i).toUpperCase()+"\n");
                     }
-                    builder.setMessage(message);
+                    builder.setMessage(idscheda.replace("ID: ",""));
                     builder.setView(view);
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
@@ -502,7 +508,7 @@ public class Home extends AppCompatActivity {
                         navigationView.getMenu().getItem(7).setVisible(true);
                         foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
                     }else{
-                        navigationView.getMenu().getItem(9).setVisible(true);//richiesta pt
+                        navigationView.getMenu().getItem(10).setVisible(true);//richiesta pt
                         foto.setImageDrawable(getDrawable(R.drawable.user));
                     }
                 }

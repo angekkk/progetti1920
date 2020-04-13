@@ -119,48 +119,52 @@ public class CreateSchedaActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isWorkingInternetPersent()){
-                    if(MOD==1){
-                        new AlertDialog.Builder(CreateSchedaActivity.this)
-                                .setTitle(getString(R.string.modifica_scheda))
-                                .setMessage(getString(R.string.conferma))
+                if(scheda.size()>0){
+                    if(isWorkingInternetPersent()){
 
-                                // Specifying a listener allows you to take an action before dismissing the dialog.
-                                // The dialog is automatically dismissed when a dialog button is clicked.
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        new modifica_esercizi().execute();
-                                    }
-                                })
+                        if(MOD==1){
+                            new AlertDialog.Builder(CreateSchedaActivity.this)
+                                    .setTitle(getString(R.string.modifica_scheda))
+                                    .setMessage(getString(R.string.conferma))
 
-                                // A null listener allows the button to dismiss the dialog and take no further action.
-                                .setNegativeButton(android.R.string.no, null)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+                                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                                    // The dialog is automatically dismissed when a dialog button is clicked.
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            new modifica_esercizi().execute();
+                                        }
+                                    })
 
-                    }else {
-                        new AlertDialog.Builder(CreateSchedaActivity.this)
-                                .setTitle(getString(R.string.invia_scheda))
-                                .setMessage(getString(R.string.conferma))
+                                    // A null listener allows the button to dismiss the dialog and take no further action.
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
 
-                                // Specifying a listener allows you to take an action before dismissing the dialog.
-                                // The dialog is automatically dismissed when a dialog button is clicked.
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        new inserisci_scheda().execute();
-                                    }
-                                })
+                        }else {
+                            new AlertDialog.Builder(CreateSchedaActivity.this)
+                                    .setTitle(getString(R.string.invia_scheda))
+                                    .setMessage(getString(R.string.conferma))
 
-                                // A null listener allows the button to dismiss the dialog and take no further action.
-                                .setNegativeButton(android.R.string.no, null)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+                                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                                    // The dialog is automatically dismissed when a dialog button is clicked.
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            new inserisci_scheda().execute();
+                                        }
+                                    })
 
+                                    // A null listener allows the button to dismiss the dialog and take no further action.
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+
+                        }
+                    }else{
+                        Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
-                }else{
-                    Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
                 }
+
             }
         });
     }
