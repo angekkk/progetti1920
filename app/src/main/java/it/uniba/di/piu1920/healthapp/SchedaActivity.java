@@ -148,7 +148,6 @@ public class SchedaActivity extends AppCompatActivity {
                 TwoParamsList params = new TwoParamsList();
                 params.add("idscheda",""+idscheda);
                 JSONObject json = new JSONParser().makeHttpRequest(url_get_esercizi, JSONParser.GET, params);
-                  Log.d("Esercizi: ", json.toString());
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {

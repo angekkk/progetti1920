@@ -25,4 +25,6 @@
         <item name="colorControlActivated">@color/primary_dark</item>
         <item name="colorControlHighlight">@color/accent_color</item>
     </style>
+
+
 </resources>

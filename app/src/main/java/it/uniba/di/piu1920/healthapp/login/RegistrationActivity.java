@@ -244,6 +244,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (success == 1) {
                     access = json.getJSONArray("Accesso");
                     JSONObject c = access.getJSONObject(0);
+                    System.out.println("Password  : "+c.getString("password"));
                     session.createLoginSession(c.getString("email"), c.getString("password"),Integer.parseInt(c.getString("tipo")),Integer.parseInt(c.getString("id")));
                     ret = "ok";
                 } else {

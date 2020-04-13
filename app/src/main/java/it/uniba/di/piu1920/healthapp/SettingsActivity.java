@@ -304,12 +304,15 @@ public class SettingsActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 public void run() {
                     if(file_url.contentEquals("ok")){
+                        String pss=sessionManager.getUserDetails().getPass();
+                        int tipo=sessionManager.getUserDetails().getTipo();
+                        String em=sessionManager.getUserDetails().getEma();
                         sessionManager.clear();
                         if(!n_email.contentEquals("")){
-                            sessionManager.createLoginSession(n_email,sessionManager.getUserDetails().getPass(),sessionManager.getUserDetails().getTipo(),idutente);
+                            sessionManager.createLoginSession(n_email,pss,tipo,idutente);
                         }
                         if(!n_password.contentEquals("")) {
-                            sessionManager.createLoginSession(sessionManager.getUserDetails().getEma(),n_password,sessionManager.getUserDetails().getTipo(),idutente);
+                            sessionManager.createLoginSession(em,n_password,tipo,idutente);
                         }
                         showDialog(getString(R.string.mod_ok));
                     }else if(file_url.contentEquals("no")){
