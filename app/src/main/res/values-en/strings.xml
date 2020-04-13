@@ -184,6 +184,8 @@
     <string name="reg_err">Error during registration! Check the entered data and try again. </string>
     <string name="err_connessione">No internet connection! Check it and try again.</string>
     <string name="richiesta_err">Unexprected error in sending the request! Try again later.</string>
+    <string name="non_valido">Field not valid</string>
+    <string name="err_no_scheda">You don\'t have a card to note right now</string>
 
     <!--SUPPORT-->
     <string name = "supp_log"> How can I log in? </string>
@@ -197,5 +199,7 @@
     <string name = "supp_inssch"> I am a pt, how can I create a card for a customer? </string>
     <string name = "supp_diet"> How do I search for a diet? </string>
     <string name="supp_em">Do you need more information? Contact Us!</string>
+
+
 
 </resources>

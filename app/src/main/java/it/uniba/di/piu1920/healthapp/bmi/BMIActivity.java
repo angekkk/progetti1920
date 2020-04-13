@@ -33,7 +33,7 @@ public class BMIActivity extends AppCompatActivity {
         showResult = findViewById(R.id.showResult);
         showBMI = findViewById(R.id.showBMI);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.title_bmi));
+        toolbar.setTitle(getString(R.string.calc_bmi));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,12 +61,18 @@ public class BMIActivity extends AppCompatActivity {
     //metodo per il controllo dei dati immessi
     boolean checkData(View view){
 
-        if(inputKg.getText().toString().isEmpty() || inputM.getText().toString().isEmpty()){
+        if(inputKg.getText().toString().isEmpty() || inputM.getText().toString().isEmpty() || inputKg.getText().toString().length() > 0 && inputKg.getText().toString().substring(0, 1).equals(".")|| inputM.getText().toString().length() > 0 && inputM.getText().toString().contains(".")){
             if(inputKg.getText().toString().isEmpty()){
                 inputKg.setError(getString(R.string.richiesto));
             }
             if(inputM.getText().toString().isEmpty()){
                 inputM.setError(getString(R.string.richiesto));
+            }
+            if(inputKg.getText().toString().length() > 0 && inputKg.getText().toString().substring(0, 1).equals(".")){
+                inputKg.setError(getString(R.string.non_valido));
+            }
+            if(inputM.getText().toString().length() > 0 && inputM.getText().toString().contains(".")){
+                inputM.setError(getString(R.string.non_valido));
             }
             Snackbar.make(view, getString(R.string.richiesto), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

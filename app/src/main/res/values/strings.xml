@@ -193,4 +193,6 @@
     <string name="supp_em">Hai bisogno di altre informazioni? Contattaci!</string>
     <string name="benvenuto">Benvenuto su HealthApp!</string>
     <string name="benvenuto_intro">Non hai bisogno di registrazioni, puoi usufruire della maggior parte dei contenuti in modo semplice e veloce!</string>
+    <string name="non_valido">Campo non valido</string>
+    <string name="err_no_scheda">Non hai una scheda da visualizzare al momento</string>
 </resources>

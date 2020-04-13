@@ -40,9 +40,16 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetailsActivity.this, ExerciseActivity.class);
-                startActivity(i);
-                finish();
+                if(arg.getString("in")!=null){
+                    Intent i = new Intent(DetailsActivity.this, ExInDoorActivity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Intent i = new Intent(DetailsActivity.this, ExOutDoorActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
             }
         });
         esecuzione.setText(ex.getEsecuzione());

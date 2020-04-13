@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -77,13 +78,16 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-        System.out.println("LINGUA stic: "+sticky.getDirection().name());
-        if (this.getSharedPreferences("Lingua", Context.MODE_PRIVATE) != null && !this.getSharedPreferences("Lingua", Context.MODE_PRIVATE).getString("LING","").contentEquals("") ) {
-            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_APPEND);
+        System.out.println("LINGUA COND 2: "+!sharedPreferences.getString("LING","").equals("") );
+        System.out.println("LINGUA LETTA :  "+sharedPreferences.getString("LING","") );
+        if (!sharedPreferences.getString("LING","").equals("") ) {
+            System.out.println("LINGUA ENTRO E LEGGO"+getSharedPreferences("Lingua", Context.MODE_APPEND).getString("LING",""));
+
             if(sharedPreferences.getString("LING","").equals("it")){
                 sticky.setDirection(StickySwitch.Direction.LEFT);
                 System.out.println("LINGUA left: "+sharedPreferences.getString("LING",""));
-            }else{
+            }else if(sharedPreferences.getString("LING","").equals("en")){
                 sticky.setDirection(StickySwitch.Direction.RIGHT);
                 System.out.println("LINGUA right: "+sharedPreferences.getString("LING",""));
             }
@@ -92,10 +96,10 @@ public class SettingsActivity extends AppCompatActivity {
         sticky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSharedPreferences("Lingua", Context.MODE_PRIVATE).edit().clear().apply();
+                getSharedPreferences("Lingua", Context.MODE_APPEND).edit().clear().apply();
                 if (sticky.getDirection().name().equals("LEFT")) {
                     System.out.println("LINGUA ENTRO STICY LEFT: ");
-                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
+                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_APPEND);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("LING", "it");
                     editor.apply();
@@ -104,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 }else{
                     System.out.println("LINGUA ENTRO STICY right: ");
-                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
+                    SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_APPEND);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("LING", "en");
                     editor.apply();
@@ -127,6 +131,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // Add a TextView here for the "Title" label, as noted in the comments
                 EditText ema = new EditText(SettingsActivity.this);
                 ema.setHint(getString(R.string.email));
+                ema.setHintTextColor(Color.BLACK);
                 layout.addView(ema); // Notice this is an add method
                 final Button mod = new Button(SettingsActivity.this);
                 mod.setText(getString(R.string.modp));
@@ -137,7 +142,6 @@ public class SettingsActivity extends AppCompatActivity {
                             if(!ema.getText().toString().isEmpty()){
                                 if(isWorkingInternetPersent()){
                                     n_email=ema.getText().toString();
-                                    email.setText(n_email);
                                     new update().execute();
                                 }else{
                                     Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
@@ -170,16 +174,19 @@ public class SettingsActivity extends AppCompatActivity {
                 // Add a TextView here for the "Title" label, as noted in the comments
                 EditText passold = new EditText(SettingsActivity.this);
                 passold.setHint(getString(R.string.pssold));
+                passold.setHintTextColor(Color.BLACK);
                 layout.addView(passold); // Notice this is an add method
 
                 // Add another TextView here for the "Description" label
                 EditText pass = new EditText(SettingsActivity.this);
                 pass.setHint(getString(R.string.password));
+                pass.setHintTextColor(Color.BLACK);
                 layout.addView(pass); // Another add method
 
 
                 EditText passconf = new EditText(SettingsActivity.this);
                 passconf.setHint(getString(R.string.rewrite_pss));
+                passconf.setHintTextColor(Color.BLACK);
                 layout.addView(passconf); // Another add method
 
                 final Button mod = new Button(SettingsActivity.this);
@@ -187,6 +194,7 @@ public class SettingsActivity extends AppCompatActivity {
                 mod.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        System.out.println("Password vecchia : "+sessionManager.getUserDetails().getPass());
                             if(passold.getText().toString().contentEquals(sessionManager.getUserDetails().getPass())){
                                     if(pass.getText().toString().contentEquals(passconf.getText().toString())){
                                             if(isWorkingInternetPersent()){
@@ -246,7 +254,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(SettingsActivity.this, Home.class);
-
         startActivity(i);
         finish();
 

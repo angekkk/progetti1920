@@ -82,18 +82,19 @@ public class Home extends AppCompatActivity {
     TextView email;
     ImageView foto;
     private static final String TAG = "Home";
-
+    int lingua=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (this.getSharedPreferences("Lingua", Context.MODE_PRIVATE) != null && !this.getSharedPreferences("Lingua", Context.MODE_PRIVATE).getString("LING","").contentEquals("") ) {
-            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+        if (this.getSharedPreferences("Lingua", Context.MODE_APPEND) != null && !this.getSharedPreferences("Lingua", Context.MODE_APPEND).getString("LING","").contentEquals("") ) {
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_APPEND);
             setAppLocale(sharedPreferences.getString("LING",""));
             System.out.println("LINGUA HOME: "+sharedPreferences.getString("LING",""));
         }else{
-            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_APPEND);
             SharedPreferences.Editor mEditor = sharedPreferences.edit();
             mEditor.putString("LING", "it");
+            lingua=0;
             mEditor.apply();
             System.out.println("LINGUA HOME NULL: "+sharedPreferences.getString("LING",""));
             setAppLocale("it");
@@ -196,9 +197,12 @@ public class Home extends AppCompatActivity {
                 }else if(id==R.id.nav_scheda){
                     if(!idscheda.contentEquals("non")){//controllo che l'id della scheda esista o no
                         Intent i = new Intent(Home.this, SchedaActivity.class);
-                        i.putExtra("idscheda",idscheda);
+                        i.putExtra("idscheda",Integer.parseInt(idscheda));
                         startActivity(i);
                         finish();
+                    }else{
+                        Snackbar.make(getCurrentFocus(), getString(R.string.err_no_scheda), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                 }else if(id==R.id.nav_step){
                         Intent i = new Intent(Home.this, SetGoalActivity.class);
@@ -212,10 +216,6 @@ public class Home extends AppCompatActivity {
                                .setAction("Action", null).show();
                    }
                }else if(id==R.id.nav_settings){
-                   SharedPreferences preferences =getSharedPreferences("Lingua",Context.MODE_PRIVATE);
-                   SharedPreferences.Editor editor = preferences.edit();
-                   editor.clear();
-                   editor.apply();
                    Intent i = new Intent(Home.this, SettingsActivity.class);
                    startActivity(i);
                    finish();

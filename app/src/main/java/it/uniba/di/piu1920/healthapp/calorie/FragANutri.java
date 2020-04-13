@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xw.repo.BubbleSeekBar;
 import belka.us.androidtoggleswitch.widgets.ToggleSwitch;
@@ -87,8 +89,22 @@ public class FragANutri extends Fragment {
                 if (ageT.getText().toString().trim().length() == 0 || ageT.getText().toString().equals("0") ||
                         weightT.getText().toString().trim().length() == 0 || weightT.getText().toString().equals("0") ||
                         heightT.getText().toString().trim().length() == 0 || heightT.getText().toString().equals("0") || (weightT.getText().toString().length() > 0 && weightT.getText().toString().substring(0, 1).equals(".")))
-                    Toast.makeText(getActivity(), R.string.toast_make_sure, Toast.LENGTH_SHORT).show();
-                else {
+                {
+                    if (ageT.getText().toString().trim().length() == 0 || ageT.getText().toString().equals("0")) {
+                        ageT.setError(getString(R.string.richiesto));
+                    }
+                    if (weightT.getText().toString().trim().length() == 0 || weightT.getText().toString().equals("0")) {
+                        weightT.setError(getString(R.string.richiesto));
+                    }
+                    if (heightT.getText().toString().trim().length() == 0 || heightT.getText().toString().equals("0")) {
+                        heightT.setError(getString(R.string.richiesto));
+                    }
+                    if (weightT.getText().toString().length() > 0 && weightT.getText().toString().substring(0, 1).equals(".")) {
+                        weightT.setError(getString(R.string.non_valido));
+                    }
+                    Snackbar.make(view, getString(R.string.richiesto), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                     }else {
                     dialog.show();
                     if (gender.getDirection().name().equals("LEFT")) {
                         if (measure.getDirection().name().equals("LEFT")) {

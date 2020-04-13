@@ -72,6 +72,7 @@ public class ExInDoorActivity extends AppCompatActivity {
                         Intent i = new Intent(ExInDoorActivity.this, DetailsActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
                         x.putSerializable("ogg",lista.get(position)); //passo nel bundle l'intero oggetto cliccato
                         i.putExtra("bund",x);  //inserisco il bundle come parametro di passaggio nell'activity
+                        i.putExtra("in","in");
                         startActivity(i);   //starto l'activity
                         finish(); //termino l'activity corrente
                     }

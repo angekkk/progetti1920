@@ -68,10 +68,12 @@ public class ExerciseActivity extends AppCompatActivity {
                     public void onClickItem(View v, int position) {
                         if(position==0){
                             Intent i = new Intent(ExerciseActivity.this, ExInDoorActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
+                            i.putExtra("in","in");
                             startActivity(i);   //starto l'activity
                             finish(); //termino l'activity corrente
                         }else{
                             Intent i = new Intent(ExerciseActivity.this, ExOutDoorActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
+                            i.putExtra("out","out");
                             startActivity(i);   //starto l'activity
                             finish(); //termino l'activity corrente
                         }
