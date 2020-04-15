@@ -201,7 +201,7 @@ public class Home extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }else{
-                        Snackbar.make(getCurrentFocus(), getString(R.string.err_no_scheda), Snackbar.LENGTH_LONG)
+                        Snackbar.make(getWindow().getDecorView().getRootView(), getString(R.string.err_no_scheda), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 }else if(id==R.id.nav_step){
@@ -212,7 +212,7 @@ public class Home extends AppCompatActivity {
                    if(isWorkingInternetPersent()){
                        new invia_richiesta().execute();
                    }else{
-                       Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
+                       Snackbar.make(getWindow().getDecorView().getRootView(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
                                .setAction("Action", null).show();
                    }
                }else if(id==R.id.nav_settings){
@@ -297,7 +297,7 @@ public class Home extends AppCompatActivity {
                         Intent intent = new Intent(Home.this, QrScannerActivity.class);
                         startActivityForResult(intent, QrScannerActivity.QR_REQUEST_CODE);
                     } else {
-                        Snackbar.make(getCurrentFocus(), getString(R.string.cam_err), Snackbar.LENGTH_LONG)
+                        Snackbar.make(getWindow().getDecorView().getRootView(), getString(R.string.cam_err), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 });

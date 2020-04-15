@@ -58,8 +58,8 @@
 
     <TextView
         android:id="@+id/esecuzione"
-        android:layout_width="413dp"
-        android:layout_height="605dp"
+        android:layout_width="386dp"
+        android:layout_height="603dp"
         android:layout_marginTop="80dp"
         android:text="TextView"
         android:textAlignment="viewStart"
