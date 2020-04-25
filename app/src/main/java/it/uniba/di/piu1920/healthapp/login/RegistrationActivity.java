@@ -18,13 +18,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
@@ -64,7 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         session = new SessionManager(getApplicationContext()); //inzializzo la sessione
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.register));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -245,7 +249,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     access = json.getJSONArray("Accesso");
                     JSONObject c = access.getJSONObject(0);
                     System.out.println("Password  : "+c.getString("password"));
-                    session.createLoginSession(c.getString("email"), c.getString("password"),Integer.parseInt(c.getString("tipo")),Integer.parseInt(c.getString("id")));
+                    session.createLoginSession(c.getString("email"), c.getString("password"), Integer.parseInt(c.getString("tipo")), Integer.parseInt(c.getString("id")), "");
                     ret = "ok";
                 } else {
                 }

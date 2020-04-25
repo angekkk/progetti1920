@@ -40,6 +40,9 @@ public class SessionManager {
 	public static final String KEY_ID = "id";
 
 	public static final String KEY_LANG = "lang";
+
+
+	public static final String KEY_LINK = "link";
 	// Constructor
 	public SessionManager(Context context){
 		this._context = context;
@@ -50,7 +53,7 @@ public class SessionManager {
 	/**
 	 * Create login session
 	 * */
-	public void createLoginSession(String numero, String password, int tipo, int id){
+	public void createLoginSession(String numero, String password, int tipo, int id, String link) {
 		// Storing login value as TRUE
 		editor.putBoolean(IS_LOGIN, true);
 		
@@ -65,7 +68,7 @@ public class SessionManager {
 
 		editor.putInt(KEY_ID,id);
 
-
+		editor.putString(KEY_LINK, link);
 	//	editor.putString(KEY_LANG, lang);
 		// commit changes
 		editor.commit();
@@ -79,11 +82,7 @@ public class SessionManager {
 	public boolean checkLogin(){
 		// Check login status
 		boolean g;
-		if(!this.isLoggedIn()){
-			g= false;
-		}else{
-			g=true;
-		}
+		g = this.isLoggedIn();
 		return g;
 	}
 
@@ -96,7 +95,7 @@ public class SessionManager {
 		Sessione x;
 
 
-		x=new Sessione(pref.getInt(KEY_ID,0),pref.getInt(KEY_TYPE,0),pref.getString(KEY_NAME,""),pref.getString(KEY_EMAIL,""));
+		x = new Sessione(pref.getInt(KEY_ID, 0), pref.getInt(KEY_TYPE, 0), pref.getString(KEY_NAME, ""), pref.getString(KEY_EMAIL, ""), pref.getString(KEY_LINK, ""));
 		// return user
 		return x;
 	}
