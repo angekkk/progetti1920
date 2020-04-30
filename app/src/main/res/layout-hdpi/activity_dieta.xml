@@ -53,7 +53,7 @@
         android:editable="false"
         android:text="TextView"
         android:textAlignment="textStart"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

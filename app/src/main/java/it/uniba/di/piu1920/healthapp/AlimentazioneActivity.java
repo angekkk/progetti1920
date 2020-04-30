@@ -42,7 +42,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recycler_exercices);
+        setContentView(R.layout.activity_scrolling);
         lista.add(new Item(getString(R.string.al_consigli)));
         rv= (RecyclerView) findViewById(R.id.rv);
         rv.setHasFixedSize(true);
@@ -198,7 +198,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
         @NonNull
         @Override
         public ExAdapt.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_diete, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.diete, parent, false);
             return new ExAdapt.MyViewHolder(v);
         }
 
