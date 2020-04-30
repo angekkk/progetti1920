@@ -1,19 +1,24 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,15 +26,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import org.json.JSONArray;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import io.ghyeok.stickyswitch.widget.StickySwitch;
@@ -50,6 +65,16 @@ public class SettingsActivity extends AppCompatActivity {
     StickySwitch sticky;
     ImageView img;
     String KEY_LING="LINGUA";
+
+
+    // request code
+    private final int PICK_IMAGE_REQUEST = 22;
+    // instance for firebase storage and StorageReference
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    // Uri indicates, where the image will be picked from
+    private Uri filePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +85,12 @@ public class SettingsActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         sticky=findViewById(R.id.sticky);
         img=findViewById(R.id.img);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        // get the Firebase  storage reference
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_account));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -75,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SelectImage();
             }
         });
         SharedPreferences sharedPreferences = this.getSharedPreferences("Lingua", Context.MODE_APPEND);
@@ -221,6 +251,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        if (!sessionManager.getUserDetails().getLink().equals("")) {
+            Picasso.get().load(sessionManager.getUserDetails().getLink()).into(img);//carico l'immagine dal server
+        }
+
+
     }
 
 
@@ -260,69 +295,18 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    //modifica esercizi
-    class update extends AsyncTask<String, String, String> {
+    // Select Image method
+    private void SelectImage() {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        protected String doInBackground(String... args) {
-            TwoParamsList params = new TwoParamsList();
-
-            params.add("idu",""+ idutente);
-            if(!n_email.contentEquals("")){
-                params.add("email",n_email);
-            }
-            if(!n_password.contentEquals("")) {
-                params.add("password",n_password);
-            }
-            String ret="";
-            System.out.println("PARAMS : "+params.toString());
-            JSONObject json = new JSONParser().makeHttpRequest(url_update, JSONParser.POST, params);
-            if (json != null) {
-                try {
-                    int success = json.getInt("success");
-                    if (success == 1) {
-                        System.out.println("PARAMS : OK");
-                        ret="ok";
-                    }else{
-                        System.out.println("PARAMS : NO");
-                        ret="no";
-                    }
-                } catch (JSONException e) {
-                    System.out.println("PARAMS : "+e.getMessage());
-                }
-            }else{
-                System.out.println("PARAMS : json nullo");
-            }
-            return ret;
-        }
-
-        protected void onPostExecute(final String file_url) {
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if(file_url.contentEquals("ok")){
-                        String pss=sessionManager.getUserDetails().getPass();
-                        int tipo=sessionManager.getUserDetails().getTipo();
-                        String em=sessionManager.getUserDetails().getEma();
-                        sessionManager.clear();
-                        if(!n_email.contentEquals("")){
-                            sessionManager.createLoginSession(n_email,pss,tipo,idutente);
-                        }
-                        if(!n_password.contentEquals("")) {
-                            sessionManager.createLoginSession(em,n_password,tipo,idutente);
-                        }
-                        showDialog(getString(R.string.mod_ok));
-                    }else if(file_url.contentEquals("no")){
-                        showDialog(getString(R.string.upd_err));
-                    }
-                    n_email="";
-                    n_password="";
-                }
-            });
-        }
+        // Defining Implicit Intent to mobile gallery
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Select Image from here..."),
+                PICK_IMAGE_REQUEST);
     }
 
     public void showDialog(String mx) {
@@ -365,4 +349,187 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////UPLOAD E PICK FOTO
+
+    // Override onActivityResult method
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+        // checking request code and result code
+        // if request code is PICK_IMAGE_REQUEST and
+        // resultCode is RESULT_OK
+        // then set image in the image view
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(
+                                getContentResolver(),
+                                filePath);
+                img.setImageBitmap(bitmap);
+                uploadImage();
+            } catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // UploadImage method
+    private void uploadImage() {
+        if (filePath != null) {
+
+            // Code for showing progressDialog while uploading
+            ProgressDialog progressDialog
+                    = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            // Defining the child of storageReference
+            StorageReference ref
+                    = storageReference
+                    .child(
+                            "images/"
+                                    + idutente + ".jpg");
+
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                    // Image uploaded successfully
+                                    // Dismiss dialog
+                                    progressDialog.dismiss();
+                                    Toast
+                                            .makeText(SettingsActivity.this,
+                                                    "Uploaded!",
+                                                    Toast.LENGTH_SHORT)
+                                            .show();
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Log.d("URI", "onSuccess: uri= " + uri.toString());
+                                            String pss = sessionManager.getUserDetails().getPass();
+                                            int tipo = sessionManager.getUserDetails().getTipo();
+                                            String em = sessionManager.getUserDetails().getEma();
+                                            sessionManager.clear();
+                                            sessionManager.createLoginSession(em, pss, tipo, idutente, uri.toString());//memorizzo il link all'immagine
+                                            Log.d("URI", "onSuccess: uri= " + sessionManager.getUserDetails().getLink());
+                                        }
+                                    });
+                                }
+                            })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(SettingsActivity.this,
+                                            "Failed " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot) {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Uploaded "
+                                                    + (int) progress + "%");
+                                }
+                            });
+        }
+    }
+
+    //modifica esercizi
+    class update extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(String... args) {
+            TwoParamsList params = new TwoParamsList();
+
+            params.add("idu", "" + idutente);
+            if (!n_email.contentEquals("")) {
+                params.add("email", n_email);
+            }
+            if (!n_password.contentEquals("")) {
+                params.add("password", n_password);
+            }
+            String ret = "";
+            System.out.println("PARAMS : " + params.toString());
+            JSONObject json = new JSONParser().makeHttpRequest(url_update, JSONParser.POST, params);
+            if (json != null) {
+                try {
+                    int success = json.getInt("success");
+                    if (success == 1) {
+                        System.out.println("PARAMS : OK");
+                        ret = "ok";
+                    } else {
+                        System.out.println("PARAMS : NO");
+                        ret = "no";
+                    }
+                } catch (JSONException e) {
+                    System.out.println("PARAMS : " + e.getMessage());
+                }
+            } else {
+                System.out.println("PARAMS : json nullo");
+            }
+            return ret;
+        }
+
+        protected void onPostExecute(final String file_url) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    if (file_url.contentEquals("ok")) {
+                        String pss = sessionManager.getUserDetails().getPass();
+                        int tipo = sessionManager.getUserDetails().getTipo();
+                        String em = sessionManager.getUserDetails().getEma();
+                        String link = sessionManager.getUserDetails().getLink();
+                        sessionManager.clear();
+                        if (!n_email.contentEquals("")) {
+                            sessionManager.createLoginSession(n_email, pss, tipo, idutente, link);
+                        }
+                        if (!n_password.contentEquals("")) {
+                            sessionManager.createLoginSession(em, n_password, tipo, idutente, link);
+                        }
+                        showDialog(getString(R.string.mod_ok));
+                    } else if (file_url.contentEquals("no")) {
+                        showDialog(getString(R.string.upd_err));
+                    }
+                    n_email = "";
+                    n_password = "";
+                }
+            });
+        }
+    }
 }

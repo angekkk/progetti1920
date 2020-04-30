@@ -18,15 +18,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,13 +33,13 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
-
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
@@ -67,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         session = new SessionManager(getApplicationContext());
         initializeUI();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         reg=findViewById(R.id.swipeRight);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.login));
@@ -211,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
                 authWithGoogle(account);
 
-                session.createLoginSession(account.getEmail(),"1",0,1);//tipo 2 google
+                session.createLoginSession(account.getEmail(), "1", 0, 1, "");//tipo 2 google
             }
         }
     }
@@ -255,7 +254,7 @@ public class LoginActivity extends AppCompatActivity {
                     access = json.getJSONArray("Accesso");
                     JSONObject c = access.getJSONObject(0);
                     System.out.println("Password  : "+c.getString("password"));
-                    session.createLoginSession(c.getString("email"), c.getString("password"), Integer.parseInt(c.getString("tipo")), Integer.parseInt(c.getString("id")));
+                    session.createLoginSession(c.getString("email"), c.getString("password"), Integer.parseInt(c.getString("tipo")), Integer.parseInt(c.getString("id")), "");
                     ret = "ok";
                 } else {
                 }

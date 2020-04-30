@@ -16,41 +16,40 @@ import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import io.ghyeok.stickyswitch.widget.StickySwitch;
 import it.uniba.di.piu1920.healthapp.bmi.BMIActivity;
 import it.uniba.di.piu1920.healthapp.calorie.NutriActivity;
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
@@ -83,6 +82,7 @@ public class Home extends AppCompatActivity {
     ImageView foto;
     private static final String TAG = "Home";
     int lingua=0;
+    String link = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +132,7 @@ public class Home extends AppCompatActivity {
          hView =  navigationView.getHeaderView(0); //recuperiamo la view del NavigaionDrawer
          email= hView.findViewById(R.id.email);
          foto= hView.findViewById(R.id.foto);
+
         if (session.checkLogin()) { //controllo che la sessione sia attiva
 
             // get user data from session
@@ -147,10 +148,17 @@ public class Home extends AppCompatActivity {
             new GetIdScheda().execute(); //controllo e recupero in caso affermativo l'id della scheda relativo all'utente loggato
             new GetStatus().execute(); //controllo il tipo dell'utente se è cambiato o meno, in base a quello onPostExecute visualizzo gli item del menù corrispondenti
 
+
         }
 
         navigationView.setCheckedItem(R.id.nav_home); // la home è sempre selezionata come item principale ad ogni apertura
 
+        navigationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {//listener per il menù del NavigationDrawer
 
             @Override
@@ -232,6 +240,43 @@ public class Home extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        Log.i(TAG, ":: ON RESUME ::");
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onPostResume() {
+
+        super.onPostResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.i(TAG, ":: ON START :: avviato l'app");
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i(TAG, ":: ON STOP ::");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i(TAG, ":: ON DESTROY ::");
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.i(TAG, ":: ON PAUSE ::");
+        super.onPause();
+    }
 
     private void setAppLocale(String localeCode){
         Resources resources = getResources();
@@ -488,7 +533,7 @@ public class Home extends AppCompatActivity {
                         if(session.getUserDetails().getTipo()!=Integer.parseInt(c.getString("tipo"))){
                             System.out.println(" SESSION TIPO PRIMA: "+session.getUserDetails().getTipo());
                             session.logoutUser();
-                            session.createLoginSession(c.getString("email"),c.getString("password"),Integer.parseInt(c.getString("tipo")),Integer.parseInt(c.getString("id")));
+                            session.createLoginSession(c.getString("email"), c.getString("password"), Integer.parseInt(c.getString("tipo")), Integer.parseInt(c.getString("id")), "");
                             System.out.println(" SESSION TIPO CAMBIATO: "+session.getUserDetails().getTipo());
                         }
                     }
@@ -506,10 +551,14 @@ public class Home extends AppCompatActivity {
                     if(session.getUserDetails().getTipo()==1){//controllo se l'utente connesso è un pt o un cliente
                         //in caso affermativo visualizzo anche l'item relativo alla gestione dei clienti
                         navigationView.getMenu().getItem(7).setVisible(true);
-                        foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
+                        //foto.setImageDrawable(getDrawable(R.drawable.pt)); //setto l'immagine del pt nella navbar
                     }else{
                         navigationView.getMenu().getItem(10).setVisible(true);//richiesta pt
-                        foto.setImageDrawable(getDrawable(R.drawable.user));
+                        //foto.setImageDrawable(getDrawable(R.drawable.user));
+                    }
+                    if (!session.getUserDetails().getLink().equals("")) {
+                        link = session.getUserDetails().getLink();
+                        Picasso.get().load(link).resize(100, 100).into(foto);//carico l'immagine dal server
                     }
                 }
             });
