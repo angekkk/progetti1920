@@ -90,4 +90,6 @@ dependencies {
     // Statistics around pedometer
     implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
 
+    implementation 'com.borjabravo:readmoretextview:2.0.1'
+
 }
