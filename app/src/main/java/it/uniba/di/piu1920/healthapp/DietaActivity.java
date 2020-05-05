@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,7 +22,8 @@ public class DietaActivity extends AppCompatActivity {
 
     Esercizio ex;
     TextView categoria,nome;
-    EditText desc;
+    ReadMoreTextView desc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
