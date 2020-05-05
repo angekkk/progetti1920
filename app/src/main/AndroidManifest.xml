@@ -85,6 +85,9 @@
         <activity android:name=".calorie.NutriActivity"/>
         <activity android:name=".step.StepsActivity"/>
         <activity android:name=".step.SetGoalActivity" android:windowSoftInputMode="adjustNothing" />
+
+
+
     </application>
 
 </manifest>
