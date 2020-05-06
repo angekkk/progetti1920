@@ -28,7 +28,7 @@ public class DietaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dieta);
+        setContentView(R.layout.activity_diet_details);
 
         categoria=findViewById(R.id.cat);
      //   nome=findViewById(R.id.nome);

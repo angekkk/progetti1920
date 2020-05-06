@@ -10,7 +10,8 @@
     android:layout_marginEnd="8dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true"
-    tools:ignore="ContentDescription">
+    tools:ignore="ContentDescription"
+   >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,42 +27,29 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:text="Consigli alimentari"
             android:textColor="#5E5E5E"
             android:textSize="18dp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/textView9"
-            card_view:layout_constraintEnd_toStartOf="@+id/profile_image1"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="28dp"
-            android:text="dieta e alimentazione "
-            android:textColor="#B55E5E5E"
-            android:textSize="12dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/profile_image1"
             card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+
+        <ImageView
             android:id="@+id/img"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="28dp"
             android:src="@drawable/ic_arrow_right"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.907"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
