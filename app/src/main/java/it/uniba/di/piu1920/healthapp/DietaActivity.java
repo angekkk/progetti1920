@@ -33,11 +33,16 @@ public class DietaActivity extends AppCompatActivity {
         categoria=findViewById(R.id.cat);
      //   nome=findViewById(R.id.nome);
         desc=findViewById(R.id.desc);
+
+
+
         Bundle  arg = getIntent().getExtras();
         Bundle x= arg.getBundle("bund");
         categoria.setText(x.getString("cat").toUpperCase());
        // nome.setText(x.getString("nome"));
         desc.setText(x.getString("desc"));
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(x.getString("nome"));
