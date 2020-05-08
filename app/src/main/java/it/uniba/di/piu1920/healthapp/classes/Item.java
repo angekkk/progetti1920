@@ -11,13 +11,16 @@ public class Item implements java.io.Serializable{
     public ImageView im;
     String link;
 
-    int id; String n2,n3;
+    int id; String n2,n3,n4,n5,n6;
 
-    public Item( int id, String name,String n2, String n3) {
+    public Item( int id, String name,String n2, String n3, String n4, String n5, String n6) {
         this.name = name;
         this.id = id;
         this.n2 = n2;
         this.n3 = n3;
+        this.n4 = n4;
+        this.n5 = n5;
+        this.n6 = n6;
     }
 
     public int getId() {
@@ -43,6 +46,31 @@ public class Item implements java.io.Serializable{
     public void setN3(String n3) {
         this.n3 = n3;
     }
+
+
+
+    public String getN4() {
+        return n4;
+    }
+    public void setN4(String n4) {
+        this.n4 = n4;
+    }
+
+    public String getN5() {
+        return n5;
+    }
+    public void setN5(String n5) {
+        this.n5 = n5;
+    }
+
+    public String getN6() {
+        return n6;
+    }
+    public void setN6(String n6) {
+        this.n6 = n6;
+    }
+
+
 
 
 

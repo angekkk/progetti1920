@@ -24,6 +24,10 @@ public class DietaActivity extends AppCompatActivity {
     TextView categoria,nome;
     ReadMoreTextView desc;
 
+    TextView colazione;
+    TextView pranzo;
+    TextView cena;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +38,23 @@ public class DietaActivity extends AppCompatActivity {
      //   nome=findViewById(R.id.nome);
         desc=findViewById(R.id.desc);
 
+        colazione=findViewById(R.id.tx4);
+        pranzo=findViewById(R.id.tx6);
+        cena=findViewById(R.id.tx8);
+
 
         Bundle  arg = getIntent().getExtras();
         Bundle x= arg.getBundle("bund");
         categoria.setText(x.getString("cat").toUpperCase());
        // nome.setText(x.getString("nome"));
         desc.setText(x.getString("desc"));
+
+
+        colazione.setText(x.getString("tx4"));
+        pranzo.setText(x.getString("tx6"));
+        cena.setText(x.getString("tx8"));
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

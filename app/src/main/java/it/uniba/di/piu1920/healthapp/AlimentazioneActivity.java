@@ -74,6 +74,13 @@ public class AlimentazioneActivity extends AppCompatActivity {
                                 x.putString("nome",lista.get(position).getName());
                                 x.putString("cat",lista.get(position).getN2());
                                 x.putString("desc",lista.get(position).getN3());
+
+
+                                x.putString("tx4",lista.get(position).getN4());
+                                x.putString("tx6",lista.get(position).getN5());
+                                x.putString("tx8",lista.get(position).getN6());
+
+
                                 i.putExtra("bund",x);
                                 startActivity(i);
                                 finish();
@@ -134,8 +141,14 @@ public class AlimentazioneActivity extends AppCompatActivity {
                             String nome=c.getString("nome");
                             String desc=c.getString("descrizione");
 
+
+                            String tx4=c.getString("colazione");
+                            String tx6=c.getString("pranzo");
+                            String tx8=c.getString("cena");
+
+
                             //   String link=c.getString("link");
-                            Item x=new Item(id,nome,categoria,desc);
+                            Item x=new Item(id,nome,categoria,desc,tx4,tx6,tx8);
 
                             lista.add(x);
 

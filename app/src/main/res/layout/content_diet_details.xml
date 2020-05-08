@@ -130,7 +130,7 @@
                 android:src="@drawable/icon2" />
 
             <TextView
-                android:id="@+id/tx4"
+                android:id="@+id/tx5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -143,10 +143,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tx5"
+                android:id="@+id/tx6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tx4"
+                android:layout_below="@+id/tx5"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="1dp"
@@ -175,7 +175,7 @@
                 android:src="@drawable/icon3" />
 
             <TextView
-                android:id="@+id/tx5"
+                android:id="@+id/tx7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -188,10 +188,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tx6"
+                android:id="@+id/tx8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tx5"
+                android:layout_below="@+id/tx7"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="1dp"
