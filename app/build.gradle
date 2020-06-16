@@ -92,4 +92,7 @@ dependencies {
 
     implementation 'com.borjabravo:readmoretextview:2.0.1'
 
+    implementation 'com.google.android.material:material:1.0.0'
+
+
 }
