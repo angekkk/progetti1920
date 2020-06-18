@@ -25,6 +25,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -106,6 +108,12 @@ public class ExOutDoorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setUpText(int counter) {
+        String itemsFound = getResources().getQuantityString(R.plurals.numeroEsercizi, counter, counter);
+        Snackbar.make(getWindow().getDecorView().getRootView(), itemsFound, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
     //classe per il recupero degli esercizi
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
@@ -161,6 +169,7 @@ public class ExOutDoorActivity extends AppCompatActivity {
                     for(int i=0;i<lista.size();i++){
                         Log.d("Link :",""+"http://ddauniba.altervista.org/HealthApp/img/"+lista.get(i).getLink());
                     }
+                    setUpText(lista.size());//test plurals
                     ExAdapt ca = new ExAdapt(lista);
                     rv.setAdapter(ca);
                 }
