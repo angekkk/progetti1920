@@ -6,7 +6,8 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import it.uniba.di.piu1920.healthapp.BuildConfig;
+import belka.us.androidtoggleswitch.BuildConfig;
+
 
 //classe per preparare i parametri nella chiamata
 
