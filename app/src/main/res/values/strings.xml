@@ -208,8 +208,7 @@
     <string name="non_valido">Campo non valido</string>
     <string name="err_no_scheda">Non hai una scheda da visualizzare al momento</string>
 
-    <plurals name="numeroEsericizi">
-
+    <plurals name="numeroEsercizi">
         <item quantity="one">%d esercizio trovato.</item>
         <item quantity="other">%d esercizi trovati.</item>
     </plurals>

@@ -201,7 +201,7 @@
     <string name="supp_em">Do you need more information? Contact Us!</string>
 
 
-    <plurals name="numeroEsericizi">
+    <plurals name="numeroEsercizi">
         <item quantity="one">%d exercise found.</item>
         <item quantity="other">%d exercises found.</item>
     </plurals>
