@@ -218,8 +218,7 @@ public class Bluethoot extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "**********************************\nDeveloper: www.santoshkumarsingh.com\n**********************************", Toast.LENGTH_LONG).show();
-            return true;
+         return true;
         }
         return super.onOptionsItemSelected(item);
     }

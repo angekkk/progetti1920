@@ -2,6 +2,7 @@ package it.uniba.di.piu1920.healthapp.connect;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,8 +11,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
-import it.uniba.di.piu1920.healthapp.BuildConfig;
+import belka.us.androidtoggleswitch.BuildConfig;
 
 
 public class JSONParser {
@@ -34,7 +36,7 @@ public class JSONParser {
             if (method.equals(POST)) {
                 HttpURLConnection urlConnection = (HttpURLConnection) new URL(urlString).openConnection();
                 urlConnection.setDoOutput(true);
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), StandardCharsets.UTF_8));
                 writer.write(params.toString());
                 writer.flush();
                 writer.close();
@@ -46,7 +48,7 @@ public class JSONParser {
             e.printStackTrace();
         }
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             while (true) {
                 String line = reader.readLine();

@@ -63,7 +63,11 @@
         <activity
             android:name=".splash.AppIntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Home" />
         <activity android:name=".DetailsActivity" />
@@ -90,11 +94,7 @@
             android:name=".step.SetGoalActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Bluethoot">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>
