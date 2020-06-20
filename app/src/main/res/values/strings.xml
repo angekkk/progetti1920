@@ -85,8 +85,8 @@
 
 
     <!--NAVBAR -->
-    <string name="title_bmi">BMI</string>
-    <string name="title_calorie">Calorie</string>
+    <string name="title_bmi">Calcola BMI</string>
+    <string name="title_calorie">Calcola Calorie</string>
     <string name="title_home">Home</string>
     <string name="risultati">Risultati</string>
     <string name="menu_slideshow">Slideshow</string>
