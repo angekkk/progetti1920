@@ -1,42 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/title"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:gravity="center"
-        android:paddingTop="8dp"
-        android:text="@string/lets_calculate_together"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title2"
+        <ImageView
+            android:id="@+id/imgTDEE"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/calorie" />
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@+id/imgTDEE"
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            >
+
+        <TextView
+            android:id="@+id/cal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Calcolo TDEE"
+            android:textColor="#5E5E5E"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/cal2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total Daily Energy Expenditure"
+            android:textColor="#CD5E5E5E"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            />
+
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Il consumo energetico giornaliero complessivo o TDEE (acronimo di Total Daily Energy Expenditure: letteralmente spesa energetica giornaliera totale) non è altro che una stima di quante calorie bruciamo giornalmente. Si tratta di un valore differente da quello del tasso metabolico basale (BMR) in quanto prende in considerazione, oltre che allo stesso tasso metabolico basale, anche i livelli di attività che facciamo. \nEcco una guida passo passo per calcolare il tuo BMR utilizzando l’equazione di Harris-Benedict:\nDonne BMR = 655 + (9,6 X peso in kg) + (1,8 x altezza in cm) – (4,7 x età in anni)\n\nUomo BMR = 66 + (13,7 X peso in kg) + (5 x altezza in cm) – (6,8 x età in anni)\nAd esempio, prendiamo un maschio di 30 anni di nome Luca che è alto 180 cm e pesa 78 chili.\n\nBMR = 66 + (13,7 x 78) + (5 x 180) – (6,8 x 30)\nBMR = 66 + 1068,6 + 900 – 204\nBMR = 1830,6\n\nQuindi, come minimo indispensabile per sostenere la vita e garantire la longevità, il nostro Luca avrebbe bisogno di consumare circa 1830 calorie.\n\nIl prossimo passo nel capire TDEE sarebbe quello di calcolare l’effetto termico del cibo, nonché i fattori di non esercizio e di esercizio.Fortunatamente, non devi passare ore a eseguire calcoli più noiosi. I ricercatori hanno determinato una serie di “moltiplicatori di attività”, noti come moltiplicatori di Katch-McArdle.\n\nPer calcolare il tuo TDEE approssimativo, basta moltiplicare questi fattori di attività dal tuo BMR:\n\nSedentario (poco o nessun esercizio + lavoro di scrivania) = 1.2\nLeggermente attivo (esercizio leggero 1-3 giorni / settimana) = 1.375\nModeratamente attivo (esercizio moderato 3-5 giorni / settimana) = 1,55\nMolto attivo (allenamento pesante 6-7 giorni / settimana) = 1.725\n\nEstremamente attivo (esercizio molto pesante, duro lavoro, allenamento 2x / giorno) = 1.9\n\nTornando al nostro esempio, supponiamo che Luca si alleni 2 giorni alla settimana. Questo mette Luca nella categoria “Leggermente Attivo“.\n\nPer il calcolo del TDEE approssimativo di Luca, moltiplica il suo BMR di 1,375. Questo ci dà:\n\nTDEE = 1,375 x BMR\nTDEE = 1,375 x 1830\nTDEE = 2517\n\nQuindi, dal calcolo del TDEE, il nostro esempio Luca ha bisogno di consumare circa 2500 calorie al giorno solo per mantenere il suo peso attuale.\n"
+            android:textColor="#B55E5E5E"
+            android:textSize="15dp"
+            app:colorClickableText="@android:color/holo_blue_light"
+            app:trimCollapsedText=" Show less"
+            app:trimExpandedText=" Show more"
+            app:trimLength="250"
+            app:trimMode="trimModeLength"
+            android:layout_marginBottom="10dp"
+            />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:background="#315E5E5E"
+            />
+
+        <TextView
+            android:id="@+id/tx9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="28dp"
+            android:text="Calcola il tuo TDEE"
+            android:textColor="#5E5E5E"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rel4"
+        app:layout_constraintTop_toBottomOf="@+id/line5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="43dp"
+        android:layout_height="match_parent">
 
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="@string/tdee_total_daily_energy_expenditure"
-        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/age_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title2"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@id/sticky_switch_gender"
-
         android:text="@string/my_age_is" />
 
     <TextView
@@ -65,7 +136,6 @@
         android:id="@+id/edit_age"
         android:layout_width="55dp"
         android:layout_height="35dp"
-        android:layout_below="@id/title2"
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@id/age_txt"
@@ -256,7 +326,7 @@
         android:layout_alignParentBottom="false"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="91dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/corner_bgc"
         android:elevation="8dp"
         android:text="@string/calculate"
@@ -273,7 +343,7 @@
         android:layout_alignParentBottom="false"
         android:layout_marginStart="35dp"
         android:layout_marginTop="55dp"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/corner_bgc"
         android:elevation="8dp"
         android:text="@string/reset"
@@ -281,4 +351,10 @@
         android:textColor="@color/label_text_light"
         app:cornerRadius="20dp" />
 
+
+
 </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
