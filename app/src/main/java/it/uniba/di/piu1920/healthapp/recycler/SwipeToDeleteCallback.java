@@ -9,12 +9,15 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
 import it.uniba.di.piu1920.healthapp.R;
 
+//check del 22/06
 abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
 
     Context mContext;
@@ -32,9 +35,8 @@ abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
         mBackground = new ColorDrawable();
         backgroundColor = Color.parseColor("#b80f0a"); //imposto il colore rosso per lo swipe
         mClearPaint = new Paint();
-
         mClearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR)); //setta il modo con cui le due immagini si intersecano..Deriva da un convegno del 1984 Porter e Duff
-         //Mode.CLEAR pulisce la canvas con la nuova immagine
+        //Mode.CLEAR pulisce la canvas con la nuova immagine
         deleteDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_delete); //setto l'immagine del cestino
         intrinsicWidth = deleteDrawable.getIntrinsicWidth(); //prende le dimensioni di default del drawable settato
         intrinsicHeight = deleteDrawable.getIntrinsicHeight();

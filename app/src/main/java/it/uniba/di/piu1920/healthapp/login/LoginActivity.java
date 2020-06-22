@@ -44,9 +44,10 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
+//check del 22/06
 public class LoginActivity extends AppCompatActivity {
 
-     EditText emailTV, passwordTV;
+    EditText emailTV, passwordTV;
     private Button loginBtn;
     private ProgressBar progressBar;
     SessionManager session;
@@ -54,11 +55,12 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     ImageView swipe;
     ImageButton scopri;
-    TextView dim,reg;
+    TextView dim, reg;
     private static final String TAG_SUCCESS = "success";
     JSONArray access = null;
     private static String url_accesso_utente = "http://ddauniba.altervista.org/HealthApp/get_accesso.php";
     private static String url_send_email = "http://ddauniba.altervista.org/HealthApp/invia_email.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,12 +222,11 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(), Home.class));
                     finish();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Auth Error",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Auth Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -302,7 +303,7 @@ public class LoginActivity extends AppCompatActivity {
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     access = json.getJSONArray("send");
-                     ret = "ok";
+                    ret = "ok";
                 } else {
                 }
             } catch (JSONException e) {

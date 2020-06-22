@@ -3,7 +3,7 @@ package it.uniba.di.piu1920.healthapp.splash;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Toast;
+
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -11,7 +11,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
-
+//check del 22/06
 public class AppIntroActivity extends AppIntro {
 
 

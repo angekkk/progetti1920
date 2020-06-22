@@ -10,7 +10,7 @@ import belka.us.androidtoggleswitch.BuildConfig;
 
 
 //classe per preparare i parametri nella chiamata
-
+//check del 22/06
 public class TwoParamsList extends ArrayList<Pair<String, String>> {
     public void add(String key, String value) {
         add(new Pair(key, value));

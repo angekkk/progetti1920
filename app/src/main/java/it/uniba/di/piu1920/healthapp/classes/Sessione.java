@@ -1,18 +1,14 @@
 package it.uniba.di.piu1920.healthapp.classes;
 
 
+//check del 22/06
 public class Sessione {
 
-    int id;int tipo; String ema,pass,lang;
+    int id;
+    int tipo;
+    String ema, pass;
     String link;
 
-    public Sessione(int id, int tipo, String ema, String pass) {
-        this.id = id;
-        this.tipo = tipo;
-        this.ema = ema;
-        this.pass = pass;
-        this.link = "";
-    }
 
     public Sessione(int id, int tipo, String ema, String pass, String link) {
         this.id = id;
@@ -30,29 +26,16 @@ public class Sessione {
         this.link = link;
     }
 
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
 
     public String getEma() {
         return ema;
     }
 
-    public void setEma(String ema) {
-        this.ema = ema;
-    }
 
     public String getPass() {
         return pass;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 
     public int getId() {
         return id;

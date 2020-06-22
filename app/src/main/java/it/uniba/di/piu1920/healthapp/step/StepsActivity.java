@@ -11,7 +11,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +25,7 @@ import com.hookedonplay.decoviewlib.events.DecoEvent;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
-
+//check del 22/06
 public class StepsActivity extends AppCompatActivity implements SensorEventListener {
 
     public static float evsteps;
@@ -55,11 +54,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
             mSeriesMax = Integer.parseInt(x.getString("goal"));
         }
         SharedPreferences sharedpreferences = getSharedPreferences("GOAL", Context.MODE_PRIVATE);
-
         System.out.println("GOAL SCRITTO IN STEP: "+sharedpreferences.getString("goal",""));
-
-        final String cap1;
-        final float[] m = new float[1];
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.title_step));

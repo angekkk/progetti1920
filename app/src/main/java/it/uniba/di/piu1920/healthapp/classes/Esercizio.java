@@ -2,10 +2,12 @@ package it.uniba.di.piu1920.healthapp.classes;
 
 import java.io.Serializable;
 
+
+//check del 22/06
 public class Esercizio implements Serializable {
 
-    String nome,nomecategoria,link,esecuzione;
-    int id,tipo;
+    String nome, nomecategoria, link, esecuzione;
+    int id, tipo;
 
     public Esercizio(String nome, String nomecategoria, String link, String esecuzione, int id, int tipo) {
         this.nome = nome;
@@ -15,7 +17,6 @@ public class Esercizio implements Serializable {
         this.id = id;
         this.tipo = tipo;
     }
-
 
 
     public String getNome() {
@@ -30,9 +31,6 @@ public class Esercizio implements Serializable {
         return nomecategoria;
     }
 
-    public void setNomecategoria(String nomecategoria) {
-        this.nomecategoria = nomecategoria;
-    }
 
     public String getLink() {
         return link;

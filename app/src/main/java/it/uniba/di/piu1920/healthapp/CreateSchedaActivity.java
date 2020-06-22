@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,18 +32,23 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.SwipeToDeleteCallback;
 
+//check del 22/06
 public class CreateSchedaActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success";
@@ -68,13 +74,14 @@ public class CreateSchedaActivity extends AppCompatActivity {
     SessionManager session;
     String conca="";
     int MOD=0; //variabile usata per controllare se si è entrati nella schermata per inserire una nuova scheda o come modifica della precedente
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_scheda_activity);
         rv = (RecyclerView) findViewById(R.id.scheda);
         rv.setHasFixedSize(true);
-         llm = new LinearLayoutManager(this);
+        llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
         spinner = findViewById(R.id.spinner);
@@ -101,17 +108,17 @@ public class CreateSchedaActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
-                    startActivity(i);
-                    finish();
+                Intent i = new Intent(CreateSchedaActivity.this, GestioneClientiActivity.class);
+                startActivity(i);
+                finish();
             }
         });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(addEsercizioScheda((String) spinner.getSelectedItem())){//se l'elemento è stato inserito nell'array, allora ricreo l'adapter per la recycler view
-                     ca = new ExAdapt(scheda);
-                     rv.setAdapter(ca);
+                if (addEsercizioScheda((String) spinner.getSelectedItem())) {//se l'elemento è stato inserito nell'array, allora ricreo l'adapter per la recycler view
+                    ca = new ExAdapt(scheda);
+                    rv.setAdapter(ca);
                 }
             }
         });
@@ -159,7 +166,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
                                     .show();
 
                         }
-                    }else{
+                    } else {
                         Snackbar.make(getCurrentFocus(), getString(R.string.err_connessione), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
@@ -169,6 +176,27 @@ public class CreateSchedaActivity extends AppCompatActivity {
         });
     }
 
+    //metodo per controllare l'esercizio nella list LISTA, e aggiungerlo nella list SCHEDA
+    boolean addEsercizioScheda(String nome) {
+        boolean aggiunto = false;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getNome().contentEquals(nome)) {
+                if (!scheda.contains(lista.get(i))) {
+                    scheda.add(lista.get(i));
+                    System.out.println("ESERCIZIO : " + lista.get(i).getId());
+                    aggiunto = true;
+                }
+            }
+        }
+        return aggiunto;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        return true;
+    }
 
     class GetEserciziScheda extends AsyncTask<String, String, String> {
         @Override
@@ -176,7 +204,9 @@ public class CreateSchedaActivity extends AppCompatActivity {
             super.onPreExecute();
 
         }
+
         List<String> categories = new ArrayList<>();
+
         protected String doInBackground(String... args) {
             String ris = null;
             TwoParamsList params = new TwoParamsList();
@@ -212,17 +242,16 @@ public class CreateSchedaActivity extends AppCompatActivity {
             }
 
 
-
             return ris;
         }
 
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                    conca="";
-                    for(int i=0;i<scheda.size();i++){
-                        idesercizio=scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
-                        conca=conca+idesercizio+";";
+                    conca = "";
+                    for (int i = 0; i < scheda.size(); i++) {
+                        idesercizio = scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
+                        conca = conca + idesercizio + ";";
                     }
                     ca = new ExAdapt(scheda);
                     rv.setAdapter(ca);
@@ -232,28 +261,6 @@ public class CreateSchedaActivity extends AppCompatActivity {
 
         }
 
-    }
-
-    //metodo per controllare l'esercizio nella list LISTA, e aggiungerlo nella list SCHEDA
-    boolean addEsercizioScheda(String nome){
-        boolean aggiunto=false;
-        for(int i=0;i<lista.size();i++){
-            if(lista.get(i).getNome().contentEquals(nome)){
-                if(!scheda.contains(lista.get(i))){
-                    scheda.add(lista.get(i));
-                    System.out.println("ESERCIZIO : "+lista.get(i).getId());
-                    aggiunto= true;
-                }
-            }
-        }
-        return aggiunto;
-    }
-
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-        return true;
     }
 
     @Override
@@ -332,7 +339,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                        new  get_id().execute();
+                    new get_id().execute();
                 }
             });
         }
@@ -354,7 +361,7 @@ public class CreateSchedaActivity extends AppCompatActivity {
             param.add("idu",""+ idutente);
             param.add("id",""+ session.getUserDetails().getId());
             JSONObject json2 = new JSONParser().makeHttpRequest(url_id_scheda, JSONParser.GET, param);
-            System.out.println("");
+            System.out.println();
             try {
                 int success = json2.getInt(TAG_SUCCESS);
                 if (success == 1) {
@@ -376,9 +383,9 @@ public class CreateSchedaActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                    for(int i=0;i<scheda.size();i++){
-                        idesercizio=scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
-                        conca=conca+idesercizio+";";
+                    for (int i = 0; i < scheda.size(); i++) {
+                        idesercizio = scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
+                        conca = conca + idesercizio + ";";
                     }
                     new inserisci_esercizi().execute();
 
@@ -462,7 +469,9 @@ public class CreateSchedaActivity extends AppCompatActivity {
             super.onPreExecute();
 
         }
+
         List<String> categories = new ArrayList<>();
+
         protected String doInBackground(String... args) {
             String ris = null;
             if (isWorkingInternetPersent()) {
@@ -651,12 +660,12 @@ public class CreateSchedaActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                    conca="";
-                    for(int i=0;i<scheda.size();i++){
-                        idesercizio=scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
-                        conca=conca+idesercizio+";";
+                    conca = "";
+                    for (int i = 0; i < scheda.size(); i++) {
+                        idesercizio = scheda.get(i).getId(); //prendo l'id dell'esercizio e lo passo alla chiamata
+                        conca = conca + idesercizio + ";";
                     }
-                    System.out.println("MODIFICA ESERCIZI : "+conca);
+                    System.out.println("MODIFICA ESERCIZI : " + conca);
                     new inserisci_esercizi().execute();
 
                 }

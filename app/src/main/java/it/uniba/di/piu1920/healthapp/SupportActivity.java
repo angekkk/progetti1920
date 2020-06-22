@@ -1,11 +1,9 @@
 package it.uniba.di.piu1920.healthapp;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
+//check del 22/06
 public class SupportActivity extends AppCompatActivity {
 
 
@@ -181,24 +179,6 @@ public class SupportActivity extends AppCompatActivity {
     }
 
 
-    public void showDialog(String mx) {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle(getString(R.string.title_account))
-                .setMessage(mx)
-
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogs, int which) {
-                        dialogs.dismiss();
-                    }
-                })
-
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(getDrawable(R.drawable.nav_account))
-                .show();
-    }
     //metodo per controllare la connessione ad internet
 
     public boolean isWorkingInternetPersent() {

@@ -30,7 +30,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Set;
 
 import it.uniba.di.piu1920.healthapp.R;
+import it.uniba.di.piu1920.healthapp.SchedaActivity;
 
+//check del 22/06
 public class BtActivity extends AppCompatActivity {
 
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -45,8 +47,7 @@ public class BtActivity extends AppCompatActivity {
     private ImageButton btnConnect;
     private Dialog dialog;
     private BluetoothAdapter bluetoothAdapter;
-    private Context contex;
-    private ChatController chatController;
+    private Controller chatController;
     private BluetoothDevice connectingDevice;
     private ArrayAdapter<String> discoveredDevicesAdapter;
     private final BroadcastReceiver discoveryFinishReceiver = new BroadcastReceiver() {
@@ -74,26 +75,23 @@ public class BtActivity extends AppCompatActivity {
             switch (msg.what) {
                 case MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
-                        case ChatController.STATE_CONNECTED:
+                        case Controller.STATE_CONNECTED:
                             setStatus(getString(R.string.connect_to) + " " + connectingDevice.getName());
                             btnConnect.setEnabled(false);
                             break;
-                        case ChatController.STATE_CONNECTING:
+                        case Controller.STATE_CONNECTING:
                             setStatus(getString(R.string.connecting));
                             btnConnect.setEnabled(false);
                             break;
-                        case ChatController.STATE_LISTEN:
-                        case ChatController.STATE_NONE:
+                        case Controller.STATE_LISTEN:
+                        case Controller.STATE_NONE:
                             setStatus(getString(R.string.not_connected));
                             btnConnect.setEnabled(true);
                             break;
                     }
                     break;
                 case MESSAGE_WRITE:
-                    byte[] writeBuf = (byte[]) msg.obj;
-
-                    String writeMessage = new String(writeBuf);
-
+                    sendMessage("" + qr);
                     break;
                 case MESSAGE_READ:
 
@@ -103,9 +101,11 @@ public class BtActivity extends AppCompatActivity {
                     readMessage = readMessage.replace(',', '.');
 
                     int qr = Integer.parseInt(readMessage);
-
                     //leggo il qr
-
+                    Intent i = new Intent(BtActivity.this, SchedaActivity.class);
+                    i.putExtra("idscheda", qr);
+                    startActivity(i);
+                    finish();
                     break;
                 case MESSAGE_DEVICE_OBJECT:
                     connectingDevice = msg.getData().getParcelable(DEVICE_OBJECT);
@@ -127,11 +127,7 @@ public class BtActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_bluetooth);
         findViewsByIds();
-
         askPermissionLocation();
-
-        contex = getApplicationContext();
-
         Bundle arg = getIntent().getExtras();
 
         if (arg.getInt("qr") != 0) { //controllo che sia stato passato l'id della scheda da inviare
@@ -182,7 +178,7 @@ public class BtActivity extends AppCompatActivity {
                 }
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Permission Cancelled!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.pmc), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -191,7 +187,7 @@ public class BtActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION);
         //
         if (!canLocation) {
-            Toast.makeText(getApplicationContext(), "Senza questo permesso non potrai cercare i dispositivi bluetooth nelle vivinanze.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.nop), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -314,7 +310,7 @@ public class BtActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_ENABLE_BLUETOOTH:
                 if (resultCode == Activity.RESULT_OK) {
-                    chatController = new ChatController(this, handler);
+                    chatController = new Controller(this, handler);
                 } else {
                     Toast.makeText(this, getString(R.string.bluetooth_disabled), Toast.LENGTH_SHORT).show();
                     finish();
@@ -323,7 +319,7 @@ public class BtActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String message) {
-        if (chatController.getState() != ChatController.STATE_CONNECTED) {
+        if (chatController.getState() != Controller.STATE_CONNECTED) {
             Toast.makeText(this, getString(R.string.connection_lost), Toast.LENGTH_SHORT).show();
             return;
         }
@@ -341,7 +337,7 @@ public class BtActivity extends AppCompatActivity {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BLUETOOTH);
         } else {
-            chatController = new ChatController(this, handler);
+            chatController = new Controller(this, handler);
         }
     }
 
@@ -350,7 +346,7 @@ public class BtActivity extends AppCompatActivity {
         super.onResume();
 
         if (chatController != null) {
-            if (chatController.getState() == ChatController.STATE_NONE) {
+            if (chatController.getState() == Controller.STATE_NONE) {
                 chatController.start();
             }
         }

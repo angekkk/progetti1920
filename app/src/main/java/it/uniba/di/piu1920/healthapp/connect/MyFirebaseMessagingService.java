@@ -10,11 +10,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-
 
 import androidx.core.app.NotificationCompat;
 
@@ -28,7 +26,7 @@ import java.util.Map;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
-
+//check del 22/06
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public static final String FCM_PARAM = "picture";

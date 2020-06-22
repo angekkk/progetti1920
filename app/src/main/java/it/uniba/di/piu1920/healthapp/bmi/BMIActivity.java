@@ -7,12 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.snackbar.Snackbar;
+
 import java.text.DecimalFormat;
+
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
+
+
+//check del 22/06
 
 public class BMIActivity extends AppCompatActivity {
 
@@ -50,7 +57,7 @@ public class BMIActivity extends AppCompatActivity {
                     m = Double.parseDouble(inputM.getText().toString())/100;
                     metricFormula = new MetricFormula(kg, m);
                     //imperialFormula = new ImperialFormula(kg, m);
-                    showBMI.setText("BMI = " + String.valueOf(TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))));//attivazione del metodo e calcolo atraverso la formula
+                    showBMI.setText("BMI = " + TWO_DECIMAL_PLACES.format(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM())));//attivazione del metodo e calcolo atraverso la formula
                     showResult.setText(getCategory(metricFormula.computeBMI(metricFormula.getInputKg(), metricFormula.getInputM()))); //attivo il metodo per recuperare la categoria di appartenenza
                 }
             }

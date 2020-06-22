@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 
 import belka.us.androidtoggleswitch.BuildConfig;
 
-
+//check del 22/06
 public class JSONParser {
     public static final String GET = "GET";
     public static final String POST = "POST";

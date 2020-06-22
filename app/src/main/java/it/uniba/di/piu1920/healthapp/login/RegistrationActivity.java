@@ -35,6 +35,7 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
+//check del 22/06
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText emailTV, passwordTV,repassword,nome,cognome;
@@ -50,6 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private static String url_inserisci_utente = "http://ddauniba.altervista.org/HealthApp/inserisci_utente.php";
     String email, password="",rep,nom,cog;
     TextView reg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,7 +223,7 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                  new ControllaAccesso().execute();
+                    new ControllaAccesso().execute();
                 }
             });
         }

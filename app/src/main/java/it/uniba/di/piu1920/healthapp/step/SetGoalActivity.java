@@ -14,15 +14,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.Calendar;
 
-import it.uniba.di.piu1920.healthapp.DetailsActivity;
-import it.uniba.di.piu1920.healthapp.ExerciseActivity;
 import it.uniba.di.piu1920.healthapp.Home;
 import it.uniba.di.piu1920.healthapp.R;
 
-
+//check del 22/06
 public class SetGoalActivity extends AppCompatActivity {
     public static float mSeries = 0f;
-    public static float mSeries1 = 0f;
     SharedPreferences sharedpreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {

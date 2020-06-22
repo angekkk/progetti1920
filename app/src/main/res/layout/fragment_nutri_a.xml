@@ -141,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/sticky_switch_gender"
         android:layout_alignStart="@+id/sticky_switch_gender"
+        android:visibility="invisible"
         app:ss_animationDuration="600"
         app:ss_animationType="line"
         app:ss_iconPadding="8dp"

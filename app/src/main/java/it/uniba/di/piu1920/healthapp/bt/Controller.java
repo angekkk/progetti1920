@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2009 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package it.uniba.di.piu1920.healthapp.bt;
 
 import android.bluetooth.BluetoothAdapter;
@@ -30,7 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-public class ChatController {
+//check del 22/06
+public class Controller {
 
     static final int STATE_NONE = 0;
     static final int STATE_LISTEN = 1;
@@ -45,7 +30,7 @@ public class ChatController {
     private ReadWriteThread connectedThread;
     private int state;
 
-    public ChatController(Context context, Handler handler) {
+    public Controller(Context context, Handler handler) {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         state = STATE_NONE;
 
@@ -177,7 +162,7 @@ public class ChatController {
         handler.sendMessage(msg);
 
         // Start the service over to restart listening mode
-        ChatController.this.start();
+        Controller.this.start();
     }
 
     private void connectionLost() {
@@ -188,7 +173,7 @@ public class ChatController {
         handler.sendMessage(msg);
 
         // Start the service over to restart listening mode
-        ChatController.this.start();
+        Controller.this.start();
     }
 
     // runs while listening for incoming connections
@@ -217,7 +202,7 @@ public class ChatController {
 
                 // If a connection was accepted
                 if (socket != null) {
-                    synchronized (ChatController.this) {
+                    synchronized (Controller.this) {
                         switch (state) {
                             case STATE_LISTEN:
                             case STATE_CONNECTING:
@@ -231,6 +216,7 @@ public class ChatController {
                                 try {
                                     socket.close();
                                 } catch (IOException e) {
+                                    //
                                 }
                                 break;
                         }
@@ -282,7 +268,7 @@ public class ChatController {
             }
 
             // Reset the ConnectThread because we're done
-            synchronized (ChatController.this) {
+            synchronized (Controller.this) {
                 connectThread = null;
             }
 
@@ -335,7 +321,7 @@ public class ChatController {
                 } catch (IOException e) {
                     connectionLost();
                     // Start the service over to restart listening mode
-                    ChatController.this.start();
+                    Controller.this.start();
                     break;
                 }
             }

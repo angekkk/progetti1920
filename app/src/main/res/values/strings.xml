@@ -206,7 +206,7 @@
     <string name="benvenuto">Benvenuto su HealthApp!</string>
     <string name="benvenuto_intro">Non hai bisogno di registrazioni, puoi usufruire della maggior parte dei contenuti in modo semplice e veloce!</string>
     <string name="non_valido">Campo non valido</string>
-    <string name="err_no_scheda">Non hai una scheda da visualizzare al momento</string>
+    <string name="err_no_scheda">Non hai una scheda da visualizzare al momento.</string>
 
     <plurals name="numeroEsercizi">
         <item quantity="one">%d esercizio trovato.</item>
@@ -219,7 +219,7 @@
     <string name="connection_device_lost">Connessione al dispositivo persa</string>
     <string name="bluetooth_not_avaiable">Bluetooth non è disponibile!</string>
     <string name="connect_to">Connesso a: </string>
-    <string name="connecting">Connettendo...</string>
+    <string name="connecting">Connettendo</string>
     <string name="not_connected">Non connesso</string>
     <string name="bluetooth_devices">Dispositivi bluetooth</string>
     <string name="bluetooth_disabled">Bluetooth è disabilitato, accendilo!</string>
@@ -231,4 +231,6 @@
     <string name="title_state">Stato</string>
     <string name="annulla">Annulla</string>
     <string name="invia_bt">Condividi</string>
+    <string name="nop">Senza questo permesso non potrai cercare i dispositivi bluetooth nelle vivinanze.</string>
+    <string name="pmc">Permesso cancellato.</string>
 </resources>

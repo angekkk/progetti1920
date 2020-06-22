@@ -213,7 +213,7 @@
     <string name="connection_device_lost">Device connection was lost</string>
     <string name="bluetooth_not_avaiable">Bluetooth is not available!</string>
     <string name="connect_to">Connected to: </string>
-    <string name="connecting">Connecting...</string>
+    <string name="connecting">Connecting</string>
     <string name="not_connected">Not connected</string>
     <string name="bluetooth_devices">Bluetooth Devices</string>
     <string name="bluetooth_disabled">Bluetooth still disabled, turn on!</string>
@@ -224,4 +224,6 @@
     <string name="none_found">No devices found</string>
     <string name="annulla">Exit</string>
     <string name="invia_bt">Share</string>
+    <string name="nop">Without this permission it is not necessary to search for bluetooth devices in the vivinanze.</string>
+    <string name="pmc">Permission cancelled.</string>
 </resources>

@@ -44,6 +44,7 @@ import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 import me.ydcool.lib.qrmodule.encoding.QrGenerator;
 
+//check del 22/06
 public class GestioneClientiActivity extends AppCompatActivity {
 
 
@@ -54,6 +55,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
     private static String url_get_clienti = "http://ddauniba.altervista.org/HealthApp/get_clienti.php"; //preleva i clienti a cui non è stata assegnata nessuna scheda
     private static String url_get_clienti_schedati = "http://ddauniba.altervista.org/HealthApp/get_clienti_schedati.php"; //preleva i clienti a cui non è stata assegnata una scheda
     SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -253,6 +255,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
         //adapeter per la recyclerview
         private List<Cliente> listahome;
         Bitmap qrCode = null;
+
         /**
          * View holder class
          * */
@@ -339,7 +342,7 @@ public class GestioneClientiActivity extends AppCompatActivity {
                         return true;
                     }
 
-                    });
+                });
 
 
             }

@@ -16,23 +16,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
+//check del 22/06
 public class SchedaActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
@@ -78,6 +84,7 @@ public class SchedaActivity extends AppCompatActivity {
                     public void onClickItem(View v, int position) {
                         System.out.println("On Click Item interface");
                     }
+
                     public void onLongClickItem(View v, int position) {
                         System.out.println("On Long Click Item interface");
                     }
@@ -135,6 +142,70 @@ public class SchedaActivity extends AppCompatActivity {
         return;
     }
 
+    //metodo per controllare la connessione ad internet
+    public boolean isWorkingInternetPersent() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
+                        return true;
+                    }
+        }
+        return false;
+    }
+
+    public class ExAdapt extends RecyclerView.Adapter<ExAdapt.MyViewHolder> {
+
+        private List<Esercizio> listahome;
+
+
+        public ExAdapt(List<Esercizio> listahomet) {
+            this.listahome = listahomet;
+        }
+
+        @NonNull
+        @Override
+        public ExAdapt.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_scheda, parent, false);
+            return new ExAdapt.MyViewHolder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(ExAdapt.MyViewHolder holder, int position) {
+
+            Esercizio c = listahome.get(position);
+            System.out.println("Bind [" + holder + "] - Pos [" + position + "]" + c.getNome());
+            holder.title.setText(c.getNome());
+            holder.esec.setText(c.getEsecuzione());
+            Picasso.get().load("http://ddauniba.altervista.org/HealthApp/img/" + c.getLink()).into(holder.img);
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return listahome.size();
+        }
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+
+            public TextView title, esec;
+            ImageView img;
+
+
+            public MyViewHolder(View view) {
+                super(view);
+                title = (TextView) view.findViewById(R.id.title);
+                esec = (TextView) view.findViewById(R.id.esec);
+                img = (ImageView) view.findViewById(R.id.img);
+
+            }
+        }
+
+
+    }
+
     class GetEsercizi extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -143,7 +214,7 @@ public class SchedaActivity extends AppCompatActivity {
         }
 
         protected String doInBackground(String... args) {
-            String ris=null;
+            String ris = null;
             if(isWorkingInternetPersent()){
                 TwoParamsList params = new TwoParamsList();
                 params.add("idscheda",""+idscheda);
@@ -182,10 +253,10 @@ public class SchedaActivity extends AppCompatActivity {
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                    if(file_url!=null){
-                        Log.d("LISTA SIZE: ",""+lista.size());
-                        for(int i=0;i<lista.size();i++){
-                            Log.d("Link :",""+"http://ddauniba.altervista.org/HealthApp/img/"+lista.get(i).getLink());
+                    if(file_url!=null) {
+                        Log.d("LISTA SIZE: ", "" + lista.size());
+                        for (int i = 0; i < lista.size(); i++) {
+                            Log.d("Link :", "" + "http://ddauniba.altervista.org/HealthApp/img/" + lista.get(i).getLink());
                         }
                         ExAdapt ca = new ExAdapt(lista);
                         rv.setAdapter(ca);
@@ -215,70 +286,6 @@ public class SchedaActivity extends AppCompatActivity {
         }
 
 
-    }
-
-    public class ExAdapt extends RecyclerView.Adapter<ExAdapt.MyViewHolder> {
-
-        private List<Esercizio> listahome;
-
-
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-
-            public TextView title,esec;
-            ImageView img;
-
-
-            public MyViewHolder(View view) {
-                super(view);
-                title = (TextView) view.findViewById(R.id.title);
-                esec = (TextView) view.findViewById(R.id.esec);
-                img = (ImageView) view.findViewById(R.id.img);
-
-            }
-        }
-
-        public ExAdapt(List<Esercizio> listahomet) {
-            this.listahome = listahomet;
-        }
-
-        @NonNull
-        @Override
-        public ExAdapt.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_scheda, parent, false);
-            return new ExAdapt.MyViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(ExAdapt.MyViewHolder holder, int position) {
-
-            Esercizio c = listahome.get(position);
-            System.out.println("Bind ["+holder+"] - Pos ["+position+"]"+c.getNome());
-            holder.title.setText(c.getNome());
-            holder.esec.setText(c.getEsecuzione());
-            Picasso.get().load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.img);
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return listahome.size();
-        }
-
-
-    }
-
-     //metodo per controllare la connessione ad internet
-     public boolean isWorkingInternetPersent() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);//controllare il servizio delle connessioni
-        if (connectivityManager != null) {
-            NetworkInfo[] info = connectivityManager.getAllNetworkInfo(); //recupero di tutte le informazioni
-            if (info != null)
-                for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) { //quando trovo lo stato di connesso, esco con return true
-                        return true;
-                    }
-        }
-        return false;
     }
 
 }

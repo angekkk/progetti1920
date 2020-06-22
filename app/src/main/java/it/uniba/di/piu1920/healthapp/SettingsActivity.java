@@ -52,7 +52,7 @@ import it.uniba.di.piu1920.healthapp.classes.SessionManager;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 
-
+//check del 22/06
 public class SettingsActivity extends AppCompatActivity {
 
 

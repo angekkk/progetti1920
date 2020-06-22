@@ -1,5 +1,8 @@
 package it.uniba.di.piu1920.healthapp.bmi;
 
+
+//check del 22/06
+
 public class MetricFormula {
     private double inputKg;
     private double inputM;

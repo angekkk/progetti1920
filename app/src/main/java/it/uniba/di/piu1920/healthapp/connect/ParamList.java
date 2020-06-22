@@ -2,6 +2,7 @@ package it.uniba.di.piu1920.healthapp.connect;
 
 import java.util.ArrayList;
 
+//check del 22/06
 public class ParamList extends ArrayList<KeyValue> {
 
     @Override

@@ -38,13 +38,16 @@ import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
+
+//check del 22/06
 public class ExOutDoorActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
     JSONArray arr = null; //array per il recupero json
-    List<Esercizio> lista=new ArrayList<>(); //array list per memorizzare gli esercizi letti
+    List<Esercizio> lista = new ArrayList<>(); //array list per memorizzare gli esercizi letti
     RecyclerView rv; //recyclerview
     private static String url_get_bozze = "http://ddauniba.altervista.org/HealthApp/get_esercizi_out.php"; //url per il recupero degli esercizi dal php
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,7 @@ public class ExOutDoorActivity extends AppCompatActivity {
                         startActivity(i);   //starto l'activity
                         finish(); //termino l'activity corrente
                     }
+
                     public void onLongClickItem(View v, int position) {
                         System.out.println("On Long Click Item interface");
                     }
@@ -146,7 +150,6 @@ public class ExOutDoorActivity extends AppCompatActivity {
                             lista.add(x);
 
 
-
                         }
                     } else {
                         Log.d("Esercizi: ","SUCCESS 0");
@@ -158,16 +161,15 @@ public class ExOutDoorActivity extends AppCompatActivity {
             }
 
 
-
             return ris;
         }
 
         protected void onPostExecute(final String file_url) {
             runOnUiThread(new Runnable() {
                 public void run() {
-                    Log.d("LISTA SIZE: ",""+lista.size());
-                    for(int i=0;i<lista.size();i++){
-                        Log.d("Link :",""+"http://ddauniba.altervista.org/HealthApp/img/"+lista.get(i).getLink());
+                    Log.d("LISTA SIZE: ", "" + lista.size());
+                    for (int i = 0; i < lista.size(); i++) {
+                        Log.d("Link :", "" + "http://ddauniba.altervista.org/HealthApp/img/" + lista.get(i).getLink());
                     }
                     setUpText(lista.size());//test plurals
                     ExAdapt ca = new ExAdapt(lista);

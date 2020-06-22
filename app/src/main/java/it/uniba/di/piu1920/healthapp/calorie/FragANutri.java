@@ -22,6 +22,9 @@ import belka.us.androidtoggleswitch.widgets.ToggleSwitch;
 import io.ghyeok.stickyswitch.widget.StickySwitch;
 import it.uniba.di.piu1920.healthapp.R;
 
+
+//check del 22/06
+
 public class FragANutri extends Fragment {
 
     public static final String TAG = FragANutri.class.getSimpleName();
@@ -109,22 +112,11 @@ public class FragANutri extends Fragment {
                     } else {
                         dialog.show();
                         if (gender.getDirection().name().equals("LEFT")) {
-                            // if (measure.getDirection().name().equals("LEFT")) {
                             bmr = BMRcalcKG(Integer.parseInt(ageT.getText().toString()), Integer.parseInt(heightT.getText().toString()), Double.parseDouble(weightT.getText().toString()), false);
                             weightz = Double.parseDouble(weightT.getText().toString());
-                            //}
-                            /*else if (measure.getDirection().name().equals("RIGHT")) {
-                                bmr = BMRcalcLB(Integer.parseInt(ageT.getText().toString()), Integer.parseInt(heightT.getText().toString()), Integer.parseInt(weightT.getText().toString()), false);
-                                weightz = Integer.parseInt(weightT.getText().toString()) / 2.2;
-                            }*/
                         } else if (gender.getDirection().name().equals("RIGHT")) {
-                            //if (measure.getDirection().name().equals("LEFT")) {
                             bmr = BMRcalcKG(Integer.parseInt(ageT.getText().toString()), Integer.parseInt(heightT.getText().toString()), Double.parseDouble(weightT.getText().toString()), true);
                             weightz = Double.parseDouble(weightT.getText().toString());
-                            //} else if (measure.getDirection().name().equals("RIGHT")) {
-                            //   bmr = BMRcalcLB(Integer.parseInt(ageT.getText().toString()), Integer.parseInt(heightT.getText().toString()), Integer.parseInt(weightT.getText().toString()), true);
-                            //   weightz = Integer.parseInt(weightT.getText().toString()) / 2.2;
-                            //}
                         }
                         int activ = act.getCheckedTogglePosition();
                         int intense = act2.getCheckedTogglePosition();
@@ -213,13 +205,6 @@ public class FragANutri extends Fragment {
         }
     }
 
-    public int BMRcalcLB(int age, int height, int weight, boolean gender) {
-        if (gender) {
-            return (int) ((10 * weight / 2.2) + (6.25 * height * 2.54) - (5 * age) + 5);
-        } else {
-            return (int) ((10 * weight / 2.2) + (6.25 * height * 2.54) - (5 * age) - 161);
-        }
-    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

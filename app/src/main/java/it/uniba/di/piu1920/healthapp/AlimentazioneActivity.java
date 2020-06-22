@@ -15,21 +15,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import it.uniba.di.piu1920.healthapp.classes.Item;
 import it.uniba.di.piu1920.healthapp.connect.JSONParser;
 import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
+//check del 22/06
 public class AlimentazioneActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
@@ -63,29 +68,26 @@ public class AlimentazioneActivity extends AppCompatActivity {
         rv.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rv,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-                            if(position==0){
-                                Intent i = new Intent(AlimentazioneActivity.this, WebActivity.class);
-                                i.putExtra("nome","diete");
-                                startActivity(i);
-                                finish();
-                            }else{
-                                Intent i = new Intent(AlimentazioneActivity.this, DietaActivity.class);
-                                Bundle x =new Bundle();
-                                x.putString("nome",lista.get(position).getName());
-                                x.putString("cat",lista.get(position).getN2());
-                                x.putString("desc",lista.get(position).getN3());
-
-
-                                x.putString("tx4",lista.get(position).getN4());
-                                x.putString("tx6",lista.get(position).getN5());
-                                x.putString("tx8",lista.get(position).getN6());
-
-
-                                i.putExtra("bund",x);
-                                startActivity(i);
-                                finish();
-                            }
+                        if (position == 0) {
+                            Intent i = new Intent(AlimentazioneActivity.this, WebActivity.class);
+                            i.putExtra("nome", "diete");
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Intent i = new Intent(AlimentazioneActivity.this, DietaActivity.class);
+                            Bundle x = new Bundle();
+                            x.putString("nome", lista.get(position).getName());
+                            x.putString("cat", lista.get(position).getN2());
+                            x.putString("desc", lista.get(position).getN3());
+                            x.putString("tx4", lista.get(position).getN4());
+                            x.putString("tx6", lista.get(position).getN5());
+                            x.putString("tx8", lista.get(position).getN6());
+                            i.putExtra("bund", x);
+                            startActivity(i);
+                            finish();
+                        }
                     }
+
                     public void onLongClickItem(View v, int position) {
                         System.out.println("On Long Click Item interface");
                     }
@@ -140,18 +142,12 @@ public class AlimentazioneActivity extends AppCompatActivity {
                             String categoria=c.getString("categoria");
                             String nome=c.getString("nome");
                             String desc=c.getString("descrizione");
-
-
                             String tx4=c.getString("colazione");
                             String tx6=c.getString("pranzo");
                             String tx8=c.getString("cena");
-
-
-                            //   String link=c.getString("link");
                             Item x=new Item(id,nome,categoria,desc,tx4,tx6,tx8);
 
                             lista.add(x);
-
 
 
                         }
@@ -163,7 +159,6 @@ public class AlimentazioneActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
 
 
             return ris;
@@ -248,7 +243,7 @@ public class AlimentazioneActivity extends AppCompatActivity {
     //metodo per inizializzare
     void inizializza(){
         if(isWorkingInternetPersent()){
-              new GetDiete().execute();
+            new GetDiete().execute();
         }else{
             new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.error))

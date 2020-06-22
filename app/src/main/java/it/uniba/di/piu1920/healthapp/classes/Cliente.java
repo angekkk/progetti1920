@@ -1,11 +1,13 @@
 package it.uniba.di.piu1920.healthapp.classes;
 
+
+//check del 22/06
 public class Cliente {
 
     int id;
-    String nome,cognome,email,qr;
+    String nome, cognome, email, qr;
 
-    public Cliente(int id, String nome, String cognome, String email,String qr) {
+    public Cliente(int id, String nome, String cognome, String email, String qr) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -41,9 +43,6 @@ public class Cliente {
         return cognome;
     }
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
 
     public String getEmail() {
         return email;

@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
 
+//check del 22/06
 public class DetailsActivity extends AppCompatActivity {
 
     Esercizio ex;
@@ -48,7 +49,6 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
         img=findViewById(R.id.img);
         categoria=findViewById(R.id.categoria);
         esecuzione=findViewById(R.id.esecuzione);
@@ -134,9 +134,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-            Intent i = new Intent(DetailsActivity.this, ExerciseActivity.class);
-            startActivity(i);
-            finish();
+        Intent i = new Intent(DetailsActivity.this, ExerciseActivity.class);
+        startActivity(i);
+        finish();
         return;
     }
 

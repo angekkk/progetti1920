@@ -3,7 +3,7 @@ package it.uniba.di.piu1920.healthapp.classes;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-
+//check del 22/06
 public class Item implements java.io.Serializable{
 
     public  String name;
@@ -35,49 +35,27 @@ public class Item implements java.io.Serializable{
         return n2;
     }
 
-    public void setN2(String n2) {
-        this.n2 = n2;
-    }
 
     public String getN3() {
         return n3;
     }
 
-    public void setN3(String n3) {
-        this.n3 = n3;
-    }
-
-
 
     public String getN4() {
         return n4;
     }
-    public void setN4(String n4) {
-        this.n4 = n4;
-    }
+
 
     public String getN5() {
         return n5;
     }
-    public void setN5(String n5) {
-        this.n5 = n5;
-    }
+
 
     public String getN6() {
         return n6;
     }
-    public void setN6(String n6) {
-        this.n6 = n6;
-    }
 
 
-
-
-
-    public Item(String name, String link) {
-        this.name = name;
-        this.link = link;
-    }
     public Item(String name) {
         this.name = name;
 
@@ -95,18 +73,6 @@ public class Item implements java.io.Serializable{
         this.image = image;
     }
 
-    public Item(String name, ImageView im) {
-        this.name = name;
-        this.im = im;
-    }
-
-    public ImageView getIm() {
-        return im;
-    }
-
-    public void setIm(ImageView im) {
-        this.im = im;
-    }
 
     public String getName() {
         return name;

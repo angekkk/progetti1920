@@ -4,13 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,35 +14,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 import it.uniba.di.piu1920.healthapp.classes.Esercizio;
-import it.uniba.di.piu1920.healthapp.connect.JSONParser;
-import it.uniba.di.piu1920.healthapp.connect.TwoParamsList;
 import it.uniba.di.piu1920.healthapp.recycler.RecyclerItemListener;
 
+
+//check del 22/06
 public class ExerciseActivity extends AppCompatActivity {
 
-    private static final String TAG_SUCCESS = "success"; //utilizzato a livello di tag per determinare se la chiamata ha prodotto risultati
-    JSONArray arr = null; //array per il recupero json
-    List<Esercizio> lista=new ArrayList<>(); //array list per memorizzare gli esercizi letti
+    List<Esercizio> lista = new ArrayList<>(); //array list per memorizzare gli esercizi letti
     RecyclerView rv; //recyclerview
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_exercices);
 
-        rv= (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -80,6 +74,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
 
                     }
+
                     public void onLongClickItem(View v, int position) {
                         System.out.println("On Long Click Item interface");
                     }
@@ -149,7 +144,7 @@ public class ExerciseActivity extends AppCompatActivity {
             Esercizio c = listahome.get(position);
             System.out.println("Bind ["+holder+"] - Pos ["+position+"]"+c.getNome());
             holder.name.setText(c.getNome().toUpperCase());
-           // Picasso.with(ExerciseActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.image);
+            // Picasso.with(ExerciseActivity.this).load("http://ddauniba.altervista.org/HealthApp/img/"+c.getLink()).into( holder.image);
 
             Resources r = getResources();
             int drawableId = r.getIdentifier(c.getNomecategoria(), "drawable", "it.uniba.di.piu1920.healthapp");
