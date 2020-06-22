@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="230dp"
-    android:layout_marginStart="8dp"
+    android:layout_height="170dp"
+    android:layout_marginStart="18dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="18dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true"
     tools:ignore="ContentDescription">
@@ -27,11 +27,14 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/primary_dark"
-            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

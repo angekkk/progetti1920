@@ -89,8 +89,8 @@
 
 
     <!--NAVBAR -->
-    <string name="title_bmi">BMI</string>
-    <string name="title_calorie">Calories</string>
+    <string name="title_bmi">Counts BMI</string>
+    <string name="title_calorie">Counts Calories</string>
     <string name="title_home">Home</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_login">Login</string>
@@ -188,9 +188,9 @@
     <string name="err_no_scheda">You don\'t have a card to note right now</string>
 
     <!--SUPPORT-->
-    <string name = "supp_log"> How can I log in? </string>
-    <string name = "supp_reg"> How can I register? </string>
-    <string name = "supp_es"> How do I search for an exercise? </string>
+    <string name="supp_log"> How can I log in? </string>
+    <string name="supp_reg"> How can I register? </string>
+    <string name="supp_es"> How do I search for an exercise? </string>
     <string name="supp_tdee"> What is TDE? How can I calculate it? </string>
     <string name="supp_bmi"> What is BMI? How can I calculate it? </string>
     <string name="supp_pass"> How do I set the attention of daily steps? </string>
@@ -206,4 +206,22 @@
         <item quantity="other">%d exercises found.</item>
     </plurals>
 
+
+    <!--Bluethoot!-->
+    <string name="title_state">State</string>
+    <string name="unable_connect">Unable to connect device</string>
+    <string name="connection_device_lost">Device connection was lost</string>
+    <string name="bluetooth_not_avaiable">Bluetooth is not available!</string>
+    <string name="connect_to">Connected to: </string>
+    <string name="connecting">Connecting...</string>
+    <string name="not_connected">Not connected</string>
+    <string name="bluetooth_devices">Bluetooth Devices</string>
+    <string name="bluetooth_disabled">Bluetooth still disabled, turn on!</string>
+    <string name="connection_lost">Connection is null!</string>
+    <string name="pairer_devices">Pairer devices</string>
+    <string name="discovered_devices">Discovered devices</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="annulla">Exit</string>
+    <string name="invia_bt">Share</string>
 </resources>
