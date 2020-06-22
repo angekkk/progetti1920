@@ -109,7 +109,7 @@ public class ExInDoorActivity extends AppCompatActivity {
     }
 
     private void setUpText(int counter) {
-        String itemsFound = getResources().getQuantityString(R.plurals.numeroEsercizi, counter, counter);
+        String itemsFound = getResources().getQuantityString(R.plurals.numeroEsercizi, counter, counter); //per recuperare la quantita
         Snackbar.make(getWindow().getDecorView().getRootView(), itemsFound, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
