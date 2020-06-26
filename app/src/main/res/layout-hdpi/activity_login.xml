@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/divider">
+    android:background="@drawable/imgbck">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout5"
@@ -26,6 +26,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="100dp"
         android:id="@+id/card_view"
         android:layout_width="307dp"
         android:layout_height="358dp"
@@ -45,10 +46,23 @@
             android:layout_width="wrap_content"
             android:layout_height="353dp">
 
+            <TextView
+                android:id="@+id/tx12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="LOGIN"
+                android:textColor="#5E5E5E"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/et_email"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="269dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_above="@id/et_password"
                 android:layout_marginTop="84dp"
                 android:background="@drawable/edittext_round"
@@ -66,7 +80,7 @@
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="269dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/edittext_round"
@@ -78,7 +92,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/swipe"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.592"
+                app:layout_constraintHorizontal_bias="0.64"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_email"
                 app:layout_constraintVertical_bias="0.0" />
@@ -87,17 +101,20 @@
                 android:id="@+id/scopri"
                 android:layout_width="22dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="164dp"
+                android:layout_marginTop="152dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/app_name"
                 android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_password"
                 app:layout_constraintEnd_toEndOf="@+id/et_password"
-                app:layout_constraintHorizontal_bias="0.975"
+                app:layout_constraintHorizontal_bias="0.923"
                 app:layout_constraintStart_toStartOf="@+id/et_password"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_visibility_black_24dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="30dp"
                 android:id="@+id/login"
                 android:layout_width="83dp"
                 android:layout_height="44dp"
@@ -111,7 +128,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dim" />
 
             <ImageView
                 android:id="@+id/swipe"
@@ -120,14 +138,16 @@
 
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="12dp"
 
+
+                android:layout_marginBottom="36dp"
                 android:src="@drawable/ic_arrow_right"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/swipeRight"
+
 
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.377"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -137,13 +157,13 @@
 
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="36dp"
                 android:text="@string/swipe_left_for_register"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintHorizontal_bias="0.547"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ProgressBar
@@ -162,8 +182,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="63dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginBottom="166dp"
                 android:text="@string/dimenticata"
                 android:textSize="12sp"
@@ -182,12 +202,12 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="120dp"
-        android:layout_height="93dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="349dp"
         app:layout_constraintBottom_toBottomOf="@+id/card_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout5"
-        app:srcCompat="@drawable/icon" />
+        app:srcCompat="@drawable/logonew" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
