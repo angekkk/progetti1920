@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
         listhome.add(new Item(getString(R.string.title_es), root.getContext().getDrawable(R.drawable.esercizi2)));
         listhome.add(new Item(getString(R.string.title_ali), root.getContext().getDrawable(R.drawable.alimentazione2)));
         listhome.add(new Item(getString(R.string.title_calorie), root.getContext().getDrawable(R.drawable.calorie3)));
-        listhome.add(new Item(getString(R.string.title_bmi), root.getContext().getDrawable(R.drawable.bmi3)));
+        listhome.add(new Item(getString(R.string.title_bmi), root.getContext().getDrawable(R.drawable.bmi4)));
         ca = new RVAdapter(listhome);
         rv.setAdapter(ca);
     }

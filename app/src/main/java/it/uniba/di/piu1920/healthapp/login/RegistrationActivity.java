@@ -43,7 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ImageView swipe;
     FirebaseAuth mAuth;
-    ImageButton scopri;
+    ImageButton scopri, scopri2;
     SessionManager session; //variabile per creare la sessione
     private static final String TAG_SUCCESS = "success";
     JSONArray access = null;
@@ -63,6 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
         repassword = findViewById(R.id.et_repassword);
         swipe=findViewById(R.id.swipe);
         scopri=findViewById(R.id.scopri);
+        scopri2=findViewById(R.id.scopri2);
         reg=findViewById(R.id.swipeRight);
         nome = findViewById(R.id.et_name);
         cognome = findViewById(R.id.et_cognome);
@@ -114,6 +115,23 @@ public class RegistrationActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         passwordTV.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         passwordTV.setSelection(passwordTV.getText().length());
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        scopri2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        repassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        repassword.setSelection(repassword.getText().length());
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        repassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        repassword.setSelection(repassword.getText().length());
                         return true;
                 }
                 return false;
