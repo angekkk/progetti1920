@@ -88,7 +88,9 @@
         <activity android:name=".SchedaActivity" />
         <activity android:name=".WebActivity" />
         <activity android:name="me.ydcool.lib.qrmodule.activity.QrScannerActivity" />
-        <activity android:name=".calorie.NutriActivity" />
+        <activity
+            android:name=".calorie.NutriActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".step.StepsActivity" />
         <activity android:name=".bt.BtActivity" />
         <activity

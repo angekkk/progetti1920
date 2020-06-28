@@ -205,34 +205,35 @@
         app:ss_textColor="@color/black"
         app:ss_textSize="10sp" />
 
-    <io.ghyeok.stickyswitch.widget.StickySwitch
-        android:id="@+id/sticky_switch_measure"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sticky_switch_gender"
-        android:layout_alignStart="@+id/sticky_switch_gender"
-        app:ss_animationDuration="600"
-        app:ss_animationType="line"
-        app:ss_iconPadding="8dp"
-        app:ss_iconSize="18dp"
-        app:ss_leftIcon="@drawable/kg"
-        app:ss_leftText="Metric"
-        app:ss_rightIcon="@drawable/lb"
-        app:ss_rightText="Imperial  ."
-        app:ss_selectedTextSize="12sp"
-        app:ss_sliderBackgroundColor="@color/lightgrey"
-        app:ss_switchColor="@color/colorAccent"
-        app:ss_textColor="@color/black"
-        app:ss_textSize="10sp" />
+            <io.ghyeok.stickyswitch.widget.StickySwitch
+                android:id="@+id/sticky_switch_measure"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sticky_switch_gender"
+                android:layout_alignStart="@+id/sticky_switch_gender"
+                android:visibility="invisible"
+                app:ss_animationDuration="600"
+                app:ss_animationType="line"
+                app:ss_iconPadding="8dp"
+                app:ss_iconSize="18dp"
+                app:ss_leftIcon="@drawable/kg"
+                app:ss_leftText="Metric"
+                app:ss_rightIcon="@drawable/lb"
+                app:ss_rightText="Imperial  ."
+                app:ss_selectedTextSize="12sp"
+                app:ss_sliderBackgroundColor="@color/lightgrey"
+                app:ss_switchColor="@color/colorAccent"
+                app:ss_textColor="@color/black"
+                app:ss_textSize="10sp" />
 
-    <TextView
-        android:id="@+id/activity_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/activity_switch"
-        android:layout_below="@id/sticky_switch_measure"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="18dp"
+            <TextView
+                android:id="@+id/activity_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/activity_switch"
+                android:layout_below="@id/sticky_switch_measure"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="18dp"
 
         android:text="@string/describe_your_daily_activity_level"
         android:textColor="@color/colorAccent" />

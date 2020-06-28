@@ -9,7 +9,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
-        versionName "2.6"
+        versionName "2.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -54,23 +54,21 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.google.firebase:firebase-messaging:20.2.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.1'
     implementation 'com.google.firebase:firebase-inappmessaging-display:19.0.7'
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     implementation 'com.google.android.material:material:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
-
     implementation 'com.google.firebase:firebase-auth:19.3.1'
 
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
     //image view circolare per il navigation drawer
-
-    implementation 'me.ydcool.lib:qrmodule:1.0' //creazione e gestione di qrcode
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //creazione e gestione di qrcode
+    implementation 'me.ydcool.lib:qrmodule:1.0'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     //gestione a runtime di permessi nella Home per la fotocamera
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
@@ -88,10 +86,10 @@ dependencies {
     implementation 'com.github.AppIntro:AppIntro:4.2.3'
     // Statistics around pedometer
     implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
-
+    //libreria per gestione text a contenuto elevato
     implementation 'com.borjabravo:readmoretextview:2.0.1'
 
-    implementation 'com.google.android.material:material:1.1.0'
+
 
 
 }

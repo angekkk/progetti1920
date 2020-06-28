@@ -68,7 +68,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setContentInfo("Test")
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                .setColor(getColor(R.color.colorAccent))
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setNumber(++numMessages)

@@ -40,13 +40,13 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_exercices);
 
-        rv = (RecyclerView) findViewById(R.id.rv);
+        rv = findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
         inizializza();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.title_es));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +64,12 @@ public class ExerciseActivity extends AppCompatActivity {
                             Intent i = new Intent(ExerciseActivity.this, ExInDoorActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
                             i.putExtra("in","in");
                             startActivity(i);   //starto l'activity
-                            finish(); //termino l'activity corrente
+
                         }else{
                             Intent i = new Intent(ExerciseActivity.this, ExOutDoorActivity.class);//dichiaro l'intent da richiamare con il contesto corrente
                             i.putExtra("out","out");
                             startActivity(i);   //starto l'activity
-                            finish(); //termino l'activity corrente
+
                         }
 
 
@@ -120,8 +120,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
             public MyViewHolder(View view) {
                 super(view);
-                name = (TextView) view.findViewById(R.id.name);
-                cat = (ImageView) view.findViewById(R.id.image);
+                name = view.findViewById(R.id.name);
+                cat = view.findViewById(R.id.image);
 
 
             }
