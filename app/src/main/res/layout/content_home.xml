@@ -32,7 +32,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="1dp"
             android:gravity="left"
-            android:text="PURA ENERGIA"
+            android:text="@string/title1"
             android:textColor="#DCFFFFFF"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
             android:gravity="left"
-            android:text="Una carica di energia con allenamenti brevi e veloci"
+            android:text="@string/title2"
             android:textColor="#EECFCECE"
             android:textSize="12dp"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
         android:id="@+id/tx10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Funzionalità principali"
+        android:text="@string/title3"
         android:textColor="#5E5E5E"
         android:textSize="15dp"
         android:textStyle="bold"

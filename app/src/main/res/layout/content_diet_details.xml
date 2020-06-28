@@ -40,8 +40,8 @@
             android:textSize="15dp"
             app:colorClickableText="@android:color/holo_blue_light"
             app:layout_constraintTop_toBottomOf="@+id/cat"
-            app:trimCollapsedText=" Show less"
-            app:trimExpandedText=" Show more"
+            app:trimCollapsedText="@string/passi5"
+            app:trimExpandedText="@string/passi4"
             app:trimLength="250"
             app:trimMode="trimModeLength"
             app:layout_constraintStart_toStartOf="@+id/view1" />
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="Esempi di pasti"
+            android:text="@string/pasti"
             android:textColor="#5E5E5E"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -93,7 +93,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Colazione"
+                android:text="@string/pasto1"
                 android:textColor="#5E5E5E"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -139,7 +139,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Pranzo"
+                android:text="@string/past02"
                 android:textColor="#5E5E5E"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -184,7 +184,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Cena"
+                android:text="@string/past03"
                 android:textColor="#5E5E5E"
                 android:textSize="15dp"
                 android:textStyle="bold" />

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Consigli alimentari"
+            android:text="@string/ali3"
             android:textColor="#5E5E5E"
             android:textSize="18dp"
             android:textStyle="bold"

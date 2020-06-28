@@ -7,6 +7,9 @@
     <string name="action_settings">Impostazioni</string>
     <string name="conferma">Confermare la scelta ?</string>
 
+    <string name="title1">PURA ENERGIA</string>
+    <string name="title2">Una carica di energia con allenamenti brevi e veloci</string>
+    <string name="title3">Funzionalità principali</string>
 
     <!--BMI ACTIVITY-->
     <string name="bmi_1">Molto sottopeso</string>
@@ -28,6 +31,13 @@
     <string name="content_show_result"> </string>
     <string name="content_show_bmi"> </string>
     <string name="content_user_answer">Digita il tuo peso in Kg</string>
+
+    <string name="bmi1">Calcolo BMI</string>
+    <string name="bmi2">indice di massa corporea</string>
+    <string name="bmi3">IL Body Mass Index (BMI) o Indice di Massa Corporea (IMC)  è un parametro molto utilizzato per ottenere una valutazione generale del proprio peso corporeo. Esso mette in relazione con una semplice formula matematica l altezza con il peso del soggetto. Si ottiene dividendo il peso in Kg del soggetto con il quadrato dell altezza espressa in metri. Il risultato di tale formula classifica il soggetto in un area di peso che può essere: normale - sottopeso - sovrappeso - obesità di medio grado - obesità di alto grado.\n\n16-18,49    SOTTOPESO\n18.5-24,99  NORMOPESO\n25-29,99    SOVRAPPESO\n30-34,99    OBESITÀ\n\nEsempio: \nSe il vostro peso è 80 kg e siete alti 185 cm, il vostro B.M.I. è:\n80 / (1,85 x 1,85) = 23,4\nIl vostro peso corporeo si colloca nella fascia NORMOPESO \n</string>
+    <string name="bmi4">Calcola il tuo BMI</string>
+    <string name="bmi5">inserisci i dati</string>
+
 
     <!--KCAL ACTIVITY-->
     <string name="basic3">Sesso</string>
@@ -83,6 +93,9 @@
     <string name="richiesta_inv">Richiesta inviata</string>
     <string name="richiesta_trovata">Richiesta già inviata</string>
 
+    <string name="tdee1">Calcolo TDEE</string>
+    <string name="tdee2">Il consumo energetico giornaliero complessivo o TDEE (acronimo di Total Daily Energy Expenditure: letteralmente spesa energetica giornaliera totale) non è altro che una stima di quante calorie bruciamo giornalmente. Si tratta di un valore differente da quello del tasso metabolico basale (BMR) in quanto prende in considerazione, oltre che allo stesso tasso metabolico basale, anche i livelli di attività che facciamo. \nEcco una guida passo passo per calcolare il tuo BMR utilizzando l’equazione di Harris-Benedict:\nDonne BMR = 655 + (9,6 X peso in kg) + (1,8 x altezza in cm) – (4,7 x età in anni)\n\nUomo BMR = 66 + (13,7 X peso in kg) + (5 x altezza in cm) – (6,8 x età in anni)\nAd esempio, prendiamo un maschio di 30 anni di nome Luca che è alto 180 cm e pesa 78 chili.\n\nBMR = 66 + (13,7 x 78) + (5 x 180) – (6,8 x 30)\nBMR = 66 + 1068,6 + 900 – 204\nBMR = 1830,6\n\nQuindi, come minimo indispensabile per sostenere la vita e garantire la longevità, il nostro Luca avrebbe bisogno di consumare circa 1830 calorie.\n\nIl prossimo passo nel capire TDEE sarebbe quello di calcolare l’effetto termico del cibo, nonché i fattori di non esercizio e di esercizio.Fortunatamente, non devi passare ore a eseguire calcoli più noiosi. I ricercatori hanno determinato una serie di “moltiplicatori di attività”, noti come moltiplicatori di Katch-McArdle.\n\nPer calcolare il tuo TDEE approssimativo, basta moltiplicare questi fattori di attività dal tuo BMR:\n\nSedentario (poco o nessun esercizio + lavoro di scrivania) = 1.2\nLeggermente attivo (esercizio leggero 1-3 giorni / settimana) = 1.375\nModeratamente attivo (esercizio moderato 3-5 giorni / settimana) = 1,55\nMolto attivo (allenamento pesante 6-7 giorni / settimana) = 1.725\n\nEstremamente attivo (esercizio molto pesante, duro lavoro, allenamento 2x / giorno) = 1.9\n\nTornando al nostro esempio, supponiamo che Luca si alleni 2 giorni alla settimana. Questo mette Luca nella categoria “Leggermente Attivo“.\n\nPer il calcolo del TDEE approssimativo di Luca, moltiplica il suo BMR di 1,375. Questo ci dà:\n\nTDEE = 1,375 x BMR\nTDEE = 1,375 x 1830\nTDEE = 2517\n\nQuindi, dal calcolo del TDEE, il nostro esempio Luca ha bisogno di consumare circa 2500 calorie al giorno solo per mantenere il suo peso attuale.\n</string>
+    <string name="tdee3">Calcola il tuo TDEE</string>
 
     <!--NAVBAR -->
     <string name="title_bmi">Calcola BMI</string>
@@ -102,6 +115,7 @@
     <!--DETTAGLIO ESERCIZIO-->
     <string name="categoria">Categoria :</string>
     <string name="esecuzione">Esecuzione :</string>
+    <string name="cronometro">Cronometro</string>
 
     <!--REGISTRAZIONE E LOGIN-->
     <string name="swipe_left_for_register">Registrati</string>
@@ -157,14 +171,25 @@
     <string name="imposta">Imposta</string>
     <string name="calc_bmi">Calcola il tuo bmi !</string>
 
+    <string name="passi1">Conta Passi</string>
+    <string name="passi2">monitoraggio passi giornalieri</string>
+    <string name="passi3">Camminare almeno 30 minuti al giorno è un vero e proprio toccasana per la salute. Soprattutto se non si è molto allenati, meglio preferire la camminata alla corsa. Camminare non richiede uno sforzo fisico eccessivo e permette di fare movimento ogni giorno con costanza senza affaticarsi troppo e senza annoiarsi.Ogni giorno potete cambiare percorso, decidere di fare una passeggiata in compagnia di persone diverse o di sfruttare la camminata per andare alla scoperta di strade che non avevate mai attraversato. Camminare garantirà al vostro organismo numerosi vantaggi. Vi aiuterà a mantenervi in forma, a perdere peso e a sentirvi più giovani. Ecco i principali benefici di una sana camminata all’aria aperta.\n\nRiduce il rischio di Cancro al seno\nRiduce il rischio di Malattie cardiache\nAllunga la vita\nPerdere peso più velocemente\nPrevenire il Diabete\nStimola la Creatività\nAumenta la produttività\nPreviene l’obesità infantile\nAumenta le difese immunitarie\nRisveglia la Tiroide\n</string>
+    <string name="passi4"> Mostra meno</string>
+    <string name="passi5"> Mostra di più</string>
+    <string name="passi6">Imposta il tuo obiettivo</string>
+    <string name="passi7">Imposta il tuo obiettivo</string>
+
 
 
     <!--ALIMENTAZIONE-->
     <string name="al_consigli">Come impostare una dieta bilanciata</string>
-
-
-
-
+    <string name="ali1">Sezione Diete</string>
+    <string name="ali2">Sezione contenente alcuni esempi e consigli alimentari su diete e corretta alimentazione</string>
+    <string name="pasti">Esempi di pasti</string>
+    <string name="pasto1">Colazione</string>
+    <string name="past02">Pranzo</string>
+    <string name="past03">Cena</string>
+    <string name="ali3">Consigli alimentari</string>
 
 
 
