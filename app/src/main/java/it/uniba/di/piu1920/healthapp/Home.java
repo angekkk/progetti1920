@@ -100,12 +100,12 @@ public class Home extends AppCompatActivity {
             setAppLocale("it");
         }
         setContentView(R.layout.activity_home);
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( Home.this,  new OnSuccessListener<InstanceIdResult>() {
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true); //avvio del servizio di firebase
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(Home.this, new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 String newToken = instanceIdResult.getToken();
-                Log.e("newToken",newToken);
+                Log.e("newToken", newToken);
 
             }
         });
@@ -348,9 +348,6 @@ public class Home extends AppCompatActivity {
             super.onPreExecute();
 
         }
-
-        List<String> categories = new ArrayList<>();
-
         protected String doInBackground(String... args) {
             String ris = null;
 
@@ -521,8 +518,7 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 
     //metodo per controllare la connessione ad internet

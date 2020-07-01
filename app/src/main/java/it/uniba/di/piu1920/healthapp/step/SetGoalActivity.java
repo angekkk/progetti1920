@@ -62,10 +62,10 @@ public class SetGoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (stepGoal.getText().toString().length() == 0) {
-                    stepGoal.setError("Set Steps Goal");
+                    stepGoal.setError(getString(R.string.err_goal_step));
                     return;
                 } else if (calorieGoal.getText().toString().length() == 0) {
-                    calorieGoal.setError("Set Calorie Goal!");
+                    calorieGoal.setError(getString(R.string.err_goal_cal));
                     return;
                 }
                 sharedpreferences = getSharedPreferences("GOAL", Context.MODE_PRIVATE);

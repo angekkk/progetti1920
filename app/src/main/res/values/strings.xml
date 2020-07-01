@@ -215,6 +215,8 @@
     <string name="log_err">Errore nel login! Controllare i dati immesi e riprovare.</string>
     <string name="err_connessione">Connessione internet assente! Controllare la connessione e riprovare.</string>
     <string name="richiesta_err">Errore nell\'inviare la richiesta! Riprovare più tardi.</string>
+    <string name="err_goal_cal">Setta l\'obiettivo di calorie</string>
+    <string name="err_goal_step">Setta l\'obiettivo di passi</string>
 
     <!--SUPPORT-->
     <string name="supp_log">Come posso effettuare il login?</string>

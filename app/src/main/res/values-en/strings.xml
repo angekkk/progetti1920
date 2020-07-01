@@ -214,6 +214,8 @@
     <string name="richiesta_err">Unexprected error in sending the request! Try again later.</string>
     <string name="non_valido">Field not valid</string>
     <string name="err_no_scheda">You don\'t have a card to note right now</string>
+    <string name="err_goal_cal">Set Step Goal</string>
+    <string name="err_goal_step">Set Calories Goal</string>
 
     <!--SUPPORT-->
     <string name="supp_log"> How can I log in? </string>
